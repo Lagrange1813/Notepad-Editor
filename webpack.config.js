@@ -12,8 +12,6 @@ module.exports = [
     output: {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
-      // chunkFilename: '[name].bundle.lib',
-      // publicPath: `${pkg.cdn}/vditor@${pkg.version}/dist/`,
       libraryTarget: 'umd',
       library: 'Vditor',
       libraryExport: 'default',
