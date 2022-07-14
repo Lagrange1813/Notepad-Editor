@@ -1,5 +1,5 @@
 {
-  "name": "vditor",
+  "name": "editor",
   "version": "3.8.15",
   "jsdelivr": "dist/index.min.js",
   "main": "dist/index.min.js",
@@ -11,8 +11,6 @@
     "src/assets/*"
   ],
   "dependencies": {
-    "diff-match-patch": "^1.0.5",
-    "vditor": "^3.8.15"
   },
   "types": "dist/index.d.ts",
   "devDependencies": {
@@ -55,8 +53,6 @@
   },
   "scripts": {
     "lint": "eslint --fix --ext src/**/*.ts",
-    "test:watch": "jest --watch",
-    "test": "jest --coverage",
     "build": "webpack"
   }
 }
