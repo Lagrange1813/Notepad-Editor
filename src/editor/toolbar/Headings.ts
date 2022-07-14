@@ -42,6 +42,7 @@ export class Headings extends MenuItem {
                 } else if (vditor.currentMode === "ir") {
                     processHeading(vditor, "");
                 }
+              // processHeading(vditor, "");
                 actionBtn.classList.remove("vditor-menu--current");
             } else {
                 hidePanel(vditor, ["subToolbar"]);
