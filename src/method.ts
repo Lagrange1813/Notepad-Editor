@@ -1,22 +1,22 @@
-import {abcRender} from "./ts/markdown/abcRender";
-import * as adapterRender from "./ts/markdown/adapterRender";
-import {chartRender} from "./ts/markdown/chartRender";
-import {codeRender} from "./ts/markdown/codeRender";
-import {flowchartRender} from "./ts/markdown/flowchartRender";
-import {graphvizRender} from "./ts/markdown/graphvizRender";
-import {highlightRender} from "./ts/markdown/highlightRender";
-import {lazyLoadImageRender} from "./ts/markdown/lazyLoadImageRender";
-import {mathRender} from "./ts/markdown/mathRender";
-import {mediaRender} from "./ts/markdown/mediaRender";
-import {mermaidRender} from "./ts/markdown/mermaidRender";
-import {mindmapRender} from "./ts/markdown/mindmapRender";
-import {outlineRender} from "./ts/markdown/outlineRender";
-import {plantumlRender} from "./ts/markdown/plantumlRender";
-import {md2html, previewRender} from "./ts/markdown/previewRender";
-import {speechRender} from "./ts/markdown/speechRender";
-import {previewImage} from "./ts/preview/image";
-import {setCodeTheme} from "./ts/ui/setCodeTheme";
-import {setContentTheme} from "./ts/ui/setContentTheme";
+import {abcRender} from "./editor/markdown/abcRender";
+import * as adapterRender from "./editor/markdown/adapterRender";
+import {chartRender} from "./editor/markdown/chartRender";
+import {codeRender} from "./editor/markdown/codeRender";
+import {flowchartRender} from "./editor/markdown/flowchartRender";
+import {graphvizRender} from "./editor/markdown/graphvizRender";
+import {highlightRender} from "./editor/markdown/highlightRender";
+import {lazyLoadImageRender} from "./editor/markdown/lazyLoadImageRender";
+import {mathRender} from "./editor/markdown/mathRender";
+import {mediaRender} from "./editor/markdown/mediaRender";
+import {mermaidRender} from "./editor/markdown/mermaidRender";
+import {mindmapRender} from "./editor/markdown/mindmapRender";
+import {outlineRender} from "./editor/markdown/outlineRender";
+import {plantumlRender} from "./editor/markdown/plantumlRender";
+import {md2html, previewRender} from "./editor/markdown/previewRender";
+import {speechRender} from "./editor/markdown/speechRender";
+import {previewImage} from "./editor/preview/image";
+import {setCodeTheme} from "./editor/ui/setCodeTheme";
+import {setContentTheme} from "./editor/ui/setContentTheme";
 
 class Vditor {
 
