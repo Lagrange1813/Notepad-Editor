@@ -1357,7 +1357,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
         textHTML = doc.body.innerHTML;
     }
     textHTML = Lute.Sanitize(textHTML);
-    vditor.wysiwyg.getComments(vditor);
 
     // process code
     const height = vditor[vditor.currentMode].element.scrollHeight;
@@ -1412,9 +1411,7 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
             }
             vditor.outline.render(vditor);
         } else if (files.length > 0) {
-            if (vditor.options.upload.url || vditor.options.upload.handler) {
 
-            } else {
                 const fileReader = new FileReader();
                 let file: File;
                 if ("clipboardData" in event) {
@@ -1436,7 +1433,7 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                         document.execCommand("insertHTML", false, imgHTML);
                     }
                 }
-            }
+
         } else if (textPlain.trim() !== "" && files.length === 0) {
             if (vditor.currentMode === "ir") {
                 renderers.Md2VditorIRDOM = {renderLinkDest};
@@ -1475,7 +1472,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 processCodeRender(item, vditor);
             });
     }
-    vditor.wysiwyg.triggerRemoveComment(vditor);
     execAfterRender(vditor);
     if (vditor[vditor.currentMode].element.scrollHeight - height >
         Math.min(vditor[vditor.currentMode].element.clientHeight, window.innerHeight) / 2) {

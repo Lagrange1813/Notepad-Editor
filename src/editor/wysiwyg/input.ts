@@ -195,11 +195,7 @@ export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
                 processCodeRender(item, vditor);
             });
 
-        if (event && (event.inputType === "deleteContentBackward" || event.inputType === "deleteContentForward") &&
-            vditor.options.comment.enable) {
-            vditor.wysiwyg.triggerRemoveComment(vditor);
-            vditor.options.comment.adjustTop(vditor.wysiwyg.getComments(vditor, true));
-        }
+
     }
     renderToc(vditor);
     afterRenderEvent(vditor, {
