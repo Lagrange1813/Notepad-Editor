@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Test</title>
+  <script src="../dist/index.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../dist/index.css">
+</head>
+<body>
+<div class="wrapper">
+  <div id="vditor"></div>
+</div>
+</body>
+<script>
+  let vditorScript = () => {
+    new Vditor('vditor', {
+      height: 360,
+      cache: {
+        enable: false,
+      },
+      value: '### Test',
+    })
+  }
+
+  vditorScript();
+</script>
+</html>
