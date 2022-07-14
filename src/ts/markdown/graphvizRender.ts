@@ -14,7 +14,7 @@ export const graphvizRender = (element: HTMLElement, cdn = Constants.CDN) => {
     if (graphvizElements.length === 0) {
         return;
     }
-    addScript(`${cdn}/dist/js/graphviz/viz.js`, "vditorGraphVizScript").then(() => {
+    addScript(`${cdn}/dist/lib/graphviz/viz.js`, "vditorGraphVizScript").then(() => {
         graphvizElements.forEach((e: HTMLDivElement) => {
             const code = graphvizRenderAdapter.getCode(e);
             if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
