@@ -8,7 +8,6 @@ import {Custom} from "./Custom";
 import {Devtools} from "./Devtools";
 import {Divider} from "./Divider";
 import {EditMode} from "./EditMode";
-import {Export} from "./Export";
 import {Fullscreen} from "./Fullscreen";
 import {Headings} from "./Headings";
 import {Help} from "./Help";
@@ -144,9 +143,6 @@ export class Toolbar {
                 break;
             case "content-theme":
                 menuItemObj = new ContentTheme(vditor, menuItem);
-                break;
-            case "export":
-                menuItemObj = new Export(vditor, menuItem);
                 break;
             default:
                 menuItemObj = new Custom(vditor, menuItem);
