@@ -25,7 +25,6 @@ import {Record} from "./Record";
 import {Redo} from "./Redo";
 import {toggleSubMenu} from "./setToolbar";
 import {Undo} from "./Undo";
-import {Upload} from "./Upload";
 
 export class Toolbar {
     public elements: { [key: string]: HTMLElement };
@@ -116,9 +115,6 @@ export class Toolbar {
                 break;
             case "fullscreen":
                 menuItemObj = new Fullscreen(vditor, menuItem);
-                break;
-            case "upload":
-                menuItemObj = new Upload(vditor, menuItem);
                 break;
             case "record":
                 menuItemObj = new Record(vditor, menuItem);
