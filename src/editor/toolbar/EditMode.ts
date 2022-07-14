@@ -8,7 +8,6 @@ import {getEventName, updateHotkeyTip} from "../util/compatibility";
 import {highlightToolbar} from "../util/highlightToolbar";
 import {processCodeRender} from "../util/processCode";
 import {renderToc} from "../util/toc";
-import {renderDomByMd} from "../wysiwyg/renderDomByMd";
 import {MenuItem} from "./MenuItem";
 import {
     disableToolbar,
@@ -48,7 +47,6 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
         hideToolbar(vditor.toolbar.elements, ["both"]);
         showToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
         vditor.sv.element.style.display = "none";
-        vditor.wysiwyg.element.parentElement.style.display = "none";
         vditor.ir.element.parentElement.style.display = "block";
 
         vditor.lute.SetVditorIR(true);
@@ -74,36 +72,9 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
                 math: vditor.options.preview.math,
             });
         });
-    } else if (type === "wysiwyg") {
-        hideToolbar(vditor.toolbar.elements, ["both"]);
-        showToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
-        vditor.sv.element.style.display = "none";
-        vditor.wysiwyg.element.parentElement.style.display = "block";
-        vditor.ir.element.parentElement.style.display = "none";
-
-        vditor.lute.SetVditorIR(false);
-        vditor.lute.SetVditorWYSIWYG(true);
-        vditor.lute.SetVditorSV(false);
-
-        vditor.currentMode = "wysiwyg";
-
-        setPadding(vditor);
-        renderDomByMd(vditor, markdownText, {
-            enableAddUndoStack: true,
-            enableHint: false,
-            enableInput: false,
-        });
-        vditor.wysiwyg.element.querySelectorAll(".vditor-toc").forEach((item: HTMLElement) => {
-            mathRender(item, {
-                cdn: vditor.options.cdn,
-                math: vditor.options.preview.math,
-            });
-        });
-        vditor.wysiwyg.popover.style.display = "none";
     } else if (type === "sv") {
         showToolbar(vditor.toolbar.elements, ["both"]);
         hideToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
-        vditor.wysiwyg.element.parentElement.style.display = "none";
         vditor.ir.element.parentElement.style.display = "none";
         if (vditor.options.preview.mode === "both") {
             vditor.sv.element.style.display = "block";

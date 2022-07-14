@@ -43,8 +43,6 @@ export const initUI = (vditor: IVditor) => {
     contentElement.appendChild(vditor.outline.element);
   }
 
-  contentElement.appendChild(vditor.wysiwyg.element.parentElement);
-
   contentElement.appendChild(vditor.sv.element);
 
   contentElement.appendChild(vditor.ir.element.parentElement);
@@ -109,11 +107,6 @@ export const initUI = (vditor: IVditor) => {
 
 export const setPadding = (vditor: IVditor) => {
   const minPadding = window.innerWidth <= Constants.MOBILE_WIDTH ? 10 : 35;
-  if (vditor.wysiwyg.element.parentElement.style.display !== "none") {
-    const padding = (vditor.wysiwyg.element.parentElement.clientWidth
-      - vditor.options.preview.maxWidth) / 2;
-    vditor.wysiwyg.element.style.padding = `10px ${Math.max(minPadding, padding)}px`;
-  }
 
   if (vditor.ir.element.parentElement.style.display !== "none") {
     const padding = (vditor.ir.element.parentElement.clientWidth

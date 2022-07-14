@@ -7,9 +7,6 @@ import {processHeading as processHeadingSV} from "../sv/process";
 import {processKeydown as mdProcessKeydown} from "../sv/processKeydown";
 import {setEditMode} from "../toolbar/EditMode";
 import {hidePanel} from "../toolbar/setToolbar";
-import {afterRenderEvent} from "../wysiwyg/afterRenderEvent";
-import {processKeydown} from "../wysiwyg/processKeydown";
-import {removeHeading, setHeading} from "../wysiwyg/setHeading";
 import {getEventName, isCtrl} from "./compatibility";
 import {execAfterRender, paste} from "./fixBrowserBehavior";
 import {getSelectText} from "./getSelectText";
@@ -110,11 +107,7 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
             if (mdProcessKeydown(vditor, event)) {
                 return;
             }
-        } else if (vditor.currentMode === "wysiwyg") {
-            if (processKeydown(vditor, event)) {
-                return;
-            }
-        } else if (vditor.currentMode === "ir") {
+        }  else if (vditor.currentMode === "ir") {
             if (irProcessKeydown(vditor, event)) {
                 return;
             }
@@ -153,15 +146,7 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
 
         // h1 - h6 hotkey
         if (isCtrl(event) && event.altKey && !event.shiftKey && /^Digit[1-6]$/.test(event.code)) {
-            if (vditor.currentMode === "wysiwyg") {
-                const tagName = event.code.replace("Digit", "H");
-                if (hasClosestByMatchTag(getSelection().getRangeAt(0).startContainer, tagName)) {
-                    removeHeading(vditor);
-                } else {
-                    setHeading(vditor, tagName);
-                }
-                afterRenderEvent(vditor);
-            } else if (vditor.currentMode === "sv") {
+            if (vditor.currentMode === "sv") {
                 processHeadingSV(vditor, "#".repeat(parseInt(event.code.replace("Digit", ""), 10)) + " ");
             } else if (vditor.currentMode === "ir") {
                 processHeading(vditor, "#".repeat(parseInt(event.code.replace("Digit", ""), 10)) + " ");

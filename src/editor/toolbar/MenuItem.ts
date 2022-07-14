@@ -3,7 +3,6 @@ import {processToolbar} from "../ir/process";
 import {processToolbar as processToolbarSV} from "../sv/process";
 import {getEventName} from "../util/compatibility";
 import {updateHotkeyTip} from "../util/compatibility";
-import {toolbarEvent} from "../wysiwyg/toolbarEvent";
 
 export class MenuItem {
     public element: HTMLElement;
@@ -40,9 +39,7 @@ export class MenuItem {
             if (this.element.firstElementChild.classList.contains(Constants.CLASS_MENU_DISABLED)) {
                 return;
             }
-            if (vditor.currentMode === "wysiwyg") {
-                toolbarEvent(vditor, this.element.children[0], event);
-            } else if (vditor.currentMode === "ir") {
+            if (vditor.currentMode === "ir") {
                 processToolbar(vditor, this.element.children[0],
                     menuItem.prefix || "", menuItem.suffix || "");
             } else {

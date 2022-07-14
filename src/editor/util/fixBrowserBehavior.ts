@@ -2,8 +2,6 @@ import {Constants} from "../constants";
 import {input as IRInput} from "../ir/input";
 import {processAfterRender} from "../ir/process";
 import {processAfterRender as processSVAfterRender, processPaste} from "../sv/process";
-import {afterRenderEvent} from "../wysiwyg/afterRenderEvent";
-import {input} from "../wysiwyg/input";
 import {isCtrl, isFirefox} from "./compatibility";
 import {scrollCenter} from "./editorCommonEvent";
 import {
@@ -272,11 +270,9 @@ export const listIndent = (vditor: IVditor, liElement: HTMLElement, range: Range
         previousElement.insertAdjacentHTML("beforeend",
             `<${liParentElement.tagName} data-block="0">${liHTML}</${liParentElement.tagName}>`);
 
-        if (vditor.currentMode === "wysiwyg") {
-            liParentElement.outerHTML = vditor.lute.SpinVditorDOM(liParentElement.outerHTML);
-        } else {
+
             liParentElement.outerHTML = vditor.lute.SpinVditorIRDOM(liParentElement.outerHTML);
-        }
+
 
         setRangeByWbr(vditor[vditor.currentMode].element, range);
         const tempTopListElement = getTopList(range.startContainer);
@@ -284,9 +280,6 @@ export const listIndent = (vditor: IVditor, liElement: HTMLElement, range: Range
             tempTopListElement.querySelectorAll(`.vditor-${vditor.currentMode}__preview[data-render='2']`)
                 .forEach((item: HTMLElement) => {
                     processCodeRender(item, vditor);
-                    if (vditor.currentMode === "wysiwyg") {
-                        item.previousElementSibling.setAttribute("style", "display:none");
-                    }
                 });
         }
         execAfterRender(vditor);
@@ -341,11 +334,9 @@ export const listOutdent = (vditor: IVditor, liElement: HTMLElement, range: Rang
             liElements[0].insertAdjacentElement("beforeend", liParentAfterElement);
         }
 
-        if (vditor.currentMode === "wysiwyg") {
-            topListElement.outerHTML = vditor.lute.SpinVditorDOM(topListElement.outerHTML);
-        } else {
+
             topListElement.outerHTML = vditor.lute.SpinVditorIRDOM(topListElement.outerHTML);
-        }
+
 
         setRangeByWbr(vditor[vditor.currentMode].element, range);
         const tempTopListElement = getTopList(range.startContainer);
@@ -353,9 +344,7 @@ export const listOutdent = (vditor: IVditor, liElement: HTMLElement, range: Rang
             tempTopListElement.querySelectorAll(`.vditor-${vditor.currentMode}__preview[data-render='2']`)
                 .forEach((item: HTMLElement) => {
                     processCodeRender(item, vditor);
-                    if (vditor.currentMode === "wysiwyg") {
-                        item.previousElementSibling.setAttribute("style", "display:none");
-                    }
+
                 });
         }
         execAfterRender(vditor);
@@ -436,9 +425,7 @@ export const execAfterRender = (vditor: IVditor, options = {
     enableHint: false,
     enableInput: true,
 }) => {
-    if (vditor.currentMode === "wysiwyg") {
-        afterRenderEvent(vditor, options);
-    } else if (vditor.currentMode === "ir") {
+    if (vditor.currentMode === "ir") {
         processAfterRender(vditor, options);
     } else if (vditor.currentMode === "sv") {
         processSVAfterRender(vditor, options);
@@ -587,11 +574,9 @@ export const fixMarkdown = (event: KeyboardEvent, vditor: IVditor, pElement: HTM
 
         if (isHeadingMD(pElement.innerHTML)) {
             // heading 渲染
-            if (vditor.currentMode === "wysiwyg") {
-                pElement.outerHTML = vditor.lute.SpinVditorDOM(pElement.innerHTML + '<p data-block="0"><wbr>\n</p>');
-            } else {
+
                 pElement.outerHTML = vditor.lute.SpinVditorIRDOM(pElement.innerHTML + '<p data-block="0"><wbr>\n</p>');
-            }
+
             setRangeByWbr(vditor[vditor.currentMode].element, range);
             execAfterRender(vditor);
             scrollCenter(vditor);
@@ -831,16 +816,6 @@ export const fixTable = (vditor: IVditor, event: KeyboardEvent, range: Range) =>
             return true;
         }
 
-        // focus row input, only wysiwyg
-        if (vditor.currentMode === "wysiwyg" &&
-            !isCtrl(event) && event.key === "Enter" && !event.shiftKey && event.altKey) {
-            const inputElement = (vditor.wysiwyg.popover.querySelector(".vditor-input") as HTMLInputElement);
-            inputElement.focus();
-            inputElement.select();
-            event.preventDefault();
-            return true;
-        }
-
         // Backspace：光标移动到前一个 cell
         if (!isCtrl(event) && !event.shiftKey && !event.altKey && event.key === "Backspace"
             && range.startOffset === 0 && range.toString() === "") {
@@ -899,56 +874,6 @@ export const fixTable = (vditor: IVditor, event: KeyboardEvent, range: Range) =>
             event.preventDefault();
             return true;
         }
-
-        // 剧左
-        if (matchHotKey("⇧⌘L", event)) {
-            if (vditor.currentMode === "ir") {
-                setTableAlign(tableElement, "left");
-                execAfterRender(vditor);
-                event.preventDefault();
-                return true;
-            } else {
-                const itemElement: HTMLElement = vditor.wysiwyg.popover.querySelector('[data-type="left"]');
-                if (itemElement) {
-                    itemElement.click();
-                    event.preventDefault();
-                    return true;
-                }
-            }
-        }
-
-        // 剧中
-        if (matchHotKey("⇧⌘C", event)) {
-            if (vditor.currentMode === "ir") {
-                setTableAlign(tableElement, "center");
-                execAfterRender(vditor);
-                event.preventDefault();
-                return true;
-            } else {
-                const itemElement: HTMLElement = vditor.wysiwyg.popover.querySelector('[data-type="center"]');
-                if (itemElement) {
-                    itemElement.click();
-                    event.preventDefault();
-                    return true;
-                }
-            }
-        }
-        // 剧右
-        if (matchHotKey("⇧⌘R", event)) {
-            if (vditor.currentMode === "ir") {
-                setTableAlign(tableElement, "right");
-                execAfterRender(vditor);
-                event.preventDefault();
-                return true;
-            } else {
-                const itemElement: HTMLElement = vditor.wysiwyg.popover.querySelector('[data-type="right"]');
-                if (itemElement) {
-                    itemElement.click();
-                    event.preventDefault();
-                    return true;
-                }
-            }
-        }
     }
     return false;
 };
@@ -996,11 +921,9 @@ export const fixCodeBlock = (vditor: IVditor, event: KeyboardEvent, codeRenderEl
         range.collapse(false);
         setSelectionFocus(range);
         if (!isFirefox()) {
-            if (vditor.currentMode === "wysiwyg") {
-                input(vditor, range);
-            } else {
+
                 IRInput(vditor, range);
-            }
+
         }
         scrollCenter(vditor);
         event.preventDefault();
@@ -1050,15 +973,6 @@ export const fixBlockquote = (vditor: IVditor, range: Range, event: KeyboardEven
             }
         }
         const blockElement = hasClosestBlock(startContainer);
-        if (vditor.currentMode === "wysiwyg" && blockElement && matchHotKey("⇧⌘;", event)) {
-            // 插入 blockquote
-            range.insertNode(document.createElement("wbr"));
-            blockElement.outerHTML = `<blockquote data-block="0">${blockElement.outerHTML}</blockquote>`;
-            setRangeByWbr(vditor.wysiwyg.element, range);
-            afterRenderEvent(vditor);
-            event.preventDefault();
-            return true;
-        }
 
         if (insertAfterBlock(vditor, event, range, blockquoteElement, blockquoteElement)) {
             return true;
@@ -1336,8 +1250,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
         }
         if (vditor.currentMode === "ir") {
             return [`<span class="vditor-ir__marker vditor-ir__marker--link">${src}</span>`, Lute.WalkContinue];
-        } else if (vditor.currentMode === "wysiwyg") {
-            return ["", Lute.WalkContinue];
         } else {
             return [`<span class="vditor-sv__marker--link">${src}</span>`, Lute.WalkContinue];
         }
@@ -1400,10 +1312,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 renderers.HTML2VditorIRDOM = {renderLinkDest};
                 vditor.lute.SetJSRenderers({renderers});
                 insertHTML(vditor.lute.HTML2VditorIRDOM(tempElement.innerHTML), vditor);
-            } else if (vditor.currentMode === "wysiwyg") {
-                renderers.HTML2VditorDOM = {renderLinkDest};
-                vditor.lute.SetJSRenderers({renderers});
-                insertHTML(vditor.lute.HTML2VditorDOM(tempElement.innerHTML), vditor);
             } else {
                 renderers.Md2VditorSVDOM = {renderLinkDest};
                 vditor.lute.SetJSRenderers({renderers});
@@ -1425,11 +1333,9 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                     fileReader.readAsDataURL(file);
                     fileReader.onload = () => {
                         let imgHTML = ''
-                        if (vditor.currentMode === "wysiwyg") {
-                            imgHTML += `<img alt="${file.name}" src="${fileReader.result.toString()}">\n`;
-                        } else {
+
                             imgHTML += `![${file.name}](${fileReader.result.toString()})\n`;
-                        }
+
                         document.execCommand("insertHTML", false, imgHTML);
                     }
                 }
@@ -1439,10 +1345,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 renderers.Md2VditorIRDOM = {renderLinkDest};
                 vditor.lute.SetJSRenderers({renderers});
                 insertHTML(vditor.lute.Md2VditorIRDOM(textPlain), vditor);
-            } else if (vditor.currentMode === "wysiwyg") {
-                renderers.Md2VditorDOM = {renderLinkDest};
-                vditor.lute.SetJSRenderers({renderers});
-                insertHTML(vditor.lute.Md2VditorDOM(textPlain), vditor);
             } else {
                 renderers.Md2VditorSVDOM = {renderLinkDest};
                 vditor.lute.SetJSRenderers({renderers});
@@ -1460,11 +1362,9 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 wbr.remove();
             });
             range.insertNode(document.createElement("wbr"));
-            if (vditor.currentMode === "wysiwyg") {
-                blockElement.outerHTML = vditor.lute.SpinVditorDOM(blockElement.outerHTML);
-            } else {
+
                 blockElement.outerHTML = vditor.lute.SpinVditorIRDOM(blockElement.outerHTML);
-            }
+
             setRangeByWbr(vditor[vditor.currentMode].element, range);
         }
         vditor[vditor.currentMode].element.querySelectorAll(`.vditor-${vditor.currentMode}__preview[data-render='2']`)

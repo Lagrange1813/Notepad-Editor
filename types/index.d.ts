@@ -614,7 +614,7 @@ interface LGOptions {
         after?(markdown: string): void;
     };
     /** 编辑模式。默认值: 'wysiwyg' */
-    mode?: "wysiwyg" | "sv" | "ir";
+    mode?: "sv" | "ir";
     /** @link https://ld246.com/article/1549638745630#options-preview */
     preview?: LGPreview;
     /** @link https://ld246.com/article/1549638745630#options-hint */
@@ -675,7 +675,7 @@ interface IVditor {
     options: LGOptions;
     originalInnerHTML: string;
     lute: Lute;
-    currentMode: "sv" | "wysiwyg" | "ir";
+    currentMode: "sv" | "ir";
     outline: {
         element: HTMLElement,
         render(vditor: IVditor): string,
@@ -722,17 +722,6 @@ interface IVditor {
         addToUndoStack(vditor: IVditor): void
         recordFirstPosition(vditor: IVditor, event: KeyboardEvent): void,
         resetIcon(vditor: IVditor): void,
-    };
-    wysiwyg?: {
-        range: Range,
-        element: HTMLPreElement,
-        selectPopover: HTMLDivElement,
-        popover: HTMLDivElement,
-        afterRenderTimeoutId: number,
-        hlToolbarTimeoutId: number,
-        preventInput: boolean,
-        composingLock: boolean,
-        unbindListener(): void,
     };
     ir?: {
         range: Range,

@@ -2,8 +2,6 @@ import {Constants} from "../constants";
 import {processHeading} from "../ir/process";
 import {processHeading as processHeadingSV} from "../sv/process";
 import {getEventName, updateHotkeyTip} from "../util/compatibility";
-import {afterRenderEvent} from "../wysiwyg/afterRenderEvent";
-import {removeHeading, setHeading} from "../wysiwyg/setHeading";
 import {MenuItem} from "./MenuItem";
 import {hidePanel} from "./setToolbar";
 
@@ -36,10 +34,7 @@ export class Headings extends MenuItem {
             }
             actionBtn.blur();
             if (actionBtn.classList.contains("vditor-menu--current")) {
-                if (vditor.currentMode === "wysiwyg") {
-                    removeHeading(vditor);
-                    afterRenderEvent(vditor);
-                } else if (vditor.currentMode === "ir") {
+                if (vditor.currentMode === "ir") {
                     processHeading(vditor, "");
                 }
               // processHeading(vditor, "");
@@ -53,11 +48,7 @@ export class Headings extends MenuItem {
         for (let i = 0; i < 6; i++) {
             panelElement.children.item(i).addEventListener(getEventName(), (event: Event) => {
                 event.preventDefault();
-                if (vditor.currentMode === "wysiwyg") {
-                    setHeading(vditor, (event.target as HTMLElement).getAttribute("data-tag"));
-                    afterRenderEvent(vditor);
-                    actionBtn.classList.add("vditor-menu--current");
-                } else if (vditor.currentMode === "ir") {
+                if (vditor.currentMode === "ir") {
                     processHeading(vditor, (event.target as HTMLElement).getAttribute("data-value"));
                     actionBtn.classList.add("vditor-menu--current");
                 } else {

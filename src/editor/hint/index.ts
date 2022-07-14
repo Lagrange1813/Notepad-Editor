@@ -148,25 +148,6 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
                 return;
             }
         }
-        if (vditor.currentMode === "wysiwyg" && range.startContainer.nodeType !== 3 ) {
-            const startContainer = range.startContainer as HTMLElement;
-            let inputElement: HTMLInputElement;
-            if (startContainer.classList.contains("vditor-input")) {
-                inputElement = startContainer as HTMLInputElement;
-            } else {
-                inputElement = startContainer.firstElementChild as HTMLInputElement;
-            }
-            if (inputElement && inputElement.classList.contains("vditor-input")) {
-                inputElement.value = value.trimRight();
-                range.selectNodeContents(inputElement);
-                range.collapse(false);
-                // {detail: 1}用于标识这个自定义事件是在编程语言选择后触发的
-                // 用于在鼠标选择语言后，自动聚焦到代码输入框
-                inputElement.dispatchEvent(new CustomEvent("input", {detail: 1}));
-                this.recentLanguage = value.trimRight();
-                return;
-            }
-        }
 
         range.setStart(range.startContainer, this.lastIndex);
         range.deleteContents();
@@ -174,8 +155,6 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         if (vditor.options.hint.parse) {
             if (vditor.currentMode === "sv") {
                 insertHTML(vditor.lute.SpinVditorSVDOM(value), vditor);
-            } else if (vditor.currentMode === "wysiwyg") {
-                insertHTML(vditor.lute.SpinVditorDOM(value), vditor);
             } else {
                 insertHTML(vditor.lute.SpinVditorIRDOM(value), vditor);
             }
@@ -188,13 +167,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         range.collapse(false);
         setSelectionFocus(range);
 
-        if (vditor.currentMode === "wysiwyg") {
-            const preElement = hasClosestByClassName(range.startContainer, "vditor-wysiwyg__block");
-            if (preElement && preElement.lastElementChild.classList.contains("vditor-wysiwyg__preview")) {
-                preElement.lastElementChild.innerHTML = preElement.firstElementChild.innerHTML;
-                processCodeRender(preElement.lastElementChild as HTMLElement, vditor);
-            }
-        } else if (vditor.currentMode === "ir") {
+        if (vditor.currentMode === "ir") {
             const preElement = hasClosestByClassName(range.startContainer, "vditor-ir__marker--pre");
             if (preElement && preElement.nextElementSibling.classList.contains("vditor-ir__preview")) {
                 preElement.nextElementSibling.innerHTML = preElement.innerHTML;

@@ -87,9 +87,6 @@ export const hidePanel = (vditor: IVditor, panels: string[], exceptElement?: HTM
     if (panels.includes("hint")) {
         vditor.hint.element.style.display = "none";
     }
-    if (vditor.wysiwyg.popover && panels.includes("popover")) {
-        vditor.wysiwyg.popover.style.display = "none";
-    }
 };
 
 export const toggleSubMenu = (vditor: IVditor, panelElement: HTMLElement, actionBtn: Element, level: number) => {

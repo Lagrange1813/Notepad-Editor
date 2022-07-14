@@ -30,10 +30,6 @@ import {getSelectText} from "./editor/util/getSelectText";
 import {Options} from "./editor/util/Options";
 import {processCodeRender} from "./editor/util/processCode";
 import {getCursorPosition, getEditorRange} from "./editor/util/selection";
-import {afterRenderEvent} from "./editor/wysiwyg/afterRenderEvent";
-import {WYSIWYG} from "./editor/wysiwyg/index";
-import {input} from "./editor/wysiwyg/input";
-import {renderDomByMd} from "./editor/wysiwyg/renderDomByMd";
 
 class Vditor extends VditorMethod {
     public readonly version: string;
@@ -122,8 +118,6 @@ class Vditor extends VditorMethod {
     public focus() {
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.focus();
-        } else if (this.vditor.currentMode === "wysiwyg") {
-            this.vditor.wysiwyg.element.focus();
         } else if (this.vditor.currentMode === "ir") {
             this.vditor.ir.element.focus();
         }
@@ -133,8 +127,6 @@ class Vditor extends VditorMethod {
     public blur() {
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.blur();
-        } else if (this.vditor.currentMode === "wysiwyg") {
-            this.vditor.wysiwyg.element.blur();
         } else if (this.vditor.currentMode === "ir") {
             this.vditor.ir.element.blur();
         }
@@ -165,9 +157,7 @@ class Vditor extends VditorMethod {
 
     /** 返回选中的字符串 */
     public getSelection() {
-        if (this.vditor.currentMode === "wysiwyg") {
-            return getSelectText(this.vditor.wysiwyg.element);
-        } else if (this.vditor.currentMode === "sv") {
+        if (this.vditor.currentMode === "sv") {
             return getSelectText(this.vditor.sv.element);
         } else if (this.vditor.currentMode === "ir") {
             return getSelectText(this.vditor.ir.element);
@@ -259,11 +249,6 @@ class Vditor extends VditorMethod {
             if (render) {
                 inputEvent(this.vditor);
             }
-        } else if (this.vditor.currentMode === "wysiwyg") {
-            this.vditor.wysiwyg.preventInput = true;
-            if (render) {
-                input(this.vditor, getSelection().getRangeAt(0));
-            }
         } else if (this.vditor.currentMode === "ir") {
             this.vditor.ir.preventInput = true;
             if (render) {
@@ -277,12 +262,6 @@ class Vditor extends VditorMethod {
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.innerHTML = `<div data-block='0'>${this.vditor.lute.SpinVditorSVDOM(markdown)}</div>`;
             processSVAfterRender(this.vditor, {
-                enableAddUndoStack: true,
-                enableHint: false,
-                enableInput: false,
-            });
-        } else if (this.vditor.currentMode === "wysiwyg") {
-            renderDomByMd(this.vditor, markdown, {
                 enableAddUndoStack: true,
                 enableHint: false,
                 enableInput: false,
@@ -305,9 +284,6 @@ class Vditor extends VditorMethod {
 
         if (!markdown) {
             hidePanel(this.vditor, ["emoji", "headings", "submenu", "hint"]);
-            if (this.vditor.wysiwyg.popover) {
-                this.vditor.wysiwyg.popover.style.display = "none";
-            }
             this.clearCache();
         }
         if (clearStack) {
@@ -333,7 +309,6 @@ class Vditor extends VditorMethod {
         this.clearCache();
 
         UIUnbindListener();
-        this.vditor.wysiwyg.unbindListener();
     }
 
     private init(id: HTMLElement, mergedOptions: LGOptions) {
@@ -350,17 +325,12 @@ class Vditor extends VditorMethod {
 
         this.vditor.sv = new Editor(this.vditor);
         this.vditor.undo = new Undo();
-        this.vditor.wysiwyg = new WYSIWYG(this.vditor);
         this.vditor.ir = new IR(this.vditor);
         this.vditor.toolbar = new Toolbar(this.vditor);
 
         if (mergedOptions.resize.enable) {
             this.vditor.resize = new Resize(this.vditor);
         }
-
-        // if (this.vditor.toolbar.elements.devtools) {
-        //     this.vditor.devtools = new DevTools();
-        // }
 
         addScript(
             mergedOptions._lutePath ||
