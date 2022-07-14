@@ -4,8 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const BundleAnalyzerPlugin = require(
-  'webpack-bundle-analyzer').BundleAnalyzerPlugin
 const pkg = require('./package.json')
 
 module.exports = [
@@ -110,7 +108,6 @@ module.exports = [
       ],
     },
     plugins: [
-      // new BundleAnalyzerPlugin(),
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: [
           path.join(__dirname, 'dist')],
