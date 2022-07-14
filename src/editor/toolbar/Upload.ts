@@ -1,5 +1,4 @@
 import {Constants} from "../constants";
-import {uploadFiles} from "../upload";
 import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
@@ -35,7 +34,6 @@ export class Upload extends MenuItem {
                 if (event.target.files.length === 0) {
                     return;
                 }
-                uploadFiles(vditor, event.target.files, event.target);
             });
     }
 }

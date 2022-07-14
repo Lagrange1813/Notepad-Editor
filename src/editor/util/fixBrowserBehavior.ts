@@ -2,8 +2,6 @@ import {Constants} from "../constants";
 import {input as IRInput} from "../ir/input";
 import {processAfterRender} from "../ir/process";
 import {processAfterRender as processSVAfterRender, processPaste} from "../sv/process";
-import {uploadFiles} from "../upload/index";
-import {setHeaders} from "../upload/setHeaders";
 import {afterRenderEvent} from "../wysiwyg/afterRenderEvent";
 import {input} from "../wysiwyg/input";
 import {isCtrl, isFirefox} from "./compatibility";
@@ -1295,7 +1293,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
             if (vditor.options.upload.withCredentials) {
                 xhr.withCredentials = true;
             }
-            setHeaders(vditor, xhr);
             xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -1416,7 +1413,7 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
             vditor.outline.render(vditor);
         } else if (files.length > 0) {
             if (vditor.options.upload.url || vditor.options.upload.handler) {
-                await uploadFiles(vditor, files);
+
             } else {
                 const fileReader = new FileReader();
                 let file: File;

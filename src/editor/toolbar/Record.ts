@@ -1,5 +1,4 @@
 import {Constants} from "../constants";
-import {uploadFiles} from "../upload/index";
 import {getEventName} from "../util/compatibility";
 import {RecordMedia} from "../util/RecordMedia";
 import {MenuItem} from "./MenuItem";
@@ -47,7 +46,6 @@ export class Record extends MenuItem {
                 vditor.tip.hide();
                 const file: File = new File([mediaRecorder.buildWavFileBlob()],
                     `record${(new Date()).getTime()}.wav`, {type: "video/webm"});
-                uploadFiles(vditor, [file]);
                 this.element.children[0].classList.remove("vditor-menu--current");
             } else {
                 vditor.tip.show(window.VditorI18n.recording);

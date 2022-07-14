@@ -25,7 +25,6 @@ import {setContentTheme} from "./editor/ui/setContentTheme";
 import {setPreviewMode} from "./editor/ui/setPreviewMode";
 import {setTheme} from "./editor/ui/setTheme";
 import {Undo} from "./editor/undo/index";
-import {Upload} from "./editor/upload/index";
 import {addScript, addScriptSync} from "./editor/util/addScript";
 import {getSelectText} from "./editor/util/getSelectText";
 import {Options} from "./editor/util/Options";
@@ -464,10 +463,6 @@ class Vditor extends VditorMethod {
 
         if (this.vditor.toolbar.elements.devtools) {
             this.vditor.devtools = new DevTools();
-        }
-
-        if (mergedOptions.upload.url || mergedOptions.upload.handler) {
-            this.vditor.upload = new Upload();
         }
 
         addScript(
