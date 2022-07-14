@@ -66,9 +66,9 @@ export const processAfterRender = (vditor: IVditor, options = {
             }
         }
 
-        if (vditor.devtools) {
-            vditor.devtools.renderEchart(vditor);
-        }
+        // if (vditor.devtools) {
+        //     vditor.devtools.renderEchart(vditor);
+        // }
 
         if (options.enableAddUndoStack) {
             vditor.undo.addToUndoStack(vditor);

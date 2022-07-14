@@ -15,13 +15,13 @@ export class Devtools extends MenuItem {
             event.preventDefault();
             if (btnElement.classList.contains("vditor-menu--current")) {
                 btnElement.classList.remove("vditor-menu--current");
-                vditor.devtools.element.style.display = "none";
+                // vditor.devtools.element.style.display = "none";
                 setPadding(vditor);
             } else {
                 btnElement.classList.add("vditor-menu--current");
-                vditor.devtools.element.style.display = "block";
+                // vditor.devtools.element.style.display = "block";
                 setPadding(vditor);
-                vditor.devtools.renderEchart(vditor);
+                // vditor.devtools.renderEchart(vditor);
             }
         });
     }

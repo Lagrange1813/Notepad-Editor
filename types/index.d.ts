@@ -684,10 +684,6 @@ interface IVditor {
     originalInnerHTML: string;
     lute: Lute;
     currentMode: "sv" | "wysiwyg" | "ir";
-    devtools?: {
-        element: HTMLDivElement,
-        renderEchart(vditor: IVditor): void,
-    };
     outline: {
         element: HTMLElement,
         render(vditor: IVditor): string,

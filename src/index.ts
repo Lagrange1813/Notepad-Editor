@@ -1,7 +1,7 @@
 import "./assets/less/index.less";
 import VditorMethod from "./method";
 import {Constants, VDITOR_VERSION} from "./editor/constants";
-import {DevTools} from "./editor/devtools/index";
+// import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
 import {IR} from "./editor/ir/index";
 import {input as irInput} from "./editor/ir/input";
@@ -461,9 +461,9 @@ class Vditor extends VditorMethod {
             this.vditor.resize = new Resize(this.vditor);
         }
 
-        if (this.vditor.toolbar.elements.devtools) {
-            this.vditor.devtools = new DevTools();
-        }
+        // if (this.vditor.toolbar.elements.devtools) {
+        //     this.vditor.devtools = new DevTools();
+        // }
 
         addScript(
             mergedOptions._lutePath ||

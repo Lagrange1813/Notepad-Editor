@@ -45,9 +45,9 @@ export class Fullscreen extends MenuItem {
                 }
             }
 
-            if (vditor.devtools) {
-                vditor.devtools.renderEchart(vditor);
-            }
+            // if (vditor.devtools) {
+            //     vditor.devtools.renderEchart(vditor);
+            // }
 
             if (menuItem.click) {
                 menuItem.click(event, vditor);

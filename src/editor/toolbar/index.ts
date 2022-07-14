@@ -5,7 +5,7 @@ import {CodeTheme} from "./CodeTheme";
 import {ContentTheme} from "./ContentTheme";
 import {Counter} from "./Counter";
 import {Custom} from "./Custom";
-import {Devtools} from "./Devtools";
+// import {Devtools} from "./Devtools";
 import {Divider} from "./Divider";
 import {EditMode} from "./EditMode";
 import {Fullscreen} from "./Fullscreen";
@@ -120,9 +120,9 @@ export class Toolbar {
             case "edit-mode":
                 menuItemObj = new EditMode(vditor, menuItem);
                 break;
-            case "devtools":
-                menuItemObj = new Devtools(vditor, menuItem);
-                break;
+            // case "devtools":
+            //     menuItemObj = new Devtools(vditor, menuItem);
+            //     break;
             case "outdent":
                 menuItemObj = new Outdent(vditor, menuItem);
                 break;

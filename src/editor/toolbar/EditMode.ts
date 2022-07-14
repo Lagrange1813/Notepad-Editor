@@ -31,9 +31,9 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
     if (vditor.currentMode === type && typeof event !== "string") {
         return;
     }
-    if (vditor.devtools) {
-        vditor.devtools.renderEchart(vditor);
-    }
+    // if (vditor.devtools) {
+    //     vditor.devtools.renderEchart(vditor);
+    // }
     if (vditor.options.preview.mode === "both" && type === "sv") {
         vditor.preview.element.style.display = "block";
     } else {

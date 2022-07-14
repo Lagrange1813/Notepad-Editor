@@ -123,9 +123,9 @@ export const processAfterRender = (vditor: IVditor, options = {
         }
     }
 
-    if (vditor.devtools) {
-        vditor.devtools.renderEchart(vditor);
-    }
+    // if (vditor.devtools) {
+    //     vditor.devtools.renderEchart(vditor);
+    // }
 
     clearTimeout(vditor.sv.processTimeoutId);
     vditor.sv.processTimeoutId = window.setTimeout(() => {
