@@ -63,7 +63,7 @@ module.exports = [
       minimize: true,
       minimizer: [
         new TerserPlugin({
-          include: ['index.min.lib', 'method.min.lib'],
+          include: ['index.min.js', 'method.min.js'],
           terserOptions: {
             format: {
               comments: false,
