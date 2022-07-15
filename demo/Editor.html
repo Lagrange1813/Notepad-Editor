@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <title>Notepad-Editor</title>
+  <style type="text/css">
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script src="/dist/index.min.js"></script>
+  <link href="/dist/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrapper">
+  <div id="neditor"></div>
+</div>
+</body>
+<script>
+  new Neditor("neditor", {
+    height: 360,
+    cache: {
+      enable: false
+    },
+    value: "# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```"
+  });
+</script>
+</html>

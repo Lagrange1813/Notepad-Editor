@@ -34,7 +34,7 @@ export const initUI = (vditor: LGEditor) => {
     vditor.element.style.width = vditor.options.width;
   }
 
-  vditor.element.appendChild(vditor.toolbar.element);
+  // vditor.element.appendChild(vditor.toolbar.element);
 
   const contentElement = document.createElement("div");
   contentElement.className = "vditor-content";
