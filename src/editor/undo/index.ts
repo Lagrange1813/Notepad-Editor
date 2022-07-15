@@ -18,7 +18,6 @@ interface IUndo {
 class Undo {
     private stackSize = 50;
     private dmp: DiffMatchPatch.diff_match_patch;
-    private wysiwyg: IUndo;
     private ir: IUndo;
     private sv: IUndo;
 
@@ -201,12 +200,6 @@ class Undo {
             undoStack: [],
         };
         this.sv = {
-            hasUndo: false,
-            lastText: "",
-            redoStack: [],
-            undoStack: [],
-        };
-        this.wysiwyg = {
             hasUndo: false,
             lastText: "",
             redoStack: [],

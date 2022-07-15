@@ -12,8 +12,7 @@ export const plantumlRender = (element: (HTMLElement | Document) = document) => 
     }
     addScript(`/dist/lib/plantuml/plantuml-encoder.min.js`, "vditorPlantumlScript").then(() => {
         plantumlElements.forEach((e: HTMLDivElement) => {
-            if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-                e.parentElement.classList.contains("vditor-ir__marker--pre")) {
+            if (e.parentElement.classList.contains("vditor-ir__marker--pre")) {
                 return;
             }
             const text = plantumlRenderAdapter.getCode(e).trim();

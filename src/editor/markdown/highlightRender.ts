@@ -1,6 +1,6 @@
-import {Constants} from "../constants";
-import {addScript} from "../util/addScript";
-import {addStyle} from "../util/addStyle";
+import { Constants } from "../constants";
+import { addScript } from "../util/addScript";
+import { addStyle } from "../util/addStyle";
 
 declare const hljs: {
   highlightElement(element: Element): void;
@@ -31,9 +31,7 @@ export const highlightRender = (hljsOption?: LGHljs, element: HTMLElement | Docu
     addScript(`/dist/lib/highlight.js/solidity.min.js`, "vditorHljsSolidityScript").then(() => {
       addScript(`/dist/lib/highlight.js/yul.min.js`, "vditorHljsYulScript").then(() => {
         element.querySelectorAll("pre > code").forEach((block) => {
-          // ir & wysiwyg 区域不渲染
-          if (block.parentElement.classList.contains("vditor-ir__marker--pre") ||
-            block.parentElement.classList.contains("vditor-wysiwyg__pre")) {
+          if (block.parentElement.classList.contains("vditor-ir__marker--pre")) {
             return;
           }
 
@@ -78,8 +76,8 @@ export const highlightRender = (hljsOption?: LGHljs, element: HTMLElement | Docu
           lineNumberHTML = `<span class="vditor-linenumber__rows">${lineNumberHTML}</span>`;
           block.insertAdjacentHTML("beforeend", lineNumberHTML);
         });
-      })
-    })
+      });
+    });
   });
 
 };

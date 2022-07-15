@@ -20,7 +20,6 @@ export const processPasteCode = (html: string, text: string, type = "sv") => {
     }
     const pres = tempElement.querySelectorAll("pre");
     if (tempElement.childElementCount === 1 && pres.length === 1
-        && pres[0].className !== "vditor-wysiwyg"
         && pres[0].className !== "vditor-sv") {
         // IDE
         isCode = true;
@@ -40,9 +39,6 @@ export const processPasteCode = (html: string, text: string, type = "sv") => {
         if (/\n/.test(code) || pres.length === 1) {
             return "\n```\n" + code.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "\n```";
         } else {
-            if (type === "wysiwyg") {
-                return `<code>${code.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</code><wbr>`;
-            }
             return `\`${code}\``;
         }
     }

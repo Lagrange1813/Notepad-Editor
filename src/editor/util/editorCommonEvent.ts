@@ -157,9 +157,7 @@ export const hotkeyEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
 
         // toggle edit mode
         if (isCtrl(event) && event.altKey && !event.shiftKey && /^Digit[7-9]$/.test(event.code)) {
-            if (event.code === "Digit7") {
-                setEditMode(vditor, "wysiwyg", event);
-            } else if (event.code === "Digit8") {
+            if (event.code === "Digit8") {
                 setEditMode(vditor, "ir", event);
             } else if (event.code === "Digit9") {
                 setEditMode(vditor, "sv", event);

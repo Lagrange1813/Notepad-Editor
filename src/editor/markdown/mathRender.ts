@@ -43,8 +43,7 @@ export const mathRender = (element: HTMLElement, options?: { math?: LGMath }) =>
         addScript(`/dist/lib/katex/katex.min.js`, "vditorKatexScript").then(() => {
             addScript(`/dist/lib/katex/mhchem.min.js`, "vditorKatexChemScript").then(() => {
                 mathElements.forEach((mathElement) => {
-                    if (mathElement.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-                        mathElement.parentElement.classList.contains("vditor-ir__marker--pre")) {
+                    if (mathElement.parentElement.classList.contains("vditor-ir__marker--pre")) {
                         return;
                     }
                     if (mathElement.getAttribute("data-math")) {
@@ -125,8 +124,7 @@ export const mathRender = (element: HTMLElement, options?: { math?: LGMath }) =>
             const chains: any[] = [];
             for (let i = 0; i < mathElements.length; i++) {
                 const mathElement = mathElements[i];
-                if (!mathElement.parentElement.classList.contains("vditor-wysiwyg__pre") &&
-                    !mathElement.parentElement.classList.contains("vditor-ir__marker--pre") &&
+                if (!mathElement.parentElement.classList.contains("vditor-ir__marker--pre") &&
                     !mathElement.getAttribute("data-math") && code160to32(mathElement.textContent).trim()) {
                     chains.push((next: () => void) => {
                         if (i === mathElements.length - 1) {
