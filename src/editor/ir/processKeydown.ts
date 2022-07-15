@@ -25,7 +25,7 @@ import {keydownToc} from "../util/toc";
 import {expandMarker} from "./expandMarker";
 import {processAfterRender, processHeading} from "./process";
 
-export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
+export const processKeydown = (vditor: LGEditor, event: KeyboardEvent) => {
     vditor.ir.composingLock = event.isComposing;
     if (event.isComposing) {
         return false;

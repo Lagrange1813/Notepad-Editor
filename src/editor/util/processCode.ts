@@ -53,7 +53,7 @@ export const processPasteCode = (html: string, text: string, type = "sv") => {
     return false;
 };
 
-export const processCodeRender = (previewPanel: HTMLElement, vditor: IVditor) => {
+export const processCodeRender = (previewPanel: HTMLElement, vditor: LGEditor) => {
     if (!previewPanel) {
         return;
     }

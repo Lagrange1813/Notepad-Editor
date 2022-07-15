@@ -3,59 +3,59 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Fullscreen extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
-        super(vditor, menuItem);
-        this._bindEvent(vditor, menuItem);
+    constructor(neditor: LGEditor, menuItem: IMenuItem) {
+        super(neditor, menuItem);
+        this._bindEvent(neditor, menuItem);
     }
 
-    public _bindEvent(vditor: IVditor, menuItem: IMenuItem) {
+    public _bindEvent(neditor: LGEditor, menuItem: IMenuItem) {
         this.element.children[0].addEventListener(getEventName(), function(event) {
             event.preventDefault();
-            if (vditor.element.className.includes("vditor--fullscreen")) {
+            if (neditor.element.className.includes("neditor--fullscreen")) {
                 if (!menuItem.level) {
                     this.innerHTML = menuItem.icon;
                 }
-                vditor.element.style.zIndex = "";
+                neditor.element.style.zIndex = "";
                 document.body.style.overflow = "";
-                vditor.element.classList.remove("vditor--fullscreen");
-                Object.keys(vditor.toolbar.elements).forEach((key) => {
-                    const svgElement = vditor.toolbar.elements[key].firstChild as HTMLElement;
+                neditor.element.classList.remove("neditor--fullscreen");
+                Object.keys(neditor.toolbar.elements).forEach((key) => {
+                    const svgElement = neditor.toolbar.elements[key].firstChild as HTMLElement;
                     if (svgElement) {
                         svgElement.className = svgElement.className.replace("__s", "__n");
                     }
                 });
-                if (vditor.counter) {
-                    vditor.counter.element.className = vditor.counter.element.className.replace("__s", "__n");
+                if (neditor.counter) {
+                    neditor.counter.element.className = neditor.counter.element.className.replace("__s", "__n");
                 }
             } else {
                 if (!menuItem.level) {
-                    this.innerHTML = '<svg><use xlink:href="#vditor-icon-contract"></use></svg>';
+                    this.innerHTML = '<svg><use xlink:href="#neditor-icon-contract"></use></svg>';
                 }
-                vditor.element.style.zIndex = vditor.options.fullscreen.index.toString();
+                neditor.element.style.zIndex = neditor.options.fullscreen.index.toString();
                 document.body.style.overflow = "hidden";
-                vditor.element.classList.add("vditor--fullscreen");
-                Object.keys(vditor.toolbar.elements).forEach((key) => {
-                    const svgElement = vditor.toolbar.elements[key].firstChild as HTMLElement;
+                neditor.element.classList.add("neditor--fullscreen");
+                Object.keys(neditor.toolbar.elements).forEach((key) => {
+                    const svgElement = neditor.toolbar.elements[key].firstChild as HTMLElement;
                     if (svgElement) {
                         svgElement.className = svgElement.className.replace("__n", "__s");
                     }
                 });
-                if (vditor.counter) {
-                    vditor.counter.element.className = vditor.counter.element.className.replace("__n", "__s");
+                if (neditor.counter) {
+                    neditor.counter.element.className = neditor.counter.element.className.replace("__n", "__s");
                 }
             }
 
-            // if (vditor.devtools) {
-            //     vditor.devtools.renderEchart(vditor);
+            // if (neditor.devtools) {
+            //     neditor.devtools.renderEchart(neditor);
             // }
 
             if (menuItem.click) {
-                menuItem.click(event, vditor);
+                menuItem.click(event, neditor);
             }
 
-            setPadding(vditor);
+            setPadding(neditor);
 
-            setTypewriterPosition(vditor);
+            setTypewriterPosition(neditor);
         });
     }
 }

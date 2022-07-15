@@ -8,7 +8,7 @@ import {hidePanel} from "./setToolbar";
 export class Headings extends MenuItem {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: IMenuItem) {
         super(vditor, menuItem);
 
         const panelElement = document.createElement("div");
@@ -25,7 +25,7 @@ export class Headings extends MenuItem {
         this._bindEvent(vditor, panelElement);
     }
 
-    public _bindEvent(vditor: IVditor, panelElement: HTMLElement) {
+    public _bindEvent(vditor: LGEditor, panelElement: HTMLElement) {
         const actionBtn = this.element.children[0] as HTMLElement;
         actionBtn.addEventListener(getEventName(), (event) => {
             event.preventDefault();

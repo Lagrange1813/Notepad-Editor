@@ -12,7 +12,7 @@ import {getSelectPosition, setRangeByWbr} from "../util/selection";
 import {renderToc} from "../util/toc";
 import {processAfterRender} from "./process";
 
-export const input = (vditor: IVditor, range: Range, ignoreSpace = false, event?: InputEvent) => {
+export const input = (vditor: LGEditor, range: Range, ignoreSpace = false, event?: InputEvent) => {
     let blockElement = hasClosestBlock(range.startContainer);
     // 前后可以输入空格
     if (blockElement && !ignoreSpace && blockElement.getAttribute("data-type") !== "code-block") {

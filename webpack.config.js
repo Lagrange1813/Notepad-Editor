@@ -13,7 +13,7 @@ module.exports = [
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'umd',
-      library: 'Vditor',
+      library: 'Neditor',
       libraryExport: 'default',
       globalObject: 'this',
     },

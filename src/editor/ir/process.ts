@@ -8,7 +8,7 @@ import {getEditorRange, getSelectPosition, setRangeByWbr, setSelectionFocus} fro
 import {highlightToolbarIR} from "./highlightToolbarIR";
 import {input} from "./input";
 
-export const processHint = (vditor: IVditor) => {
+export const processHint = (vditor: LGEditor) => {
     vditor.hint.render(vditor);
     const startContainer = getEditorRange(vditor).startContainer;
     // 代码块语言提示
@@ -36,7 +36,7 @@ export const processHint = (vditor: IVditor) => {
     }
 };
 
-export const processAfterRender = (vditor: IVditor, options = {
+export const processAfterRender = (vditor: LGEditor, options = {
     enableAddUndoStack: true,
     enableHint: false,
     enableInput: true,
@@ -76,7 +76,7 @@ export const processAfterRender = (vditor: IVditor, options = {
     }, vditor.options.undoDelay);
 };
 
-export const processHeading = (vditor: IVditor, value: string) => {
+export const processHeading = (vditor: LGEditor, value: string) => {
     const range = getEditorRange(vditor);
     const headingElement = hasClosestBlock(range.startContainer) || range.startContainer as HTMLElement;
     if (headingElement) {
@@ -93,7 +93,7 @@ export const processHeading = (vditor: IVditor, value: string) => {
     }
 };
 
-const removeInline = (range: Range, vditor: IVditor, type: string) => {
+const removeInline = (range: Range, vditor: LGEditor, type: string) => {
     const inlineElement = hasClosestByAttribute(range.startContainer, "data-type", type) as HTMLElement;
     if (inlineElement) {
         inlineElement.firstElementChild.remove();
@@ -105,7 +105,7 @@ const removeInline = (range: Range, vditor: IVditor, type: string) => {
     }
 };
 
-export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: string, suffix: string) => {
+export const processToolbar = (vditor: LGEditor, actionBtn: Element, prefix: string, suffix: string) => {
     const range = getEditorRange(vditor);
     const commandName = actionBtn.getAttribute("data-type");
     let typeElement = range.startContainer as HTMLElement;

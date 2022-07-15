@@ -4,12 +4,12 @@ import {RecordMedia} from "../util/RecordMedia";
 import {MenuItem} from "./MenuItem";
 
 export class Record extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: IMenuItem) {
         super(vditor, menuItem);
         this._bindEvent(vditor);
     }
 
-    public _bindEvent(vditor: IVditor) {
+    public _bindEvent(vditor: LGEditor) {
         let mediaRecorder: RecordMedia;
         this.element.children[0].addEventListener(getEventName(), (event) => {
             event.preventDefault();

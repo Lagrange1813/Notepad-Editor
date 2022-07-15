@@ -29,7 +29,7 @@ class IR {
     public composingLock: boolean = false;
     public preventInput: boolean;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         const divElement = document.createElement("div");
         divElement.className = "vditor-ir";
 
@@ -50,7 +50,7 @@ class IR {
         cutEvent(vditor, this.element, this.copy);
     }
 
-    private copy(event: ClipboardEvent, vditor: IVditor) {
+    private copy(event: ClipboardEvent, vditor: LGEditor) {
         const range = getSelection().getRangeAt(0);
         if (range.toString() === "") {
             return;
@@ -65,7 +65,7 @@ class IR {
         event.clipboardData.setData("text/html", "");
     }
 
-    private bindEvent(vditor: IVditor) {
+    private bindEvent(vditor: LGEditor) {
         this.element.addEventListener("paste", (event: ClipboardEvent & { target: HTMLElement }) => {
             paste(vditor, event, {
                 pasteCode: (code: string) => {

@@ -4,7 +4,7 @@ import {MenuItem} from "./MenuItem";
 import {disableToolbar} from "./setToolbar";
 
 export class Redo extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: IMenuItem) {
         super(vditor, menuItem);
         disableToolbar({redo: this.element}, ["redo"]);
         this.element.children[0].addEventListener(getEventName(), (event) => {

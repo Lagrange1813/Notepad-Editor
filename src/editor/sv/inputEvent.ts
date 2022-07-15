@@ -3,7 +3,7 @@ import {hasClosestByAttribute} from "../util/hasClosest";
 import {getSelectPosition, setRangeByWbr} from "../util/selection";
 import {getSideByType, processAfterRender, processSpinVditorSVDOM} from "./process";
 
-export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
+export const inputEvent = (vditor: LGEditor, event?: InputEvent) => {
     const range = getSelection().getRangeAt(0).cloneRange();
     let startContainer = range.startContainer;
     if (range.startContainer.nodeType !== 3 && (range.startContainer as HTMLElement).tagName === "DIV") {

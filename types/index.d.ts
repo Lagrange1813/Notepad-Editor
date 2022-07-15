@@ -411,7 +411,7 @@ interface IMenuItem {
     level?: number;
 
     /** 自定义按钮点击时触发的事件 */
-    click?(event: Event, vditor: IVditor): void;
+    click?(event: Event, vditor: LGEditor): void;
 }
 
 /** @link https://ld246.com/article/1549638745630#options-preview-hljs */
@@ -670,7 +670,7 @@ interface IEChart {
     resize(): void;
 }
 
-interface IVditor {
+interface LGEditor {
     element: HTMLElement;
     options: LGOptions;
     originalInnerHTML: string;
@@ -678,8 +678,8 @@ interface IVditor {
     currentMode: "sv" | "ir";
     outline: {
         element: HTMLElement,
-        render(vditor: IVditor): string,
-        toggle(vditor: IVditor, show?: boolean): void,
+        render(vditor: LGEditor): string,
+        toggle(vditor: LGEditor, show?: boolean): void,
     };
     toolbar?: {
         elements?: { [key: string]: HTMLElement },
@@ -687,11 +687,11 @@ interface IVditor {
     };
     preview?: {
         element: HTMLElement
-        render(vditor: IVditor, value?: string): void,
+        render(vditor: LGEditor, value?: string): void,
     };
     counter?: {
         element: HTMLElement
-        render(vditor: IVditor, mdText?: string): void,
+        render(vditor: LGEditor, mdText?: string): void,
     };
     resize?: {
         element: HTMLElement,
@@ -700,10 +700,10 @@ interface IVditor {
         timeId: number
         element: HTMLDivElement
         recentLanguage: string
-        fillEmoji(element: HTMLElement, vditor: IVditor): void
-        render(vditor: IVditor): void,
-        genHTML(data: IHintData[], key: string, vditor: IVditor): void
-        select(event: KeyboardEvent, vditor: IVditor): boolean,
+        fillEmoji(element: HTMLElement, vditor: LGEditor): void
+        render(vditor: LGEditor): void,
+        genHTML(data: IHintData[], key: string, vditor: LGEditor): void
+        select(event: KeyboardEvent, vditor: LGEditor): boolean,
     };
     tip: {
         element: HTMLElement
@@ -716,12 +716,12 @@ interface IVditor {
         range: Range,
     };
     undo?: {
-        clearStack(vditor: IVditor): void,
-        redo(vditor: IVditor): void
-        undo(vditor: IVditor): void
-        addToUndoStack(vditor: IVditor): void
-        recordFirstPosition(vditor: IVditor, event: KeyboardEvent): void,
-        resetIcon(vditor: IVditor): void,
+        clearStack(vditor: LGEditor): void,
+        redo(vditor: LGEditor): void
+        undo(vditor: LGEditor): void
+        addToUndoStack(vditor: LGEditor): void
+        recordFirstPosition(vditor: LGEditor, event: KeyboardEvent): void,
+        resetIcon(vditor: LGEditor): void,
     };
     ir?: {
         range: Range,

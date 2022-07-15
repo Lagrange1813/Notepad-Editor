@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-export const initUI = (vditor: IVditor) => {
+export const initUI = (vditor: LGEditor) => {
   vditor.element.innerHTML = "";
   vditor.element.classList.add("vditor");
   // 支持 RTL
@@ -105,7 +105,7 @@ export const initUI = (vditor: IVditor) => {
   }
 };
 
-export const setPadding = (vditor: IVditor) => {
+export const setPadding = (vditor: LGEditor) => {
   const minPadding = window.innerWidth <= Constants.MOBILE_WIDTH ? 10 : 35;
 
   if (vditor.ir.element.parentElement.style.display !== "none") {
@@ -124,7 +124,7 @@ export const setPadding = (vditor: IVditor) => {
   }
 };
 
-export const setTypewriterPosition = (vditor: IVditor) => {
+export const setTypewriterPosition = (vditor: LGEditor) => {
   if (!vditor.options.typewriterMode) {
     return;
   }
@@ -152,7 +152,7 @@ export function UIUnbindListener() {
   window.removeEventListener("resize", resizeCb);
 }
 
-const afterRender = (vditor: IVditor) => {
+const afterRender = (vditor: LGEditor) => {
   setTypewriterPosition(vditor);
   UIUnbindListener();
   window.addEventListener("resize", resizeCb = () => {

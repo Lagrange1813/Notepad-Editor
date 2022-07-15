@@ -18,7 +18,7 @@ import {
     showToolbar, toggleSubMenu,
 } from "./setToolbar";
 
-export const setEditMode = (vditor: IVditor, type: string, event: Event | string) => {
+export const setEditMode = (vditor: LGEditor, type: string, event: Event | string) => {
     let markdownText;
     if (typeof event !== "string") {
         hidePanel(vditor, ["subToolbar", "hint"]);
@@ -122,7 +122,7 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
 export class EditMode extends MenuItem {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: IMenuItem) {
         super(vditor, menuItem);
 
         const panelElement = document.createElement("div");
@@ -136,7 +136,7 @@ export class EditMode extends MenuItem {
         this._bindEvent(vditor, panelElement, menuItem);
     }
 
-    public _bindEvent(vditor: IVditor, panelElement: HTMLElement, menuItem: IMenuItem) {
+    public _bindEvent(vditor: LGEditor, panelElement: HTMLElement, menuItem: IMenuItem) {
         const actionBtn = this.element.children[0] as HTMLElement;
         toggleSubMenu(vditor, panelElement, actionBtn, menuItem.level);
 

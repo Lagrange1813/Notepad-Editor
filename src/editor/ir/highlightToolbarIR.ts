@@ -4,7 +4,7 @@ import {hasClosestByAttribute, hasClosestByMatchTag} from "../util/hasClosest";
 import {hasClosestByHeadings} from "../util/hasClosestByHeadings";
 import {getEditorRange, selectIsEditor} from "../util/selection";
 
-export const highlightToolbarIR = (vditor: IVditor) => {
+export const highlightToolbarIR = (vditor: LGEditor) => {
     clearTimeout(vditor[vditor.currentMode].hlToolbarTimeoutId);
     vditor[vditor.currentMode].hlToolbarTimeoutId = window.setTimeout(() => {
         if (vditor[vditor.currentMode].element.getAttribute("contenteditable") === "false") {

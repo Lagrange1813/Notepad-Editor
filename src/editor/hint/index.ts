@@ -22,7 +22,7 @@ export class Hint {
         hintExtends.push({key: ":"});
     }
 
-    public render(vditor: IVditor) {
+    public render(vditor: LGEditor) {
         if (!window.getSelection().focusNode) {
             return;
         }
@@ -68,7 +68,7 @@ export class Hint {
         }
     }
 
-    public genHTML(data: IHintData[], key: string, vditor: IVditor) {
+    public genHTML(data: IHintData[], key: string, vditor: LGEditor) {
         if (data.length === 0) {
             this.element.style.display = "none";
             return;
@@ -126,7 +126,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         }
     }
 
-    public fillEmoji = (element: HTMLElement, vditor: IVditor) => {
+    public fillEmoji = (element: HTMLElement, vditor: LGEditor) => {
         this.element.style.display = "none";
 
         const value = decodeURIComponent(element.getAttribute("data-value"));
@@ -177,7 +177,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         execAfterRender(vditor);
     }
 
-    public select(event: KeyboardEvent, vditor: IVditor) {
+    public select(event: KeyboardEvent, vditor: LGEditor) {
 
         if (this.element.querySelectorAll("button").length === 0 ||
             this.element.style.display === "none") {

@@ -28,12 +28,12 @@ class Undo {
         this.dmp = new DiffMatchPatch();
     }
 
-    public clearStack(vditor: IVditor) {
+    public clearStack(vditor: LGEditor) {
         this.resetStack();
         this.resetIcon(vditor);
     }
 
-    public resetIcon(vditor: IVditor) {
+    public resetIcon(vditor: LGEditor) {
         if (!vditor.toolbar) {
             return;
         }
@@ -51,7 +51,7 @@ class Undo {
         }
     }
 
-    public undo(vditor: IVditor) {
+    public undo(vditor: LGEditor) {
         if (vditor[vditor.currentMode].element.getAttribute("contenteditable") === "false") {
             return;
         }
@@ -69,7 +69,7 @@ class Undo {
         hidePanel(vditor, ["hint"]);
     }
 
-    public redo(vditor: IVditor) {
+    public redo(vditor: LGEditor) {
         if (vditor[vditor.currentMode].element.getAttribute("contenteditable") === "false") {
             return;
         }
@@ -81,7 +81,7 @@ class Undo {
         this.renderDiff(state, vditor, true);
     }
 
-    public recordFirstPosition(vditor: IVditor, event: KeyboardEvent) {
+    public recordFirstPosition(vditor: LGEditor, event: KeyboardEvent) {
         if (getSelection().rangeCount === 0) {
             return;
         }
@@ -108,7 +108,7 @@ class Undo {
         // 不能添加 setSelectionFocus(cloneRange); 否则 windows chrome 首次输入会烂
     }
 
-    public addToUndoStack(vditor: IVditor) {
+    public addToUndoStack(vditor: LGEditor) {
         // afterRenderEvent.ts 已经 debounce
         const text = this.addCaret(vditor, true);
         const diff = this.dmp.diff_main(text, this[vditor.currentMode].lastText, true);
@@ -132,7 +132,7 @@ class Undo {
         }
     }
 
-    private renderDiff(state: DiffMatchPatch.patch_obj[], vditor: IVditor, isRedo: boolean = false) {
+    private renderDiff(state: DiffMatchPatch.patch_obj[], vditor: LGEditor, isRedo: boolean = false) {
         let text;
         if (isRedo) {
             const redoPatchList = this.dmp.patch_deepCopy(state).reverse();
@@ -214,7 +214,7 @@ class Undo {
         };
     }
 
-    private addCaret(vditor: IVditor, setFocus = false) {
+    private addCaret(vditor: LGEditor, setFocus = false) {
         let cloneRange: Range;
         if (getSelection().rangeCount !== 0 && !vditor[vditor.currentMode].element.querySelector("wbr")) {
             const range = getSelection().getRangeAt(0);

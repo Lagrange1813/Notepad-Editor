@@ -1,6 +1,6 @@
 import {getMarkdown} from "./getMarkdown";
 
-export const getHTML = (vditor: IVditor) => {
+export const getHTML = (vditor: LGEditor) => {
     if (vditor.currentMode === "sv") {
         return vditor.lute.Md2HTML(getMarkdown(vditor));
     } else if (vditor.currentMode === "ir") {

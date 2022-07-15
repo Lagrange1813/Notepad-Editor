@@ -1,4 +1,4 @@
-export const setTheme = (vditor: IVditor) => {
+export const setTheme = (vditor: LGEditor) => {
     if (vditor.options.theme === "dark") {
         vditor.element.classList.add("vditor--dark");
     } else {

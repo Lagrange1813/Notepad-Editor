@@ -11,6 +11,7 @@
     "src/assets/*"
   ],
   "dependencies": {
+    "diff-match-patch": "^1.0.5"
   },
   "types": "dist/index.d.ts",
   "devDependencies": {

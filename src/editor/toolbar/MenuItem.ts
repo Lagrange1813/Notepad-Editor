@@ -7,7 +7,7 @@ import {updateHotkeyTip} from "../util/compatibility";
 export class MenuItem {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: IMenuItem) {
         this.element = document.createElement("div");
         if (menuItem.className) {
             this.element.classList.add(...menuItem.className.split(" "));

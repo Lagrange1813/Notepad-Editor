@@ -44,7 +44,7 @@ const previousIsNode = (range: Range) => {
     return false;
 };
 
-export const expandMarker = (range: Range, vditor: IVditor) => {
+export const expandMarker = (range: Range, vditor: LGEditor) => {
     vditor.ir.element.querySelectorAll(".vditor-ir__node--expand").forEach((item) => {
         item.classList.remove("vditor-ir__node--expand");
     });

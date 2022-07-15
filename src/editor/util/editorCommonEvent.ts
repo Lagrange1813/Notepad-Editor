@@ -14,7 +14,7 @@ import {hasClosestByAttribute, hasClosestByMatchTag} from "./hasClosest";
 import {matchHotKey} from "./hotKey";
 import {getCursorPosition, getEditorRange} from "./selection";
 
-export const focusEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const focusEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("focus", () => {
         if (vditor.options.focus) {
             vditor.options.focus(getMarkdown(vditor));
@@ -23,7 +23,7 @@ export const focusEvent = (vditor: IVditor, editorElement: HTMLElement) => {
     });
 };
 
-export const dblclickEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const dblclickEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("dblclick", (event: MouseEvent & { target: HTMLElement }) => {
         if (event.target.tagName === "IMG") {
             previewImage(event.target as HTMLImageElement, vditor.options.lang, vditor.options.theme);
@@ -31,7 +31,7 @@ export const dblclickEvent = (vditor: IVditor, editorElement: HTMLElement) => {
     });
 };
 
-export const blurEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const blurEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("blur", (event) => {
         if (vditor.currentMode === "ir") {
             const expandElement = vditor.ir.element.querySelector(".vditor-ir__node--expand");
@@ -46,7 +46,7 @@ export const blurEvent = (vditor: IVditor, editorElement: HTMLElement) => {
     });
 };
 
-export const dropEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const dropEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("dragstart", (event) => {
         // 选中编辑器中的文字进行拖拽
         event.dataTransfer.setData(Constants.DROP_EDITOR, Constants.DROP_EDITOR);
@@ -68,19 +68,19 @@ export const dropEvent = (vditor: IVditor, editorElement: HTMLElement) => {
 };
 
 export const copyEvent =
-    (vditor: IVditor, editorElement: HTMLElement, copy: (event: ClipboardEvent, vditor: IVditor) => void) => {
+    (vditor: LGEditor, editorElement: HTMLElement, copy: (event: ClipboardEvent, vditor: LGEditor) => void) => {
         editorElement.addEventListener("copy", (event: ClipboardEvent) => copy(event, vditor));
     };
 
 export const cutEvent =
-    (vditor: IVditor, editorElement: HTMLElement, copy: (event: ClipboardEvent, vditor: IVditor) => void) => {
+    (vditor: LGEditor, editorElement: HTMLElement, copy: (event: ClipboardEvent, vditor: LGEditor) => void) => {
         editorElement.addEventListener("cut", (event: ClipboardEvent) => {
             copy(event, vditor);
             document.execCommand("delete");
         });
     };
 
-export const scrollCenter = (vditor: IVditor) => {
+export const scrollCenter = (vditor: LGEditor) => {
     if (!vditor.options.typewriterMode) {
         return;
     }
@@ -95,7 +95,7 @@ export const scrollCenter = (vditor: IVditor) => {
     }
 };
 
-export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const hotkeyEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("keydown", (event: KeyboardEvent & { target: HTMLElement }) => {
         // hint: 上下选择
         if ((vditor.options.hint.extend.length > 1 || vditor.toolbar.elements.emoji) &&
@@ -195,7 +195,7 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
     });
 };
 
-export const selectEvent = (vditor: IVditor, editorElement: HTMLElement) => {
+export const selectEvent = (vditor: LGEditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("selectstart", (event: Event & { target: HTMLElement }) => {
         editorElement.onmouseup = () => {
             setTimeout(() => { // 鼠标放开后 range 没有即时更新

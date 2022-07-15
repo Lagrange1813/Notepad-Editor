@@ -26,7 +26,7 @@ export class Toolbar {
     public elements: { [key: string]: HTMLElement };
     public element: HTMLElement;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         const options = vditor.options;
         this.elements = {};
 
@@ -64,7 +64,7 @@ export class Toolbar {
         }
     }
 
-    private genItem(vditor: IVditor, menuItem: IMenuItem, index: number) {
+    private genItem(vditor: LGEditor, menuItem: IMenuItem, index: number) {
         let menuItemObj;
         switch (menuItem.name) {
             case "bold":
