@@ -66,23 +66,23 @@ export const processCodeRender = (previewPanel: HTMLElement, vditor: LGEditor) =
         return;
     }
     if (language === "abc") {
-        abcRender(previewPanel, vditor.options.cdn);
+        abcRender(previewPanel);
     } else if (language === "mermaid") {
-        mermaidRender(previewPanel, vditor.options.cdn, vditor.options.theme);
+        mermaidRender(previewPanel, vditor.options.theme);
     } else if (language === "flowchart") {
-        flowchartRender(previewPanel, vditor.options.cdn);
+        flowchartRender(previewPanel);
     } else if (language === "echarts") {
-        chartRender(previewPanel, vditor.options.cdn, vditor.options.theme);
+        chartRender(previewPanel, vditor.options.theme);
     } else if (language === "mindmap") {
-        mindmapRender(previewPanel, vditor.options.cdn, vditor.options.theme);
+        mindmapRender(previewPanel, vditor.options.theme);
     } else if (language === "plantuml") {
-        plantumlRender(previewPanel, vditor.options.cdn);
+        plantumlRender(previewPanel);
     } else if (language === "graphviz") {
-        graphvizRender(previewPanel, vditor.options.cdn);
+        graphvizRender(previewPanel, );
     } else if (language === "math") {
-        mathRender(previewPanel, {cdn: vditor.options.cdn, math: vditor.options.preview.math});
+        mathRender(previewPanel, { math: vditor.options.preview.math});
     } else {
-        highlightRender(Object.assign({}, vditor.options.preview.hljs), previewPanel, vditor.options.cdn);
+        highlightRender(Object.assign({}, vditor.options.preview.hljs), previewPanel);
         codeRender(previewPanel);
     }
 

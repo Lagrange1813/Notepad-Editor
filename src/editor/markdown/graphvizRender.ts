@@ -8,13 +8,13 @@ declare class Viz {
     constructor({ }: { worker: Worker });
 }
 
-export const graphvizRender = (element: HTMLElement, cdn = Constants.CDN) => {
+export const graphvizRender = (element: HTMLElement) => {
     const graphvizElements = graphvizRenderAdapter.getElements(element);
 
     if (graphvizElements.length === 0) {
         return;
     }
-    addScript(`${cdn}/dist/lib/graphviz/viz.js`, "vditorGraphVizScript").then(() => {
+    addScript(`/dist/lib/graphviz/viz.js`, "vditorGraphVizScript").then(() => {
         graphvizElements.forEach((e: HTMLDivElement) => {
             const code = graphvizRenderAdapter.getCode(e);
             if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||

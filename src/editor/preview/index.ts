@@ -208,15 +208,14 @@ export class Preview {
             cmtFocusElement.classList.remove("vditor-comment--focus");
         }
         codeRender(vditor.preview.element.lastElementChild as HTMLElement);
-        highlightRender(vditor.options.preview.hljs, vditor.preview.element.lastElementChild as HTMLElement,
-            vditor.options.cdn);
-        mermaidRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn, vditor.options.theme);
-        flowchartRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn);
-        graphvizRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn);
-        chartRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn, vditor.options.theme);
-        mindmapRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn, vditor.options.theme);
-        plantumlRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn);
-        abcRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.cdn);
+        highlightRender(vditor.options.preview.hljs, vditor.preview.element.lastElementChild as HTMLElement);
+        mermaidRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.theme);
+        flowchartRender(vditor.preview.element.lastElementChild as HTMLElement);
+        graphvizRender(vditor.preview.element.lastElementChild as HTMLElement, );
+        chartRender(vditor.preview.element.lastElementChild as HTMLElement,vditor.options.theme);
+        mindmapRender(vditor.preview.element.lastElementChild as HTMLElement, vditor.options.theme);
+        plantumlRender(vditor.preview.element.lastElementChild as HTMLElement);
+        abcRender(vditor.preview.element.lastElementChild as HTMLElement);
         mediaRender(vditor.preview.element.lastElementChild as HTMLElement);
         // toc render
         const editorElement = vditor.preview.element;
@@ -227,12 +226,10 @@ export class Preview {
         editorElement.querySelectorAll('[data-type="toc-block"]').forEach((item: HTMLElement) => {
             item.innerHTML = tocHTML;
             mathRender(item, {
-                cdn: vditor.options.cdn,
                 math: vditor.options.preview.math,
             });
         });
         mathRender(vditor.preview.element.lastElementChild as HTMLElement, {
-            cdn: vditor.options.cdn,
             math: vditor.options.preview.math,
         });
     }

@@ -68,7 +68,6 @@ export const setEditMode = (vditor: LGEditor, type: string, event: Event | strin
         });
         vditor.ir.element.querySelectorAll(".vditor-toc").forEach((item: HTMLElement) => {
             mathRender(item, {
-                cdn: vditor.options.cdn,
                 math: vditor.options.preview.math,
             });
         });

@@ -6,10 +6,10 @@ declare const echarts: {
     init(element: HTMLElement, theme?: string): IEChart;
 };
 
-export const mindmapRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN, theme: string) => {
+export const mindmapRender = (element: (HTMLElement | Document) = document, theme: string) => {
     const mindmapElements = mindmapRenderAdapter.getElements(element);
     if (mindmapElements.length > 0) {
-        addScript(`${cdn}/dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {
+        addScript(`/dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {
             mindmapElements.forEach((e: HTMLDivElement) => {
                 if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
                     e.parentElement.classList.contains("vditor-ir__marker--pre")) {

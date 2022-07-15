@@ -15,7 +15,6 @@ export const renderToc = (vditor: LGEditor) => {
     editorElement.querySelectorAll('[data-type="toc-block"]').forEach((item: HTMLElement) => {
         item.innerHTML = tocHTML;
         mathRender(item, {
-            cdn: vditor.options.cdn,
             math: vditor.options.preview.math,
         });
     });

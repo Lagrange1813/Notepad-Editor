@@ -22,11 +22,8 @@ import {speechRender} from "./speechRender";
 const mergeOptions = (options?: LGPreviewOptions) => {
     const defaultOption: LGPreviewOptions = {
         anchor: 0,
-        cdn: Constants.CDN,
         customEmoji: {},
-        emojiPath: `${
-            (options && options.emojiPath) || Constants.CDN
-        }/dist/images/emoji`,
+        emojiPath: `/dist/images/emoji`,
         hljs: Constants.HLJS_OPTIONS,
         icon: "ant",
         lang: "zh_CN",
@@ -97,14 +94,14 @@ export const previewRender = async (previewElement: HTMLDivElement, markdown: st
                     document.head.removeChild(el);
                 }
             });
-            await addScript(`${mergedOptions.cdn}/dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID);
+            await addScript(`/dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID);
         }
     } else {
         window.VditorI18n = mergedOptions.i18n;
     }
 
     if (mergedOptions.icon) {
-        await addScript(`${mergedOptions.cdn}/dist/lib/icons/${mergedOptions.icon}.js`, "vditorIconScript");
+        await addScript(`/dist/lib/icons/${mergedOptions.icon}.js`, "vditorIconScript");
     }
 
     setContentTheme(mergedOptions.theme.current, mergedOptions.theme.path);
@@ -112,18 +109,17 @@ export const previewRender = async (previewElement: HTMLDivElement, markdown: st
         previewElement.classList.add("vditor-reset--anchor");
     }
     codeRender(previewElement);
-    highlightRender(mergedOptions.hljs, previewElement, mergedOptions.cdn);
+    highlightRender(mergedOptions.hljs, previewElement);
     mathRender(previewElement, {
-        cdn: mergedOptions.cdn,
         math: mergedOptions.math,
     });
-    mermaidRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    flowchartRender(previewElement, mergedOptions.cdn);
-    graphvizRender(previewElement, mergedOptions.cdn);
-    chartRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    mindmapRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    plantumlRender(previewElement, mergedOptions.cdn);
-    abcRender(previewElement, mergedOptions.cdn);
+    mermaidRender(previewElement, mergedOptions.mode);
+    flowchartRender(previewElement);
+    graphvizRender(previewElement, );
+    chartRender(previewElement, mergedOptions.mode);
+    mindmapRender(previewElement, mergedOptions.mode);
+    plantumlRender(previewElement);
+    abcRender(previewElement);
     mediaRender(previewElement);
     if (mergedOptions.speech.enable) {
         speechRender(previewElement);

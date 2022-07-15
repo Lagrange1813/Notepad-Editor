@@ -11,7 +11,7 @@ export const plantumlRender = (element: (HTMLElement | Document) = document, cdn
     if (plantumlElements.length === 0) {
         return;
     }
-    addScript(`${cdn}/dist/lib/plantuml/plantuml-encoder.min.js`, "vditorPlantumlScript").then(() => {
+    addScript(`/dist/lib/plantuml/plantuml-encoder.min.js`, "vditorPlantumlScript").then(() => {
         plantumlElements.forEach((e: HTMLDivElement) => {
             if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
                 e.parentElement.classList.contains("vditor-ir__marker--pre")) {
