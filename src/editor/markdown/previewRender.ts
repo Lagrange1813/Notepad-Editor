@@ -23,7 +23,7 @@ const mergeOptions = (options?: LGPreviewOptions) => {
     const defaultOption: LGPreviewOptions = {
         anchor: 0,
         customEmoji: {},
-        emojiPath: `/dist/images/emoji`,
+        emojiPath: `../dist/images/emoji`,
         hljs: Constants.HLJS_OPTIONS,
         icon: "ant",
         lang: "zh_CN",
@@ -40,7 +40,7 @@ const mergeOptions = (options?: LGPreviewOptions) => {
 
 export const md2html = (mdText: string, options?: LGPreviewOptions) => {
     const mergedOptions = mergeOptions(options);
-    return addScript(`/dist/lib/lute/lute.min.js`, "vditorLuteScript").then(() => {
+    return addScript(`../dist/lib/lute/lute.min.js`, "vditorLuteScript").then(() => {
         const lute = setLute({
             autoSpace: mergedOptions.markdown.autoSpace,
             codeBlockPreview: mergedOptions.markdown.codeBlockPreview,
@@ -94,14 +94,14 @@ export const previewRender = async (previewElement: HTMLDivElement, markdown: st
                     document.head.removeChild(el);
                 }
             });
-            await addScript(`/dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID);
+            await addScript(`../dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID);
         }
     } else {
         window.VditorI18n = mergedOptions.i18n;
     }
 
     if (mergedOptions.icon) {
-        await addScript(`/dist/lib/icons/${mergedOptions.icon}.js`, "vditorIconScript");
+        await addScript(`../dist/lib/icons/${mergedOptions.icon}.js`, "vditorIconScript");
     }
 
     setContentTheme(mergedOptions.theme.current, mergedOptions.theme.path);

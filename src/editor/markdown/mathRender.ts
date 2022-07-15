@@ -39,9 +39,9 @@ export const mathRender = (element: HTMLElement, options?: { math?: LGMath }) =>
     options = Object.assign({}, defaultOptions, options);
 
     if (options.math.engine === "KaTeX") {
-        addStyle(`/dist/lib/katex/katex.min.css`, "vditorKatexStyle");
-        addScript(`/dist/lib/katex/katex.min.js`, "vditorKatexScript").then(() => {
-            addScript(`/dist/lib/katex/mhchem.min.js`, "vditorKatexChemScript").then(() => {
+        addStyle(`../dist/lib/katex/katex.min.css`, "vditorKatexStyle");
+        addScript(`../dist/lib/katex/katex.min.js`, "vditorKatexScript").then(() => {
+            addScript(`../dist/lib/katex/mhchem.min.js`, "vditorKatexChemScript").then(() => {
                 mathElements.forEach((mathElement) => {
                     if (mathElement.parentElement.classList.contains("vditor-ir__marker--pre")) {
                         return;
@@ -88,7 +88,7 @@ export const mathRender = (element: HTMLElement, options?: { math?: LGMath }) =>
         if (!window.MathJax) {
             window.MathJax = {
                 loader: {
-                    paths: {mathjax: `/dist/lib/mathjax`},
+                    paths: {mathjax: `../dist/lib/mathjax`},
                 },
                 startup: {
                     typeset: false,
@@ -99,7 +99,7 @@ export const mathRender = (element: HTMLElement, options?: { math?: LGMath }) =>
             };
         }
         // 循环加载会抛异常
-        addScriptSync(`/dist/lib/mathjax/tex-svg-full.js`, "protyleMathJaxScript");
+        addScriptSync(`../dist/lib/mathjax/tex-svg-full.js`, "protyleMathJaxScript");
         const renderMath = (mathElement: Element, next?: () => void) => {
             const math = code160to32(mathElement.textContent).trim();
             const mathOptions = window.MathJax.getMetricsFor(mathElement);

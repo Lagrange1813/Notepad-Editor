@@ -12,7 +12,7 @@ export const mermaidRender = (element: HTMLElement, theme: string) => {
     if (mermaidElements.length === 0) {
         return;
     }
-    addScript(`/dist/lib/mermaid/mermaid.min.js`, "vditorMermaidScript").then(() => {
+    addScript(`../dist/lib/mermaid/mermaid.min.js`, "vditorMermaidScript").then(() => {
         const config: any = {
             altFontFamily: "sans-serif",
             flowchart: {

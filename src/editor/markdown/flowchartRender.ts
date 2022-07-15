@@ -11,7 +11,7 @@ export const flowchartRender = (element: HTMLElement) => {
     if (flowchartElements.length === 0) {
         return;
     }
-    addScript(`/dist/lib/flowchart.js/flowchart.min.js`, "vditorFlowchartScript").then(() => {
+    addScript(`../dist/lib/flowchart.js/flowchart.min.js`, "vditorFlowchartScript").then(() => {
         flowchartElements.forEach((item: HTMLElement) => {
             if (item.getAttribute("data-processed") === "true") {
                 return;

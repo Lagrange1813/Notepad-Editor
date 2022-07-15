@@ -9,7 +9,7 @@ declare const echarts: {
 export const mindmapRender = (element: (HTMLElement | Document) = document, theme: string) => {
     const mindmapElements = mindmapRenderAdapter.getElements(element);
     if (mindmapElements.length > 0) {
-        addScript(`/dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {
+        addScript(`../dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {
             mindmapElements.forEach((e: HTMLDivElement) => {
                 if (e.parentElement.classList.contains("vditor-ir__marker--pre")) {
                     return;

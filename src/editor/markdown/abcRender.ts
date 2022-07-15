@@ -9,7 +9,7 @@ declare const ABCJS: {
 export const abcRender = (element: (HTMLElement | Document) = document) => {
     const abcElements = abcRenderAdapter.getElements(element);
     if (abcElements.length > 0) {
-        addScript(`/dist/lib/abcjs/abcjs_basic.min.js`, "vditorAbcjsScript").then(() => {
+        addScript(`../dist/lib/abcjs/abcjs_basic.min.js`, "vditorAbcjsScript").then(() => {
             abcElements.forEach((item: HTMLDivElement) => {
                 if (item.parentElement.classList.contains("vditor-ir__marker--pre")) {
                     return;

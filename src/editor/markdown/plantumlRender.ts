@@ -10,7 +10,7 @@ export const plantumlRender = (element: (HTMLElement | Document) = document) => 
     if (plantumlElements.length === 0) {
         return;
     }
-    addScript(`/dist/lib/plantuml/plantuml-encoder.min.js`, "vditorPlantumlScript").then(() => {
+    addScript(`../dist/lib/plantuml/plantuml-encoder.min.js`, "vditorPlantumlScript").then(() => {
         plantumlElements.forEach((e: HTMLDivElement) => {
             if (e.parentElement.classList.contains("vditor-ir__marker--pre")) {
                 return;
