@@ -1,6 +1,6 @@
 import "./assets/less/index.less";
 import VditorMethod from "./method";
-import {Constants, VDITOR_VERSION} from "./editor/constants";
+import {Constants} from "./editor/constants";
 import {Hint} from "./editor/hint/index";
 import {IR} from "./editor/ir/index";
 import {input as irInput} from "./editor/ir/input";
