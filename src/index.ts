@@ -1,7 +1,6 @@
 import "./assets/less/index.less";
 import VditorMethod from "./method";
 import {Constants, VDITOR_VERSION} from "./editor/constants";
-// import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
 import {IR} from "./editor/ir/index";
 import {input as irInput} from "./editor/ir/input";
@@ -32,7 +31,7 @@ import {processCodeRender} from "./editor/util/processCode";
 import {getCursorPosition, getEditorRange} from "./editor/util/selection";
 
 class Vditor extends VditorMethod {
-    public readonly version: string;
+    // public readonly version: string;
     public vditor: IVditor;
 
     /**
@@ -41,7 +40,7 @@ class Vditor extends VditorMethod {
      */
     constructor(id: string | HTMLElement, options?: LGOptions) {
         super();
-        this.version = VDITOR_VERSION;
+        // this.version = VDITOR_VERSION;
 
         if (typeof id === "string") {
             if (!options) {

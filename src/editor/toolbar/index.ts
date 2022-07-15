@@ -5,14 +5,12 @@ import {CodeTheme} from "./CodeTheme";
 import {ContentTheme} from "./ContentTheme";
 import {Counter} from "./Counter";
 import {Custom} from "./Custom";
-// import {Devtools} from "./Devtools";
 import {Divider} from "./Divider";
 import {EditMode} from "./EditMode";
 import {Fullscreen} from "./Fullscreen";
 import {Headings} from "./Headings";
 import {Help} from "./Help";
 import {Indent} from "./Indent";
-import {Info} from "./Info";
 import {InsertAfter} from "./InsertAfter";
 import {InsertBefore} from "./InsertBefore";
 import {MenuItem} from "./MenuItem";
@@ -114,15 +112,9 @@ export class Toolbar {
             case "record":
                 menuItemObj = new Record(vditor, menuItem);
                 break;
-            case "info":
-                menuItemObj = new Info(vditor, menuItem);
-                break;
             case "edit-mode":
                 menuItemObj = new EditMode(vditor, menuItem);
                 break;
-            // case "devtools":
-            //     menuItemObj = new Devtools(vditor, menuItem);
-            //     break;
             case "outdent":
                 menuItemObj = new Outdent(vditor, menuItem);
                 break;

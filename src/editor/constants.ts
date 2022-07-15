@@ -62,6 +62,6 @@ export abstract class Constants {
       "light": "Light",
       "wechat": "WeChat",
     },
-    path: `${Constants.CDN}/dist/css/content-theme`,
+    // path: `${Constants.CDN}/dist/css/content-theme`,
   };
 }
