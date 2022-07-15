@@ -11,8 +11,7 @@ export const abcRender = (element: (HTMLElement | Document) = document) => {
     if (abcElements.length > 0) {
         addScript(`/dist/lib/abcjs/abcjs_basic.min.js`, "vditorAbcjsScript").then(() => {
             abcElements.forEach((item: HTMLDivElement) => {
-                if (item.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-                    item.parentElement.classList.contains("vditor-ir__marker--pre")) {
+                if (item.parentElement.classList.contains("vditor-ir__marker--pre")) {
                     return;
                 }
                 if (item.getAttribute("data-processed") === "true") {

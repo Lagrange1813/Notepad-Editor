@@ -11,8 +11,7 @@ export const chartRender = (element: (HTMLElement | Document) = document, theme:
     if (echartsElements.length > 0) {
         addScript(`/dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {
             echartsElements.forEach((e: HTMLDivElement) => {
-                if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-                    e.parentElement.classList.contains("vditor-ir__marker--pre")) {
+                if (e.parentElement.classList.contains("vditor-ir__marker--pre")) {
                     return;
                 }
 

@@ -17,8 +17,7 @@ export const graphvizRender = (element: HTMLElement) => {
     addScript(`/dist/lib/graphviz/viz.js`, "vditorGraphVizScript").then(() => {
         graphvizElements.forEach((e: HTMLDivElement) => {
             const code = graphvizRenderAdapter.getCode(e);
-            if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-                e.parentElement.classList.contains("vditor-ir__marker--pre")) {
+            if (e.parentElement.classList.contains("vditor-ir__marker--pre")) {
                 return;
             }
 
