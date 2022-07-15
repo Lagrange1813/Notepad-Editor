@@ -74,7 +74,7 @@ class Neditor extends NeditorMethod {
                         document.head.removeChild(el);
                     }
                 });
-                addScript(`${mergedOptions.cdn}/dist/js/i18n/${mergedOptions.lang}.js`, i18nScriptID).then(() => {
+                addScript(`/dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID).then(() => {
                     this.init(id as HTMLElement, mergedOptions);
                 });
             }
@@ -99,7 +99,7 @@ class Neditor extends NeditorMethod {
         }
         if (codeTheme) {
             this.neditor.options.preview.hljs.style = codeTheme;
-            setCodeTheme(codeTheme, this.neditor.options.cdn);
+            setCodeTheme(codeTheme);
         }
     }
 
@@ -333,7 +333,7 @@ class Neditor extends NeditorMethod {
 
         addScript(
             mergedOptions._lutePath ||
-            `${mergedOptions.cdn}/dist/js/lute/lute.min.js`,
+            `/dist/lib/lute/lute.min.js`,
             "vditorLuteScript",
         ).then(() => {
             this.neditor.lute = setLute({
@@ -367,7 +367,7 @@ class Neditor extends NeditorMethod {
             }
             if (mergedOptions.icon) {
                 // 防止初始化 2 个编辑器时加载 2 次
-                addScriptSync(`${mergedOptions.cdn}/dist/js/icons/${mergedOptions.icon}.js`, "vditorIconScript");
+                addScriptSync(`/dist/lib/icons/${mergedOptions.icon}.js`, "vditorIconScript");
             }
         });
     }

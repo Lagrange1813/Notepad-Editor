@@ -43,7 +43,7 @@ const mergeOptions = (options?: LGPreviewOptions) => {
 
 export const md2html = (mdText: string, options?: LGPreviewOptions) => {
     const mergedOptions = mergeOptions(options);
-    return addScript(`${mergedOptions.cdn}/dist/lib/lute/lute.min.js`, "vditorLuteScript").then(() => {
+    return addScript(`/dist/lib/lute/lute.min.js`, "vditorLuteScript").then(() => {
         const lute = setLute({
             autoSpace: mergedOptions.markdown.autoSpace,
             codeBlockPreview: mergedOptions.markdown.codeBlockPreview,
