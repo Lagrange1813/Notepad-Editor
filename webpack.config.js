@@ -1,10 +1,8 @@
 const path = require('path')
-const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const pkg = require('./package.json')
 
 module.exports = [
   {
@@ -109,9 +107,6 @@ module.exports = [
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: [
           path.join(__dirname, 'dist')],
-      }),
-      new webpack.DefinePlugin({
-        VDITOR_VERSION: JSON.stringify(pkg.version),
       }),
       new MiniCssExtractPlugin({
         filename: 'index.css',
