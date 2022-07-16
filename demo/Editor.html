@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <title>Notepad-Editor</title>
   <style>
     html {
@@ -24,17 +24,22 @@
   <link href="../dist/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" contenteditable="false">
   <div id="neditor"></div>
 </div>
 </body>
 <script>
-  new Neditor("neditor", {
+  let editor = new Neditor("neditor", {
     height: 1000,
     cache: {
       enable: false
     },
-    value: "# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```"
+    value: "# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```",
+    after: function() { editor.hook.setEditorMode('sv'); }
   });
+
+  // setTimeout(function(){
+  //   editor.hook.setEditorMode('sv');
+  // }, 300);
 </script>
 </html>

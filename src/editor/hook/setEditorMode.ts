@@ -1,22 +1,16 @@
 import {processAfterRender} from "../ir/process";
-import {getMarkdown} from "../markdown/getMarkdown";
 import {mathRender} from "../markdown/mathRender";
 import {processAfterRender as processSVAfterRender, processSpinVditorSVDOM} from "../sv/process";
 import {setPadding, setTypewriterPosition} from "../ui/initUI";
 import {processCodeRender} from "../util/processCode";
 import {renderToc} from "../util/toc";
+import { getMarkdown } from "../markdown/getMarkdown";
 
 export const setEditorMode = (vditor: LGEditor, type: string) => {
-  let markdownText;
-  if (typeof event !== "string") {
-    event.preventDefault();
-    markdownText = getMarkdown(vditor);
-  } else {
-    markdownText = event;
-  }
-  if (vditor.currentMode === type && typeof event !== "string") {
-    return;
-  }
+  const markdownText = getMarkdown(vditor);
+
+  console.log(markdownText);
+
   if (vditor.options.preview.mode === "both" && type === "sv") {
     vditor.preview.element.style.display = "block";
   } else {
@@ -57,7 +51,6 @@ export const setEditorMode = (vditor: LGEditor, type: string) => {
     }
 
     vditor.lute.SetVditorIR(false);
-    vditor.lute.SetVditorWYSIWYG(false);
     vditor.lute.SetVditorSV(true);
 
     vditor.currentMode = "sv";
@@ -75,10 +68,6 @@ export const setEditorMode = (vditor: LGEditor, type: string) => {
     setPadding(vditor);
   }
   vditor.undo.resetIcon(vditor);
-  if (typeof event !== "string") {
-    // 初始化不 focus
-    vditor[vditor.currentMode].element.focus();
-  }
   renderToc(vditor);
   setTypewriterPosition(vditor);
 
