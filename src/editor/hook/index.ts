@@ -16,4 +16,6 @@ export class Hook {
     // (window as any).webkit.messageHandlers.getText.postMessage(getMarkdown(this.neditor))
     return getMarkdown(this.neditor);
   }
+
+
 }

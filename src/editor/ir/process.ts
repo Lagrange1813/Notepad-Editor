@@ -66,10 +66,6 @@ export const processAfterRender = (vditor: LGEditor, options = {
             }
         }
 
-        // if (vditor.devtools) {
-        //     vditor.devtools.renderEchart(vditor);
-        // }
-
         if (options.enableAddUndoStack) {
             vditor.undo.addToUndoStack(vditor);
         }
