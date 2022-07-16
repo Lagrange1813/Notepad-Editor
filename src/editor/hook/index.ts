@@ -13,6 +13,7 @@ export class Hook {
   }
 
   public getText() {
-    (window as any).webkit.messageHandlers.getText.postMessage(getMarkdown(this.neditor))
+    // (window as any).webkit.messageHandlers.getText.postMessage(getMarkdown(this.neditor))
+    return getMarkdown(this.neditor);
   }
 }
