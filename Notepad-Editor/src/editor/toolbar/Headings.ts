@@ -1,5 +1,4 @@
 import {Constants} from "../constants";
-import {processHeading} from "../ir/process";
 import {processHeading as processHeadingSV} from "../sv/process";
 import {getEventName, updateHotkeyTip} from "../util/compatibility";
 import {afterRenderEvent} from "../wysiwyg/afterRenderEvent";
@@ -39,8 +38,6 @@ export class Headings extends MenuItem {
                 if (vditor.currentMode === "wysiwyg") {
                     removeHeading(vditor);
                     afterRenderEvent(vditor);
-                } else if (vditor.currentMode === "ir") {
-                    processHeading(vditor, "");
                 }
                 actionBtn.classList.remove("vditor-menu--current");
             } else {
@@ -55,9 +52,6 @@ export class Headings extends MenuItem {
                 if (vditor.currentMode === "wysiwyg") {
                     setHeading(vditor, (event.target as HTMLElement).getAttribute("data-tag"));
                     afterRenderEvent(vditor);
-                    actionBtn.classList.add("vditor-menu--current");
-                } else if (vditor.currentMode === "ir") {
-                    processHeading(vditor, (event.target as HTMLElement).getAttribute("data-value"));
                     actionBtn.classList.add("vditor-menu--current");
                 } else {
                     processHeadingSV(vditor, (event.target as HTMLElement).getAttribute("data-value"));

@@ -23,8 +23,6 @@ export const outlineRender = (contentElement: HTMLElement, targetElement: Elemen
         vditor.lute.SetToC(true);
         if (vditor.currentMode === "wysiwyg" && !vditor.preview.element.contains(contentElement)) {
             tempElement.innerHTML = vditor.lute.SpinVditorDOM("<p>[ToC]</p>" + tocHTML);
-        } else if (vditor.currentMode === "ir" && !vditor.preview.element.contains(contentElement)) {
-            tempElement.innerHTML = vditor.lute.SpinVditorIRDOM("<p>[ToC]</p>" + tocHTML);
         } else {
             tempElement.innerHTML = vditor.lute.HTML2VditorDOM("<p>[ToC]</p>" + tocHTML);
         }

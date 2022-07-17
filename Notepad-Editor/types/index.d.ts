@@ -614,7 +614,7 @@ interface IOptions {
         after?(markdown: string): void;
     };
     /** 编辑模式。默认值: 'wysiwyg' */
-    mode?: "wysiwyg" | "sv" | "ir";
+    mode?: "wysiwyg" | "sv";
     /** @link https://ld246.com/article/1549638745630#options-preview */
     preview?: IPreview;
     /** @link https://ld246.com/article/1549638745630#options-hint */
@@ -675,7 +675,7 @@ interface IVditor {
     options: IOptions;
     originalInnerHTML: string;
     lute: Lute;
-    currentMode: "sv" | "wysiwyg" | "ir";
+    currentMode: "sv" | "wysiwyg";
     devtools?: {
         element: HTMLDivElement,
         renderEchart(vditor: IVditor): void,
@@ -737,14 +737,6 @@ interface IVditor {
         preventInput: boolean,
         composingLock: boolean,
         unbindListener(): void,
-    };
-    ir?: {
-        range: Range,
-        element: HTMLPreElement,
-        composingLock: boolean,
-        preventInput: boolean,
-        processTimeoutId: number,
-        hlToolbarTimeoutId: number,
     };
     sv?: {
         range: Range,

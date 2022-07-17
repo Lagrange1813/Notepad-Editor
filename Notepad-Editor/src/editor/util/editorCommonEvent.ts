@@ -1,6 +1,4 @@
 import {Constants} from "../constants";
-import {processHeading} from "../ir/process";
-import {processKeydown as irProcessKeydown} from "../ir/processKeydown";
 import {getMarkdown} from "../markdown/getMarkdown";
 import {previewImage} from "../preview/image";
 import {processHeading as processHeadingSV} from "../sv/process";
@@ -36,12 +34,6 @@ export const dblclickEvent = (vditor: IVditor, editorElement: HTMLElement) => {
 
 export const blurEvent = (vditor: IVditor, editorElement: HTMLElement) => {
     editorElement.addEventListener("blur", (event) => {
-        if (vditor.currentMode === "ir") {
-            const expandElement = vditor.ir.element.querySelector(".vditor-ir__node--expand");
-            if (expandElement) {
-                expandElement.classList.remove("vditor-ir__node--expand");
-            }
-        }
         vditor[vditor.currentMode].range = getEditorRange(vditor);
         if (vditor.options.blur) {
             vditor.options.blur(getMarkdown(vditor));
@@ -114,10 +106,6 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
             if (processKeydown(vditor, event)) {
                 return;
             }
-        } else if (vditor.currentMode === "ir") {
-            if (irProcessKeydown(vditor, event)) {
-                return;
-            }
         }
 
         if (vditor.options.ctrlEnter && matchHotKey("⌘Enter", event)) {
@@ -163,8 +151,6 @@ export const hotkeyEvent = (vditor: IVditor, editorElement: HTMLElement) => {
                 afterRenderEvent(vditor);
             } else if (vditor.currentMode === "sv") {
                 processHeadingSV(vditor, "#".repeat(parseInt(event.code.replace("Digit", ""), 10)) + " ");
-            } else if (vditor.currentMode === "ir") {
-                processHeading(vditor, "#".repeat(parseInt(event.code.replace("Digit", ""), 10)) + " ");
             }
             event.preventDefault();
             return true;

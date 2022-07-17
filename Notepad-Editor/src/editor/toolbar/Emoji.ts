@@ -46,8 +46,6 @@ data-value=":${key}: " data-key=":${key}:" class="vditor-emojis__icon" src="${em
                 let html = value;
                 if (vditor.currentMode === "wysiwyg") {
                     html = vditor.lute.SpinVditorDOM(value);
-                } else if (vditor.currentMode === "ir") {
-                    html = vditor.lute.SpinVditorIRDOM(value);
                 }
                 if (value.indexOf(":") > -1 && vditor.currentMode !== "sv") {
                     const tempElement = document.createElement("div");

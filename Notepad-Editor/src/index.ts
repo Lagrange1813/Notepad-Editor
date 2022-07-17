@@ -3,9 +3,6 @@ import VditorMethod from "./method";
 import {Constants, VDITOR_VERSION} from "./editor/constants";
 import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
-import {IR} from "./editor/ir/index";
-import {input as irInput} from "./editor/ir/input";
-import {processAfterRender} from "./editor/ir/process";
 import {getHTML} from "./editor/markdown/getHTML";
 import {getMarkdown} from "./editor/markdown/getMarkdown";
 import {setLute} from "./editor/markdown/setLute";
@@ -125,8 +122,6 @@ class Vditor extends VditorMethod {
             this.vditor.sv.element.focus();
         } else if (this.vditor.currentMode === "wysiwyg") {
             this.vditor.wysiwyg.element.focus();
-        } else if (this.vditor.currentMode === "ir") {
-            this.vditor.ir.element.focus();
         }
     }
 
@@ -136,8 +131,6 @@ class Vditor extends VditorMethod {
             this.vditor.sv.element.blur();
         } else if (this.vditor.currentMode === "wysiwyg") {
             this.vditor.wysiwyg.element.blur();
-        } else if (this.vditor.currentMode === "ir") {
-            this.vditor.ir.element.blur();
         }
     }
 
@@ -170,8 +163,6 @@ class Vditor extends VditorMethod {
             return getSelectText(this.vditor.wysiwyg.element);
         } else if (this.vditor.currentMode === "sv") {
             return getSelectText(this.vditor.sv.element);
-        } else if (this.vditor.currentMode === "ir") {
-            return getSelectText(this.vditor.ir.element);
         }
     }
 
@@ -265,11 +256,6 @@ class Vditor extends VditorMethod {
             if (render) {
                 input(this.vditor, getSelection().getRangeAt(0));
             }
-        } else if (this.vditor.currentMode === "ir") {
-            this.vditor.ir.preventInput = true;
-            if (render) {
-                irInput(this.vditor, getSelection().getRangeAt(0), true);
-            }
         }
     }
 
@@ -284,18 +270,6 @@ class Vditor extends VditorMethod {
             });
         } else if (this.vditor.currentMode === "wysiwyg") {
             renderDomByMd(this.vditor, markdown, {
-                enableAddUndoStack: true,
-                enableHint: false,
-                enableInput: false,
-            });
-        } else {
-            this.vditor.ir.element.innerHTML = this.vditor.lute.Md2VditorIRDOM(markdown);
-            this.vditor.ir.element
-                .querySelectorAll(".vditor-ir__preview[data-render='2']")
-                .forEach((item: HTMLElement) => {
-                    processCodeRender(item, this.vditor);
-                });
-            processAfterRender(this.vditor, {
                 enableAddUndoStack: true,
                 enableHint: false,
                 enableInput: false,
@@ -352,7 +326,6 @@ class Vditor extends VditorMethod {
         this.vditor.sv = new Editor(this.vditor);
         this.vditor.undo = new Undo();
         this.vditor.wysiwyg = new WYSIWYG(this.vditor);
-        this.vditor.ir = new IR(this.vditor);
         this.vditor.toolbar = new Toolbar(this.vditor);
 
         if (mergedOptions.resize.enable) {

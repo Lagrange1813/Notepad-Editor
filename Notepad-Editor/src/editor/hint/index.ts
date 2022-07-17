@@ -1,5 +1,4 @@
 import {Constants} from "../constants";
-import {processAfterRender} from "../ir/process";
 import {code160to32} from "../util/code160to32";
 import {isCtrl} from "../util/compatibility";
 import {execAfterRender} from "../util/fixBrowserBehavior";
@@ -133,21 +132,6 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         const range: Range = window.getSelection().getRangeAt(0);
 
         // 代码提示
-        if (vditor.currentMode === "ir") {
-            const preBeforeElement = hasClosestByAttribute(range.startContainer, "data-type", "code-block-info");
-            if (preBeforeElement) {
-                preBeforeElement.textContent = Constants.ZWSP + value.trimRight();
-                range.selectNodeContents(preBeforeElement);
-                range.collapse(false);
-                processAfterRender(vditor);
-                preBeforeElement.parentElement.querySelectorAll("code").forEach((item) => {
-                    item.className = "language-" + value.trimRight();
-                });
-                processCodeRender(preBeforeElement.parentElement.querySelector(".vditor-ir__preview"), vditor);
-                this.recentLanguage = value.trimRight();
-                return;
-            }
-        }
         if (vditor.currentMode === "wysiwyg" && range.startContainer.nodeType !== 3 ) {
             const startContainer = range.startContainer as HTMLElement;
             let inputElement: HTMLInputElement;
@@ -193,12 +177,6 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
             if (preElement && preElement.lastElementChild.classList.contains("vditor-wysiwyg__preview")) {
                 preElement.lastElementChild.innerHTML = preElement.firstElementChild.innerHTML;
                 processCodeRender(preElement.lastElementChild as HTMLElement, vditor);
-            }
-        } else if (vditor.currentMode === "ir") {
-            const preElement = hasClosestByClassName(range.startContainer, "vditor-ir__marker--pre");
-            if (preElement && preElement.nextElementSibling.classList.contains("vditor-ir__preview")) {
-                preElement.nextElementSibling.innerHTML = preElement.innerHTML;
-                processCodeRender(preElement.nextElementSibling as HTMLElement, vditor);
             }
         }
         execAfterRender(vditor);

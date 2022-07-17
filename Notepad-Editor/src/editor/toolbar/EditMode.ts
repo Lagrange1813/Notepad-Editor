@@ -1,5 +1,4 @@
 import {Constants} from "../constants";
-import {processAfterRender} from "../ir/process";
 import {getMarkdown} from "../markdown/getMarkdown";
 import {mathRender} from "../markdown/mathRender";
 import {processAfterRender as processSVAfterRender, processSpinVditorSVDOM} from "../sv/process";
@@ -44,42 +43,11 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
     removeCurrentToolbar(vditor.toolbar.elements, Constants.EDIT_TOOLBARS);
     disableToolbar(vditor.toolbar.elements, ["outdent", "indent"]);
 
-    if (type === "ir") {
-        hideToolbar(vditor.toolbar.elements, ["both"]);
-        showToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
-        vditor.sv.element.style.display = "none";
-        vditor.wysiwyg.element.parentElement.style.display = "none";
-        vditor.ir.element.parentElement.style.display = "block";
-
-        vditor.lute.SetVditorIR(true);
-        vditor.lute.SetVditorWYSIWYG(false);
-        vditor.lute.SetVditorSV(false);
-
-        vditor.currentMode = "ir";
-        vditor.ir.element.innerHTML = vditor.lute.Md2VditorIRDOM(markdownText);
-        processAfterRender(vditor, {
-            enableAddUndoStack: true,
-            enableHint: false,
-            enableInput: false,
-        });
-
-        setPadding(vditor);
-
-        vditor.ir.element.querySelectorAll(".vditor-ir__preview[data-render='2']").forEach((item: HTMLElement) => {
-            processCodeRender(item, vditor);
-        });
-        vditor.ir.element.querySelectorAll(".vditor-toc").forEach((item: HTMLElement) => {
-            mathRender(item, {
-                cdn: vditor.options.cdn,
-                math: vditor.options.preview.math,
-            });
-        });
-    } else if (type === "wysiwyg") {
+    if (type === "wysiwyg") {
         hideToolbar(vditor.toolbar.elements, ["both"]);
         showToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
         vditor.sv.element.style.display = "none";
         vditor.wysiwyg.element.parentElement.style.display = "block";
-        vditor.ir.element.parentElement.style.display = "none";
 
         vditor.lute.SetVditorIR(false);
         vditor.lute.SetVditorWYSIWYG(true);
@@ -104,7 +72,6 @@ export const setEditMode = (vditor: IVditor, type: string, event: Event | string
         showToolbar(vditor.toolbar.elements, ["both"]);
         hideToolbar(vditor.toolbar.elements, ["outdent", "indent", "outline", "insert-before", "insert-after"]);
         vditor.wysiwyg.element.parentElement.style.display = "none";
-        vditor.ir.element.parentElement.style.display = "none";
         if (vditor.options.preview.mode === "both") {
             vditor.sv.element.style.display = "block";
         } else if (vditor.options.preview.mode === "editor") {
