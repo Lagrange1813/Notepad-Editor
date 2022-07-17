@@ -22,7 +22,6 @@ import {speechRender} from "./speechRender";
 const mergeOptions = (options?: LGPreviewOptions) => {
     const defaultOption: LGPreviewOptions = {
         anchor: 0,
-        cdn: Constants.CDN,
         customEmoji: {},
         emojiPath: `../dist/images/emoji`,
         hljs: Constants.HLJS_OPTIONS,
@@ -110,18 +109,17 @@ export const previewRender = async (previewElement: HTMLDivElement, markdown: st
         previewElement.classList.add("vditor-reset--anchor");
     }
     codeRender(previewElement);
-    highlightRender(mergedOptions.hljs, previewElement, mergedOptions.cdn);
+    highlightRender(mergedOptions.hljs, previewElement);
     mathRender(previewElement, {
-        cdn: mergedOptions.cdn,
         math: mergedOptions.math,
     });
-    mermaidRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    flowchartRender(previewElement, mergedOptions.cdn);
-    graphvizRender(previewElement, mergedOptions.cdn);
-    chartRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    mindmapRender(previewElement, mergedOptions.cdn, mergedOptions.mode);
-    plantumlRender(previewElement, mergedOptions.cdn);
-    abcRender(previewElement, mergedOptions.cdn);
+    mermaidRender(previewElement, mergedOptions.mode);
+    flowchartRender(previewElement);
+    graphvizRender(previewElement);
+    chartRender(previewElement, mergedOptions.mode);
+    mindmapRender(previewElement, mergedOptions.mode);
+    plantumlRender(previewElement);
+    abcRender(previewElement);
     mediaRender(previewElement);
     if (mergedOptions.speech.enable) {
         speechRender(previewElement);

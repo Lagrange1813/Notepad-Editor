@@ -6,7 +6,7 @@ declare const ABCJS: {
     renderAbc(element: HTMLElement, text: string): void;
 };
 
-export const abcRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN) => {
+export const abcRender = (element: (HTMLElement | Document) = document) => {
     const abcElements = abcRenderAdapter.getElements(element);
     if (abcElements.length > 0) {
         addScript(`../dist/lib/abcjs/abcjs_basic.min.js`, "vditorAbcjsScript").then(() => {

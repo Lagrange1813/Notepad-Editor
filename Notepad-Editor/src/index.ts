@@ -1,6 +1,6 @@
 import "./assets/less/index.less";
 import NeditorMethod from "./method";
-import {Constants, VDITOR_VERSION} from "./editor/constants";
+import {Constants} from "./editor/constants";
 import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
 import {getHTML} from "./editor/markdown/getHTML";
@@ -101,7 +101,7 @@ class Neditor extends NeditorMethod {
         }
         if (codeTheme) {
             this.vditor.options.preview.hljs.style = codeTheme;
-            setCodeTheme(codeTheme, this.vditor.options.cdn);
+            setCodeTheme(codeTheme);
         }
     }
 

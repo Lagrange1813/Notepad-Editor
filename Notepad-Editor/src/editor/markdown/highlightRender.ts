@@ -6,8 +6,7 @@ declare const hljs: {
   highlightElement(element: Element): void;
 };
 
-export const highlightRender = (hljsOption?: LGHljs, element: HTMLElement | Document = document,
-                                cdn = Constants.CDN) => {
+export const highlightRender = (hljsOption?: LGHljs, element: HTMLElement | Document = document) => {
   let style = hljsOption.style;
   if (!Constants.CODE_THEME.includes(style)) {
     style = "github";

@@ -8,7 +8,7 @@ declare class Viz {
     constructor({ }: { worker: Worker });
 }
 
-export const graphvizRender = (element: HTMLElement, cdn = Constants.CDN) => {
+export const graphvizRender = (element: HTMLElement) => {
     const graphvizElements = graphvizRenderAdapter.getElements(element);
 
     if (graphvizElements.length === 0) {

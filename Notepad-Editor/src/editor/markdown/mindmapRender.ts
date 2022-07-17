@@ -6,7 +6,7 @@ declare const echarts: {
     init(element: HTMLElement, theme?: string): LGEChart;
 };
 
-export const mindmapRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN, theme: string) => {
+export const mindmapRender = (element: (HTMLElement | Document) = document, theme: string) => {
     const mindmapElements = mindmapRenderAdapter.getElements(element);
     if (mindmapElements.length > 0) {
         addScript(`../dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {

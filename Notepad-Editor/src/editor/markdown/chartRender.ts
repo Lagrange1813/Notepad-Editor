@@ -6,7 +6,7 @@ declare const echarts: {
     init(element: HTMLElement, theme?: string): LGEChart;
 };
 
-export const chartRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN, theme: string) => {
+export const chartRender = (element: (HTMLElement | Document) = document, theme: string) => {
     const echartsElements = chartRenderAdapter.getElements(element);
     if (echartsElements.length > 0) {
         addScript(`../dist/lib/echarts/echarts.min.js`, "vditorEchartsScript").then(() => {

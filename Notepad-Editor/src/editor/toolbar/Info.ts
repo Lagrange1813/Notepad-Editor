@@ -1,4 +1,3 @@
-import {VDITOR_VERSION} from "../constants";
 import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
@@ -30,7 +29,7 @@ export class Info extends MenuItem {
     </ul>
     <ul style="list-style: none;margin-right: 18px">
         <li>
-        组件版本：Vditor v${VDITOR_VERSION} / Lute v${Lute.Version}
+        组件版本：Vditor v111 / Lute v${Lute.Version}
         </li>
         <li>
         赞助捐赠：<a href="https://ld246.com/sponsor" target="_blank">https://ld246.com/sponsor</a>

@@ -6,7 +6,7 @@ declare const plantumlEncoder: {
     encode(options: string): string,
 };
 
-export const plantumlRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN) => {
+export const plantumlRender = (element: (HTMLElement | Document) = document) => {
     const plantumlElements = plantumlRenderAdapter.getElements(element);
     if (plantumlElements.length === 0) {
         return;

@@ -25,7 +25,6 @@ export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?
     }
 
     const defaultOptions = {
-        cdn: Constants.CDN,
         math: {
             engine: "KaTeX",
             inlineDigit: false,

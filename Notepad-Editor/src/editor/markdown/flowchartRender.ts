@@ -6,7 +6,7 @@ declare const flowchart: {
     parse(text: string): { drawSVG: (type: HTMLElement) => void };
 };
 
-export const flowchartRender = (element: HTMLElement, cdn = Constants.CDN) => {
+export const flowchartRender = (element: HTMLElement) => {
     const flowchartElements = flowchartRenderAdapter.getElements(element);
     if (flowchartElements.length === 0) {
         return;

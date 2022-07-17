@@ -1,6 +1,6 @@
 {
   "name": "notepad-editor",
-  "version": "3.8.15",
+  "version": "1.0.0",
   "jsdelivr": "dist/index.min.js",
   "main": "dist/index.min.js",
   "files": [

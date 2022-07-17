@@ -1,9 +1,3 @@
-declare const VDITOR_VERSION: string;
-
-const _VDITOR_VERSION = VDITOR_VERSION;
-
-export {_VDITOR_VERSION as VDITOR_VERSION};
-
 export abstract class Constants {
   public static readonly ZWSP: string = "\u200b";
   public static readonly DROP_EDITOR: string = "application/editor";
@@ -29,7 +23,6 @@ export abstract class Constants {
     // ext
     "solidity", "yul"
   ];
-  public static readonly CDN = `https://unpkg.com/vditor@${VDITOR_VERSION}`;
   public static readonly MARKDOWN_OPTIONS = {
     autoSpace: false,
     codeBlockPreview: true,
