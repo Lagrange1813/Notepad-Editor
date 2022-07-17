@@ -12,10 +12,9 @@
 		7A04AE5028819734007C799F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A04AE4F28819734007C799F /* ViewController.swift */; };
 		7A04AE5528819737007C799F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A04AE5428819737007C799F /* Assets.xcassets */; };
 		7A04AE5828819737007C799F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A04AE5628819737007C799F /* LaunchScreen.storyboard */; };
-		7A04AE61288197CA007C799F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7A04AE60288197CA007C799F /* SnapKit */; };
 		7A04AE6328819804007C799F /* LGEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A04AE6228819804007C799F /* LGEditorView.swift */; };
-		7AB495D8288334D20054718B /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495D7288334D20054718B /* dist */; };
-		7AB495DA288334D60054718B /* demo in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495D9288334D60054718B /* demo */; };
+		7AB495DC2883BCE00054718B /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495DB2883BCE00054718B /* dist */; };
+		7AB495DE2883BCE80054718B /* demo in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495DD2883BCE80054718B /* demo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +26,8 @@
 		7A04AE5728819737007C799F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A04AE5928819737007C799F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A04AE6228819804007C799F /* LGEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGEditorView.swift; sourceTree = "<group>"; };
-		7AB495D7288334D20054718B /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = "<group>"; };
-		7AB495D9288334D60054718B /* demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = demo; sourceTree = "<group>"; };
+		7AB495DB2883BCE00054718B /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = "../../Notepad-Editor/dist"; sourceTree = "<group>"; };
+		7AB495DD2883BCE80054718B /* demo */ = {isa = PBXFileReference; lastKnownFileType = folder; name = demo; path = "../../Notepad-Editor/demo"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +35,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A04AE61288197CA007C799F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,8 +60,8 @@
 		7A04AE4A28819734007C799F /* LGEditorView-Test */ = {
 			isa = PBXGroup;
 			children = (
-				7AB495D9288334D60054718B /* demo */,
-				7AB495D7288334D20054718B /* dist */,
+				7AB495DD2883BCE80054718B /* demo */,
+				7AB495DB2883BCE00054718B /* dist */,
 				7A04AE4B28819734007C799F /* AppDelegate.swift */,
 				7A04AE4D28819734007C799F /* SceneDelegate.swift */,
 				7A04AE4F28819734007C799F /* ViewController.swift */,
@@ -92,7 +90,6 @@
 			);
 			name = "LGEditorView-Test";
 			packageProductDependencies = (
-				7A04AE60288197CA007C799F /* SnapKit */,
 			);
 			productName = "LGEditorView-Test";
 			productReference = 7A04AE4828819734007C799F /* LGEditorView-Test.app */;
@@ -123,7 +120,6 @@
 			);
 			mainGroup = 7A04AE3F28819734007C799F;
 			packageReferences = (
-				7A04AE5F288197CA007C799F /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 7A04AE4928819734007C799F /* Products */;
 			projectDirPath = "";
@@ -139,8 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AB495D8288334D20054718B /* dist in Resources */,
-				7AB495DA288334D60054718B /* demo in Resources */,
+				7AB495DC2883BCE00054718B /* dist in Resources */,
+				7AB495DE2883BCE80054718B /* demo in Resources */,
 				7A04AE5828819737007C799F /* LaunchScreen.storyboard in Resources */,
 				7A04AE5528819737007C799F /* Assets.xcassets in Resources */,
 			);
@@ -366,25 +362,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7A04AE5F288197CA007C799F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 5.6.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7A04AE60288197CA007C799F /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A04AE5F288197CA007C799F /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7A04AE4028819734007C799F /* Project object */;
 }
