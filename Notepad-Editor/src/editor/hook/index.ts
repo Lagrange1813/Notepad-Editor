@@ -16,4 +16,12 @@ export class Hook {
     // (window as any).webkit.messageHandlers.getText.postMessage(getMarkdown(this.neditor))
     return getMarkdown(this.neditor);
   }
+
+  public blur() {
+    if (this.neditor.currentMode === "sv") {
+      this.neditor.sv.element.blur();
+    } else if (this.neditor.currentMode === "wysiwyg") {
+      this.neditor.wysiwyg.element.blur();
+    }
+  }
 }

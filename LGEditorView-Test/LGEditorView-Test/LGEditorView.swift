@@ -92,4 +92,10 @@ extension LGEditorView {
 			print(text)
 		})
 	}
+	
+	override public func resignFirstResponder() -> Bool {
+		evaluateJavaScript("editor.hook.blur();")
+		return super.resignFirstResponder()
+	}
+	
 }
