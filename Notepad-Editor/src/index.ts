@@ -32,10 +32,11 @@ import {afterRenderEvent} from "./editor/wysiwyg/afterRenderEvent";
 import {WYSIWYG} from "./editor/wysiwyg/index";
 import {input} from "./editor/wysiwyg/input";
 import {renderDomByMd} from "./editor/wysiwyg/renderDomByMd";
+import {Hook} from "./editor/hook/index";
 
 class Neditor extends NeditorMethod {
-    public readonly version: string;
     public vditor: LGEditor;
+    public hook: Hook;
 
     /**
      * @param id 要挂载 Vditor 的元素或者元素 ID。
@@ -321,6 +322,8 @@ class Neditor extends NeditorMethod {
             outline: new Outline(window.VditorI18n.outline),
             tip: new Tip(),
         };
+
+        this.hook = new Hook(this.vditor);
 
         this.vditor.sv = new Editor(this.vditor);
         this.vditor.undo = new Undo();

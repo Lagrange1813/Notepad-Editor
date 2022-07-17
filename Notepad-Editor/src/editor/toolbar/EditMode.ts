@@ -49,7 +49,6 @@ export const setEditMode = (vditor: LGEditor, type: string, event: Event | strin
         vditor.sv.element.style.display = "none";
         vditor.wysiwyg.element.parentElement.style.display = "block";
 
-        vditor.lute.SetVditorIR(false);
         vditor.lute.SetVditorWYSIWYG(true);
         vditor.lute.SetVditorSV(false);
 
@@ -78,7 +77,6 @@ export const setEditMode = (vditor: LGEditor, type: string, event: Event | strin
             vditor.sv.element.style.display = "block";
         }
 
-        vditor.lute.SetVditorIR(false);
         vditor.lute.SetVditorWYSIWYG(false);
         vditor.lute.SetVditorSV(true);
 
@@ -124,8 +122,7 @@ export class EditMode extends MenuItem {
         const panelElement = document.createElement("div");
         panelElement.className = `vditor-hint${menuItem.level === 2 ? "" : " vditor-panel--arrow"}`;
         panelElement.innerHTML = `<button data-mode="wysiwyg">${window.VditorI18n.wysiwyg} &lt;${updateHotkeyTip("⌥⌘7")}></button>
-<button data-mode="ir">${window.VditorI18n.instantRendering} &lt;${updateHotkeyTip("⌥⌘8")}></button>
-<button data-mode="sv">${window.VditorI18n.splitView} &lt;${updateHotkeyTip("⌥⌘9")}></button>`;
+<button data-mode="sv">${window.VditorI18n.splitView} &lt;${updateHotkeyTip("⌥⌘8")}></button>`;
 
         this.element.appendChild(panelElement);
 
@@ -144,13 +141,6 @@ export class EditMode extends MenuItem {
         });
 
         panelElement.children.item(1).addEventListener(getEventName(), (event: Event) => {
-            // ir
-            setEditMode(vditor, "ir", event);
-            event.preventDefault();
-            event.stopPropagation();
-        });
-
-        panelElement.children.item(2).addEventListener(getEventName(), (event: Event) => {
             // markdown
             setEditMode(vditor, "sv", event);
             event.preventDefault();
