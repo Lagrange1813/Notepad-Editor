@@ -34,7 +34,7 @@ export class Options {
                 "smile": "😄",
                 "tada": "🎉️",
             },
-            emojiPath: `${Constants.CDN}/dist/images/emoji`,
+            emojiPath: `../dist/images/emoji`,
             extend: [],
             parse: true,
         },

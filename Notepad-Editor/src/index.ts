@@ -1,6 +1,6 @@
 import "./assets/less/index.less";
 import NeditorMethod from "./method";
-import {Constants} from "./editor/constants";
+import {Constants, VDITOR_VERSION} from "./editor/constants";
 import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
 import {getHTML} from "./editor/markdown/getHTML";
@@ -76,7 +76,7 @@ class Neditor extends NeditorMethod {
                         document.head.removeChild(el);
                     }
                 });
-                addScript(`${mergedOptions.cdn}/dist/js/i18n/${mergedOptions.lang}.js`, i18nScriptID).then(() => {
+                addScript(`../dist/lib/i18n/${mergedOptions.lang}.js`, i18nScriptID).then(() => {
                     this.init(id as HTMLElement, mergedOptions);
                 });
             }
@@ -341,7 +341,7 @@ class Neditor extends NeditorMethod {
 
         addScript(
             mergedOptions._lutePath ||
-            `${mergedOptions.cdn}/dist/js/lute/lute.min.js`,
+            `../dist/lib/lute/lute.min.js`,
             "vditorLuteScript",
         ).then(() => {
             this.vditor.lute = setLute({
@@ -375,7 +375,7 @@ class Neditor extends NeditorMethod {
             }
             if (mergedOptions.icon) {
                 // 防止初始化 2 个编辑器时加载 2 次
-                addScriptSync(`${mergedOptions.cdn}/dist/js/icons/${mergedOptions.icon}.js`, "vditorIconScript");
+                addScriptSync(`https://unpkg.com/vditor@3.8.15/dist/js/icons/${mergedOptions.icon}.js`, "vditorIconScript");
             }
         });
     }

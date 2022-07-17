@@ -40,9 +40,9 @@ export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?
     options = Object.assign({}, defaultOptions, options);
 
     if (options.math.engine === "KaTeX") {
-        addStyle(`${options.cdn}/dist/js/katex/katex.min.css`, "vditorKatexStyle");
-        addScript(`${options.cdn}/dist/js/katex/katex.min.js`, "vditorKatexScript").then(() => {
-            addScript(`${options.cdn}/dist/js/katex/mhchem.min.js`, "vditorKatexChemScript").then(() => {
+        addStyle(`../dist/lib/katex/katex.min.css`, "vditorKatexStyle");
+        addScript(`../dist/lib/katex/katex.min.js`, "vditorKatexScript").then(() => {
+            addScript(`../dist/lib/katex/mhchem.min.js`, "vditorKatexChemScript").then(() => {
                 mathElements.forEach((mathElement) => {
                     if (mathElement.parentElement.classList.contains("vditor-wysiwyg__pre") ||
                         mathElement.parentElement.classList.contains("vditor-ir__marker--pre")) {
@@ -90,7 +90,7 @@ export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?
         if (!window.MathJax) {
             window.MathJax = {
                 loader: {
-                    paths: {mathjax: `${options.cdn}/dist/js/mathjax`},
+                    paths: {mathjax: `../dist/lib/mathjax`},
                 },
                 startup: {
                     typeset: false,
@@ -101,7 +101,7 @@ export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?
             };
         }
         // 循环加载会抛异常
-        addScriptSync(`${options.cdn}/dist/js/mathjax/tex-svg-full.js`, "protyleMathJaxScript");
+        addScriptSync(`../dist/lib/mathjax/tex-svg-full.js`, "protyleMathJaxScript");
         const renderMath = (mathElement: Element, next?: () => void) => {
             const math = code160to32(mathElement.textContent).trim();
             const mathOptions = window.MathJax.getMetricsFor(mathElement);

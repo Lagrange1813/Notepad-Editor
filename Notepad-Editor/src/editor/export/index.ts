@@ -25,8 +25,8 @@ export const exportPDF = (vditor: LGEditor) => {
     vditor.tip.show(window.VditorI18n.generate, 3800);
     const iframe = document.querySelector("iframe");
     iframe.contentDocument.open();
-    iframe.contentDocument.write(`<link rel="stylesheet" href="${vditor.options.cdn}/dist/index.css"/>
-<script src="${vditor.options.cdn}/dist/method.min.js"></script>
+    iframe.contentDocument.write(`<link rel="stylesheet" href="../dist/index.css"/>
+<script src="../dist/method.min.js"></script>
 <div id="preview"></div>
 <script>
 window.addEventListener("message", (e) => {
@@ -54,9 +54,9 @@ window.addEventListener("message", (e) => {
 
 export const exportHTML = (vditor: LGEditor) => {
     const content = getHTML(vditor);
-    const html = `<html><head><link rel="stylesheet" type="text/css" href="${vditor.options.cdn}/dist/index.css"/>
-<script src="${vditor.options.cdn}/dist/js/i18n/${vditor.options.lang}.js"></script>
-<script src="${vditor.options.cdn}/dist/method.min.js"></script></head>
+    const html = `<html><head><link rel="stylesheet" type="text/css" href="../dist/index.css"/>
+<script src="../dist/lib/i18n/${vditor.options.lang}.js"></script>
+<script src="../dist/method.min.js"></script></head>
 <body><div class="vditor-reset" id="preview">${content}</div>
 <script>
     const previewElement = document.getElementById('preview')
@@ -76,6 +76,6 @@ export const exportHTML = (vditor: LGEditor) => {
     Neditor.mediaRender(previewElement);
     Neditor.speechRender(previewElement);
 </script>
-<script src="${vditor.options.cdn}/dist/js/icons/${vditor.options.icon}.js"></script></body></html>`;
+<script src="../dist/lib/icons/${vditor.options.icon}.js"></script></body></html>`;
     download(vditor, html, content.substr(0, 10) + ".html");
 };
