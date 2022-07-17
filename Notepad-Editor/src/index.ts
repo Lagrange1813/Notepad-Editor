@@ -1,5 +1,5 @@
 import "./assets/less/index.less";
-import VditorMethod from "./method";
+import NeditorMethod from "./method";
 import {Constants} from "./editor/constants";
 import {DevTools} from "./editor/devtools/index";
 import {Hint} from "./editor/hint/index";
@@ -33,15 +33,15 @@ import {WYSIWYG} from "./editor/wysiwyg/index";
 import {input} from "./editor/wysiwyg/input";
 import {renderDomByMd} from "./editor/wysiwyg/renderDomByMd";
 
-class Vditor extends VditorMethod {
+class Neditor extends NeditorMethod {
     public readonly version: string;
-    public vditor: IVditor;
+    public vditor: LGEditor;
 
     /**
      * @param id 要挂载 Vditor 的元素或者元素 ID。
      * @param options Vditor 参数
      */
-    constructor(id: string | HTMLElement, options?: IOptions) {
+    constructor(id: string | HTMLElement, options?: LGOptions) {
         super();
 
         if (typeof id === "string") {
@@ -310,7 +310,7 @@ class Vditor extends VditorMethod {
         this.vditor.wysiwyg.unbindListener();
     }
 
-    private init(id: HTMLElement, mergedOptions: IOptions) {
+    private init(id: HTMLElement, mergedOptions: LGOptions) {
         this.vditor = {
             currentMode: mergedOptions.mode,
             element: id,
@@ -381,4 +381,4 @@ class Vditor extends VditorMethod {
     }
 }
 
-export default Vditor;
+export default Neditor;

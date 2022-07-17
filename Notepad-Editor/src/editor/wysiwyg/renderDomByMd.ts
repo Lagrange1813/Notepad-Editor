@@ -1,7 +1,7 @@
 import {processCodeRender} from "../util/processCode";
 import {afterRenderEvent} from "./afterRenderEvent";
 
-export const renderDomByMd = (vditor: IVditor, md: string, options = {
+export const renderDomByMd = (vditor: LGEditor, md: string, options = {
     enableAddUndoStack: true,
     enableHint: false,
     enableInput: true,

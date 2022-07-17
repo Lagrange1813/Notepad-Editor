@@ -4,7 +4,7 @@ import {MenuItem} from "./MenuItem";
 import {disableToolbar} from "./setToolbar";
 
 export class Undo extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         disableToolbar({undo: this.element}, ["undo"]);
         this.element.children[0].addEventListener(getEventName(), (event) => {

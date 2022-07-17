@@ -2,12 +2,12 @@ import {getMarkdown} from "../markdown/getMarkdown";
 import {addScript} from "../util/addScript";
 
 declare const echarts: {
-    init(element: HTMLElement): IEChart;
+    init(element: HTMLElement): LGEChart;
 };
 
 export class DevTools {
     public element: HTMLDivElement;
-    private ASTChart: IEChart;
+    private ASTChart: LGEChart;
 
     constructor() {
         this.element = document.createElement("div");
@@ -15,7 +15,7 @@ export class DevTools {
         this.element.innerHTML = '<div class="vditor-reset--error"></div><div style="height: 100%;"></div>';
     }
 
-    public renderEchart(vditor: IVditor) {
+    public renderEchart(vditor: LGEditor) {
         if (vditor.devtools.element.style.display !== "block") {
             return;
         }

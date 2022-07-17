@@ -21,7 +21,7 @@ class Editor {
     public hlToolbarTimeoutId: number;
     public preventInput: boolean;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         this.element = document.createElement("pre");
         this.element.className = "vditor-sv vditor-reset";
         this.element.setAttribute("placeholder", vditor.options.placeholder);
@@ -39,13 +39,13 @@ class Editor {
         cutEvent(vditor, this.element, this.copy);
     }
 
-    private copy(event: ClipboardEvent, vditor: IVditor) {
+    private copy(event: ClipboardEvent, vditor: LGEditor) {
         event.stopPropagation();
         event.preventDefault();
         event.clipboardData.setData("text/plain", getSelectText(vditor[vditor.currentMode].element));
     }
 
-    private bindEvent(vditor: IVditor) {
+    private bindEvent(vditor: LGEditor) {
         this.element.addEventListener("paste", (event: ClipboardEvent & { target: HTMLElement }) => {
             paste(vditor, event, {
                 pasteCode: (code: string) => {

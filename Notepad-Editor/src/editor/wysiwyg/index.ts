@@ -41,7 +41,7 @@ class WYSIWYG {
     public commentIds: string[] = [];
     private scrollListener: () => void;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         const divElement = document.createElement("div");
         divElement.className = "vditor-wysiwyg";
 
@@ -76,7 +76,7 @@ class WYSIWYG {
         window.removeEventListener("scroll", this.scrollListener);
     }
 
-    private copy(event: ClipboardEvent, vditor: IVditor) {
+    private copy(event: ClipboardEvent, vditor: LGEditor) {
         const range = getSelection().getRangeAt(0);
         if (range.toString() === "") {
             return;
@@ -118,7 +118,7 @@ class WYSIWYG {
         event.clipboardData.setData("text/html", "");
     }
 
-    private bindEvent(vditor: IVditor) {
+    private bindEvent(vditor: LGEditor) {
         this.unbindListener();
         window.addEventListener("scroll", this.scrollListener = () => {
             hidePanel(vditor, ["hint"]);

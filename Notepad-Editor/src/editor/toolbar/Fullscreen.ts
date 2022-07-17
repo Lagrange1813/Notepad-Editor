@@ -3,12 +3,12 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Fullscreen extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         this._bindEvent(vditor, menuItem);
     }
 
-    public _bindEvent(vditor: IVditor, menuItem: IMenuItem) {
+    public _bindEvent(vditor: LGEditor, menuItem: LGMenuItem) {
         this.element.children[0].addEventListener(getEventName(), function(event) {
             event.preventDefault();
             if (vditor.element.className.includes("vditor--fullscreen")) {

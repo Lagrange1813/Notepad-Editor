@@ -2,7 +2,7 @@
 export class Resize {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         this.element = document.createElement("div");
         this.element.className = `vditor-resize vditor-resize--${vditor.options.resize.position}`;
         this.element.innerHTML = `<div><svg><use xlink:href="#vditor-icon-resize"></use></svg></div>`;
@@ -10,7 +10,7 @@ export class Resize {
         this.bindEvent(vditor);
     }
 
-    private bindEvent(vditor: IVditor) {
+    private bindEvent(vditor: LGEditor) {
         this.element.addEventListener("mousedown", (event: MouseEvent) => {
 
             const documentSelf = document;

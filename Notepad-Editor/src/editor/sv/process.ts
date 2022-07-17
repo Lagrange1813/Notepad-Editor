@@ -7,7 +7,7 @@ import {log} from "../util/log";
 import {getEditorRange, setRangeByWbr} from "../util/selection";
 import {inputEvent} from "./inputEvent";
 
-export const processPaste = (vditor: IVditor, text: string) => {
+export const processPaste = (vditor: LGEditor, text: string) => {
     const range = getEditorRange(vditor);
     range.extractContents();
     range.insertNode(document.createTextNode(Lute.Caret));
@@ -47,7 +47,7 @@ export const getSideByType = (spanNode: Node, type: string, isPrevious = true) =
     return false;
 };
 
-export const processSpinVditorSVDOM = (html: string, vditor: IVditor) => {
+export const processSpinVditorSVDOM = (html: string, vditor: LGEditor) => {
     log("SpinVditorSVDOM", html, "argument", vditor.options.debugger);
     html = "<div data-block='0'>" +
         vditor.lute.SpinVditorSVDOM(html).replace(/<span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span><span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span></g, '<span data-type="newline"><br /><span style="display: none">\n</span></span><span data-type="newline"><br /><span style="display: none">\n</span></span></div><div data-block="0"><') +
@@ -96,7 +96,7 @@ export const processPreviousMarkers = (spanElement: HTMLElement) => {
     return markerText;
 };
 
-export const processAfterRender = (vditor: IVditor, options = {
+export const processAfterRender = (vditor: LGEditor, options = {
     enableAddUndoStack: true,
     enableHint: false,
     enableInput: true,
@@ -135,7 +135,7 @@ export const processAfterRender = (vditor: IVditor, options = {
     }, vditor.options.undoDelay);
 };
 
-export const processHeading = (vditor: IVditor, value: string) => {
+export const processHeading = (vditor: LGEditor, value: string) => {
     const range = getEditorRange(vditor);
     const headingElement = hasClosestByTag(range.startContainer, "SPAN");
     if (headingElement && headingElement.textContent.trim() !== "") {
@@ -145,7 +145,7 @@ export const processHeading = (vditor: IVditor, value: string) => {
     document.execCommand("insertHTML", false, value);
 };
 
-export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: string, suffix: string) => {
+export const processToolbar = (vditor: LGEditor, actionBtn: Element, prefix: string, suffix: string) => {
     const range = getEditorRange(vditor);
     const commandName = actionBtn.getAttribute("data-type");
     // 添加

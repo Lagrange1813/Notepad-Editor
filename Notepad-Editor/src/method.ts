@@ -18,7 +18,7 @@ import {previewImage} from "./editor/preview/image";
 import {setCodeTheme} from "./editor/ui/setCodeTheme";
 import {setContentTheme} from "./editor/ui/setContentTheme";
 
-class Vditor {
+class Neditor {
 
     /** 点击图片放大 */
     public static adapterRender = adapterRender;
@@ -62,4 +62,4 @@ class Vditor {
     public static setContentTheme = setContentTheme;
 }
 
-export default Vditor;
+export default Neditor;

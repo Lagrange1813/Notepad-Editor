@@ -19,8 +19,8 @@ import {plantumlRender} from "./plantumlRender";
 import {setLute} from "./setLute";
 import {speechRender} from "./speechRender";
 
-const mergeOptions = (options?: IPreviewOptions) => {
-    const defaultOption: IPreviewOptions = {
+const mergeOptions = (options?: LGPreviewOptions) => {
+    const defaultOption: LGPreviewOptions = {
         anchor: 0,
         cdn: Constants.CDN,
         customEmoji: {},
@@ -41,7 +41,7 @@ const mergeOptions = (options?: IPreviewOptions) => {
     return merge(defaultOption, options);
 };
 
-export const md2html = (mdText: string, options?: IPreviewOptions) => {
+export const md2html = (mdText: string, options?: LGPreviewOptions) => {
     const mergedOptions = mergeOptions(options);
     return addScript(`${mergedOptions.cdn}/dist/js/lute/lute.min.js`, "vditorLuteScript").then(() => {
         const lute = setLute({
@@ -75,8 +75,8 @@ export const md2html = (mdText: string, options?: IPreviewOptions) => {
     });
 };
 
-export const previewRender = async (previewElement: HTMLDivElement, markdown: string, options?: IPreviewOptions) => {
-    const mergedOptions: IPreviewOptions = mergeOptions(options);
+export const previewRender = async (previewElement: HTMLDivElement, markdown: string, options?: LGPreviewOptions) => {
+    const mergedOptions: LGPreviewOptions = mergeOptions(options);
     let html = await md2html(markdown, mergedOptions);
     if (mergedOptions.transform) {
         html = mergedOptions.transform(html);

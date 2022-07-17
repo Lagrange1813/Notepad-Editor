@@ -2,7 +2,7 @@ import {hasClosestBlock} from "../util/hasClosest";
 import {getEditorRange, setRangeByWbr} from "../util/selection";
 import {renderToc} from "../util/toc";
 
-export const setHeading = (vditor: IVditor, tagName: string) => {
+export const setHeading = (vditor: LGEditor, tagName: string) => {
     const range = getEditorRange(vditor);
     let blockElement = hasClosestBlock(range.startContainer);
     if (!blockElement) {
@@ -28,7 +28,7 @@ export const setHeading = (vditor: IVditor, tagName: string) => {
     }
 };
 
-export const removeHeading = (vditor: IVditor) => {
+export const removeHeading = (vditor: LGEditor) => {
     const range = getSelection().getRangeAt(0);
     let blockElement = hasClosestBlock(range.startContainer);
     if (!blockElement) {

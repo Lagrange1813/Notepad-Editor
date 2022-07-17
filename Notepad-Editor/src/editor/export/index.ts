@@ -1,7 +1,7 @@
 import {getHTML} from "../markdown/getHTML";
 import {getMarkdown} from "../markdown/getMarkdown";
 
-export const download = (vditor: IVditor, content: string, filename: string) => {
+export const download = (vditor: LGEditor, content: string, filename: string) => {
     const aElement = document.createElement("a");
     if ("download" in aElement) {
         aElement.download = filename;
@@ -16,12 +16,12 @@ export const download = (vditor: IVditor, content: string, filename: string) => 
     }
 };
 
-export const exportMarkdown = (vditor: IVditor) => {
+export const exportMarkdown = (vditor: LGEditor) => {
     const content = getMarkdown(vditor);
     download(vditor, content, content.substr(0, 10) + ".md");
 };
 
-export const exportPDF = (vditor: IVditor) => {
+export const exportPDF = (vditor: LGEditor) => {
     vditor.tip.show(window.VditorI18n.generate, 3800);
     const iframe = document.querySelector("iframe");
     iframe.contentDocument.open();
@@ -33,7 +33,7 @@ window.addEventListener("message", (e) => {
   if(!e.data) {
     return;
   }
-  Vditor.preview(document.getElementById('preview'), e.data, {
+  Neditor.preview(document.getElementById('preview'), e.data, {
     markdown: {
       theme: "${vditor.options.preview.theme}"
     },
@@ -52,7 +52,7 @@ window.addEventListener("message", (e) => {
     }, 200);
 };
 
-export const exportHTML = (vditor: IVditor) => {
+export const exportHTML = (vditor: LGEditor) => {
     const content = getHTML(vditor);
     const html = `<html><head><link rel="stylesheet" type="text/css" href="${vditor.options.cdn}/dist/index.css"/>
 <script src="${vditor.options.cdn}/dist/js/i18n/${vditor.options.lang}.js"></script>
@@ -60,21 +60,21 @@ export const exportHTML = (vditor: IVditor) => {
 <body><div class="vditor-reset" id="preview">${content}</div>
 <script>
     const previewElement = document.getElementById('preview')
-    Vditor.setContentTheme('${vditor.options.preview.theme.current}', '${vditor.options.preview.theme.path}');
-    Vditor.codeRender(previewElement);
-    Vditor.highlightRender(${JSON.stringify(vditor.options.preview.hljs)}, previewElement, '${vditor.options.cdn}');
-    Vditor.mathRender(previewElement, {
+    Neditor.setContentTheme('${vditor.options.preview.theme.current}', '${vditor.options.preview.theme.path}');
+    Neditor.codeRender(previewElement);
+    Neditor.highlightRender(${JSON.stringify(vditor.options.preview.hljs)}, previewElement, '${vditor.options.cdn}');
+    Neditor.mathRender(previewElement, {
         cdn: '${vditor.options.cdn}',
         math: ${JSON.stringify(vditor.options.preview.math)},
     });
-    Vditor.mermaidRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
-    Vditor.flowchartRender(previewElement, '${vditor.options.cdn}');
-    Vditor.graphvizRender(previewElement, '${vditor.options.cdn}');
-    Vditor.chartRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
-    Vditor.mindmapRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
-    Vditor.abcRender(previewElement, '${vditor.options.cdn}');
-    Vditor.mediaRender(previewElement);
-    Vditor.speechRender(previewElement);
+    Neditor.mermaidRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
+    Neditor.flowchartRender(previewElement, '${vditor.options.cdn}');
+    Neditor.graphvizRender(previewElement, '${vditor.options.cdn}');
+    Neditor.chartRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
+    Neditor.mindmapRender(previewElement, '${vditor.options.cdn}', '${vditor.options.theme}');
+    Neditor.abcRender(previewElement, '${vditor.options.cdn}');
+    Neditor.mediaRender(previewElement);
+    Neditor.speechRender(previewElement);
 </script>
 <script src="${vditor.options.cdn}/dist/js/icons/${vditor.options.icon}.js"></script></body></html>`;
     download(vditor, html, content.substr(0, 10) + ".html");

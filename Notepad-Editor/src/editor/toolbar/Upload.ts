@@ -4,7 +4,7 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Upload extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         let inputHTML = '<input type="file"';
         if (vditor.options.upload.multiple) {
@@ -17,7 +17,7 @@ export class Upload extends MenuItem {
         this._bindEvent(vditor);
     }
 
-    public _bindEvent(vditor: IVditor) {
+    public _bindEvent(vditor: LGEditor) {
         this.element.children[0].addEventListener(getEventName(), (event) => {
             if (this.element.firstElementChild.classList.contains(Constants.CLASS_MENU_DISABLED)) {
                 event.stopPropagation();

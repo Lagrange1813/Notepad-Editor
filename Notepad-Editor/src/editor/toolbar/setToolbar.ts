@@ -72,7 +72,7 @@ export const showToolbar = (toolbar: { [key: string]: HTMLElement }, names: stri
 };
 
 // "subToolbar", "hint", "popover"
-export const hidePanel = (vditor: IVditor, panels: string[], exceptElement?: HTMLElement) => {
+export const hidePanel = (vditor: LGEditor, panels: string[], exceptElement?: HTMLElement) => {
     if (panels.includes("subToolbar")) {
         vditor.toolbar.element.querySelectorAll(".vditor-hint").forEach((item: HTMLElement) => {
             if (exceptElement && item.isEqualNode(exceptElement)) {
@@ -92,7 +92,7 @@ export const hidePanel = (vditor: IVditor, panels: string[], exceptElement?: HTM
     }
 };
 
-export const toggleSubMenu = (vditor: IVditor, panelElement: HTMLElement, actionBtn: Element, level: number) => {
+export const toggleSubMenu = (vditor: LGEditor, panelElement: HTMLElement, actionBtn: Element, level: number) => {
     actionBtn.addEventListener(getEventName(), (event) => {
         event.preventDefault();
         event.stopPropagation();

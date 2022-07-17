@@ -17,7 +17,7 @@ declare global {
     }
 }
 
-export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?: IMath }) => {
+export const mathRender = (element: HTMLElement, options?: { cdn?: string, math?: LGMath }) => {
     const mathElements = mathRenderAdapter.getElements(element);
 
     if (mathElements.length === 0) {

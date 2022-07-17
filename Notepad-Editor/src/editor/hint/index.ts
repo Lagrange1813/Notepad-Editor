@@ -13,7 +13,7 @@ export class Hint {
     private splitChar = "";
     private lastIndex = -1;
 
-    constructor(hintExtends: IHintExtend[]) {
+    constructor(hintExtends: LGHintExtend[]) {
         this.timeId = -1;
         this.element = document.createElement("div");
         this.element.className = "vditor-hint";
@@ -21,7 +21,7 @@ export class Hint {
         hintExtends.push({key: ":"});
     }
 
-    public render(vditor: IVditor) {
+    public render(vditor: LGEditor) {
         if (!window.getSelection().focusNode) {
             return;
         }
@@ -37,7 +37,7 @@ export class Hint {
         } else {
             if (this.splitChar === ":") {
                 const emojiHint = key === "" ? vditor.options.hint.emoji : vditor.lute.GetEmojis();
-                const matchEmojiData: IHintData[] = [];
+                const matchEmojiData: LGHintData[] = [];
                 Object.keys(emojiHint).forEach((keyName) => {
                     if (keyName.indexOf(key.toLowerCase()) === 0) {
                         if (emojiHint[keyName].indexOf(".") > -1) {
@@ -67,7 +67,7 @@ export class Hint {
         }
     }
 
-    public genHTML(data: IHintData[], key: string, vditor: IVditor) {
+    public genHTML(data: LGHintData[], key: string, vditor: LGEditor) {
         if (data.length === 0) {
             this.element.style.display = "none";
             return;
@@ -125,7 +125,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         }
     }
 
-    public fillEmoji = (element: HTMLElement, vditor: IVditor) => {
+    public fillEmoji = (element: HTMLElement, vditor: LGEditor) => {
         this.element.style.display = "none";
 
         const value = decodeURIComponent(element.getAttribute("data-value"));
@@ -182,7 +182,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         execAfterRender(vditor);
     }
 
-    public select(event: KeyboardEvent, vditor: IVditor) {
+    public select(event: KeyboardEvent, vditor: LGEditor) {
 
         if (this.element.querySelectorAll("button").length === 0 ||
             this.element.style.display === "none") {
@@ -221,7 +221,7 @@ ${i === 0 ? "class='vditor-hint--current'" : ""}> ${html}</button>`;
         return false;
     }
 
-    private getKey(currentLineValue: string, extend: IHintExtend[]) {
+    private getKey(currentLineValue: string, extend: LGHintExtend[]) {
         this.lastIndex = -1;
         this.splitChar = "";
         extend.forEach((item) => {

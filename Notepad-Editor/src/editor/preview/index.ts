@@ -20,7 +20,7 @@ export class Preview {
     public element: HTMLElement;
     private mdTimeoutId: number;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         this.element = document.createElement("div");
         this.element.className = `vditor-preview`;
         const previewElement = document.createElement("div");
@@ -97,7 +97,7 @@ export class Preview {
                 return;
             }
             const type = btn.getAttribute("data-type");
-            const actionCustom = actions.find((w: IPreviewActionCustom) => w?.key === type) as IPreviewActionCustom;
+            const actionCustom = actions.find((w: LGPreviewActionCustom) => w?.key === type) as LGPreviewActionCustom;
             if (actionCustom) {
                 actionCustom.click(type);
                 return;
@@ -126,7 +126,7 @@ export class Preview {
         });
     }
 
-    public render(vditor: IVditor, value?: string) {
+    public render(vditor: LGEditor, value?: string) {
         clearTimeout(this.mdTimeoutId);
 
         if (this.element.style.display === "none") {
@@ -190,7 +190,7 @@ export class Preview {
         }, vditor.options.preview.delay);
     }
 
-    private afterRender(vditor: IVditor, startTime: number) {
+    private afterRender(vditor: LGEditor, startTime: number) {
         if (vditor.options.preview.parse) {
             vditor.options.preview.parse(this.element);
         }
@@ -237,7 +237,7 @@ export class Preview {
         });
     }
 
-    private copyToX(vditor: IVditor, copyElement: HTMLElement, type = "mp-wechat") {
+    private copyToX(vditor: LGEditor, copyElement: HTMLElement, type = "mp-wechat") {
         // fix math render
         if (type !== "zhihu") {
             copyElement.querySelectorAll(".katex-html .base").forEach((item: HTMLElement) => {

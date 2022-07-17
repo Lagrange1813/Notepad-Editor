@@ -1,4 +1,4 @@
-export const setLute = (options: ILuteOptions) => {
+export const setLute = (options: LGLuteOptions) => {
     const lute: Lute = Lute.New();
     lute.PutEmojis(options.emojis);
     lute.SetEmojiSite(options.emojiSite);

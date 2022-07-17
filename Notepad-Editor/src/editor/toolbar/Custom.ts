@@ -3,7 +3,7 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Custom extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         this.element.children[0].innerHTML = menuItem.icon;
         this.element.children[0].addEventListener(getEventName(), (event: Event & { currentTarget: HTMLElement }) => {

@@ -1,4 +1,4 @@
-export const getElement = (vditor: IVditor) => {
+export const getElement = (vditor: LGEditor) => {
     switch (vditor.currentMode) {
         case "wysiwyg":
             return vditor.wysiwyg.element;

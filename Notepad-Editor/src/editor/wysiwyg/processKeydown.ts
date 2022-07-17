@@ -26,7 +26,7 @@ import {nextIsCode} from "./inlineTag";
 import {removeHeading, setHeading} from "./setHeading";
 import {showCode} from "./showCode";
 
-export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
+export const processKeydown = (vditor: LGEditor, event: KeyboardEvent) => {
     // Chrome firefox 触发 compositionend 机制不一致 https://github.com/Vanessa219/vditor/issues/188
     vditor.wysiwyg.composingLock = event.isComposing;
     if (event.isComposing) {
@@ -350,7 +350,7 @@ export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
     return false;
 };
 
-export const removeBlockElement = (vditor: IVditor, event: KeyboardEvent) => {
+export const removeBlockElement = (vditor: LGEditor, event: KeyboardEvent) => {
     // 删除有子工具栏的块
     if (matchHotKey("⇧⌘X", event)) {
         const itemElement: HTMLElement = vditor.wysiwyg.popover.querySelector('[data-type="remove"]');

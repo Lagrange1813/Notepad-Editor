@@ -1,7 +1,7 @@
 import {hasClosestByHeadings} from "../util/hasClosestByHeadings";
 import {mathRender} from "./mathRender";
 
-export const outlineRender = (contentElement: HTMLElement, targetElement: Element, vditor?: IVditor) => {
+export const outlineRender = (contentElement: HTMLElement, targetElement: Element, vditor?: LGEditor) => {
     let tocHTML = "";
     const ids: string[] = [];
     Array.from(contentElement.children).forEach((item: HTMLElement, index: number) => {

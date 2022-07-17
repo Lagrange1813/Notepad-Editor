@@ -8,7 +8,7 @@ import {toggleSubMenu} from "./setToolbar";
 export class Emoji extends MenuItem {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         const panelElement = document.createElement("div");
         panelElement.className = "vditor-panel vditor-panel--arrow";
@@ -36,7 +36,7 @@ data-value=":${key}: " data-key=":${key}:" class="vditor-emojis__icon" src="${em
         this.bindEvent(vditor);
     }
 
-    private bindEvent(vditor: IVditor) {
+    private bindEvent(vditor: LGEditor) {
         this.element.lastElementChild.addEventListener(getEventName(), (event: Event & { target: Element }) => {
             const btnElement = hasClosestByTag(event.target, "BUTTON");
             if (btnElement) {

@@ -3,14 +3,14 @@ declare module "*.svg";
 declare module "*.png";
 
 interface Window {
-    VditorI18n: ITips;
+    VditorI18n: LGTips;
 }
 
-interface IObject {
+interface LGObject {
     [key: string]: string;
 }
 
-interface ILuteNode {
+interface LGLuteNode {
     TokensStr: () => string;
     __internal_object__: {
         Parent: {
@@ -20,85 +20,85 @@ interface ILuteNode {
     };
 }
 
-type ILuteRenderCallback = (node: ILuteNode, entering: boolean) => [string, number];
+type LGLuteRenderCallback = (node: LGLuteNode, entering: boolean) => [string, number];
 
 /** @link https://ld246.com/article/1588412297062 */
-interface ILuteRender {
-    renderDocument?: ILuteRenderCallback;
-    renderParagraph?: ILuteRenderCallback;
-    renderText?: ILuteRenderCallback;
-    renderCodeBlock?: ILuteRenderCallback;
-    renderCodeBlockOpenMarker?: ILuteRenderCallback;
-    renderCodeBlockInfoMarker?: ILuteRenderCallback;
-    renderCodeBlockCode?: ILuteRenderCallback;
-    renderCodeBlockCloseMarker?: ILuteRenderCallback;
-    renderMathBlock?: ILuteRenderCallback;
-    renderMathBlockOpenMarker?: ILuteRenderCallback;
-    renderMathBlockContent?: ILuteRenderCallback;
-    renderMathBlockCloseMarker?: ILuteRenderCallback;
-    renderBlockquote?: ILuteRenderCallback;
-    renderBlockquoteMarker?: ILuteRenderCallback;
-    renderHeading?: ILuteRenderCallback;
-    renderHeadingC8hMarker?: ILuteRenderCallback;
-    renderList?: ILuteRenderCallback;
-    renderListItem?: ILuteRenderCallback;
-    renderTaskListItemMarker?: ILuteRenderCallback;
-    renderThematicBreak?: ILuteRenderCallback;
-    renderHTML?: ILuteRenderCallback;
-    renderTable?: ILuteRenderCallback;
-    renderTableHead?: ILuteRenderCallback;
-    renderTableRow?: ILuteRenderCallback;
-    renderTableCell?: ILuteRenderCallback;
-    renderFootnotesDef?: ILuteRenderCallback;
-    renderCodeSpan?: ILuteRenderCallback;
-    renderCodeSpanOpenMarker?: ILuteRenderCallback;
-    renderCodeSpanContent?: ILuteRenderCallback;
-    renderCodeSpanCloseMarker?: ILuteRenderCallback;
-    renderInlineMath?: ILuteRenderCallback;
-    renderInlineMathOpenMarker?: ILuteRenderCallback;
-    renderInlineMathContent?: ILuteRenderCallback;
-    renderInlineMathCloseMarker?: ILuteRenderCallback;
-    renderEmphasis?: ILuteRenderCallback;
-    renderEmAsteriskOpenMarker?: ILuteRenderCallback;
-    renderEmAsteriskCloseMarker?: ILuteRenderCallback;
-    renderEmUnderscoreOpenMarker?: ILuteRenderCallback;
-    renderEmUnderscoreCloseMarker?: ILuteRenderCallback;
-    renderStrong?: ILuteRenderCallback;
-    renderStrongA6kOpenMarker?: ILuteRenderCallback;
-    renderStrongA6kCloseMarker?: ILuteRenderCallback;
-    renderStrongU8eOpenMarker?: ILuteRenderCallback;
-    renderStrongU8eCloseMarker?: ILuteRenderCallback;
-    renderStrikethrough?: ILuteRenderCallback;
-    renderStrikethrough1OpenMarker?: ILuteRenderCallback;
-    renderStrikethrough1CloseMarker?: ILuteRenderCallback;
-    renderStrikethrough2OpenMarker?: ILuteRenderCallback;
-    renderStrikethrough2CloseMarker?: ILuteRenderCallback;
-    renderHardBreak?: ILuteRenderCallback;
-    renderSoftBreak?: ILuteRenderCallback;
-    renderInlineHTML?: ILuteRenderCallback;
-    renderLink?: ILuteRenderCallback;
-    renderOpenBracket?: ILuteRenderCallback;
-    renderCloseBracket?: ILuteRenderCallback;
-    renderOpenParen?: ILuteRenderCallback;
-    renderCloseParen?: ILuteRenderCallback;
-    renderLinkText?: ILuteRenderCallback;
-    renderLinkSpace?: ILuteRenderCallback;
-    renderLinkDest?: ILuteRenderCallback;
-    renderLinkTitle?: ILuteRenderCallback;
-    renderImage?: ILuteRenderCallback;
-    renderBang?: ILuteRenderCallback;
-    renderEmoji?: ILuteRenderCallback;
-    renderEmojiUnicode?: ILuteRenderCallback;
-    renderEmojiImg?: ILuteRenderCallback;
-    renderEmojiAlias?: ILuteRenderCallback;
-    renderToC?: ILuteRenderCallback;
-    renderFootnotesRef?: ILuteRenderCallback;
-    renderBackslash?: ILuteRenderCallback;
-    renderBackslashContent?: ILuteRenderCallback;
+interface LGLuteRender {
+    renderDocument?: LGLuteRenderCallback;
+    renderParagraph?: LGLuteRenderCallback;
+    renderText?: LGLuteRenderCallback;
+    renderCodeBlock?: LGLuteRenderCallback;
+    renderCodeBlockOpenMarker?: LGLuteRenderCallback;
+    renderCodeBlockInfoMarker?: LGLuteRenderCallback;
+    renderCodeBlockCode?: LGLuteRenderCallback;
+    renderCodeBlockCloseMarker?: LGLuteRenderCallback;
+    renderMathBlock?: LGLuteRenderCallback;
+    renderMathBlockOpenMarker?: LGLuteRenderCallback;
+    renderMathBlockContent?: LGLuteRenderCallback;
+    renderMathBlockCloseMarker?: LGLuteRenderCallback;
+    renderBlockquote?: LGLuteRenderCallback;
+    renderBlockquoteMarker?: LGLuteRenderCallback;
+    renderHeading?: LGLuteRenderCallback;
+    renderHeadingC8hMarker?: LGLuteRenderCallback;
+    renderList?: LGLuteRenderCallback;
+    renderListItem?: LGLuteRenderCallback;
+    renderTaskListItemMarker?: LGLuteRenderCallback;
+    renderThematicBreak?: LGLuteRenderCallback;
+    renderHTML?: LGLuteRenderCallback;
+    renderTable?: LGLuteRenderCallback;
+    renderTableHead?: LGLuteRenderCallback;
+    renderTableRow?: LGLuteRenderCallback;
+    renderTableCell?: LGLuteRenderCallback;
+    renderFootnotesDef?: LGLuteRenderCallback;
+    renderCodeSpan?: LGLuteRenderCallback;
+    renderCodeSpanOpenMarker?: LGLuteRenderCallback;
+    renderCodeSpanContent?: LGLuteRenderCallback;
+    renderCodeSpanCloseMarker?: LGLuteRenderCallback;
+    renderInlineMath?: LGLuteRenderCallback;
+    renderInlineMathOpenMarker?: LGLuteRenderCallback;
+    renderInlineMathContent?: LGLuteRenderCallback;
+    renderInlineMathCloseMarker?: LGLuteRenderCallback;
+    renderEmphasis?: LGLuteRenderCallback;
+    renderEmAsteriskOpenMarker?: LGLuteRenderCallback;
+    renderEmAsteriskCloseMarker?: LGLuteRenderCallback;
+    renderEmUnderscoreOpenMarker?: LGLuteRenderCallback;
+    renderEmUnderscoreCloseMarker?: LGLuteRenderCallback;
+    renderStrong?: LGLuteRenderCallback;
+    renderStrongA6kOpenMarker?: LGLuteRenderCallback;
+    renderStrongA6kCloseMarker?: LGLuteRenderCallback;
+    renderStrongU8eOpenMarker?: LGLuteRenderCallback;
+    renderStrongU8eCloseMarker?: LGLuteRenderCallback;
+    renderStrikethrough?: LGLuteRenderCallback;
+    renderStrikethrough1OpenMarker?: LGLuteRenderCallback;
+    renderStrikethrough1CloseMarker?: LGLuteRenderCallback;
+    renderStrikethrough2OpenMarker?: LGLuteRenderCallback;
+    renderStrikethrough2CloseMarker?: LGLuteRenderCallback;
+    renderHardBreak?: LGLuteRenderCallback;
+    renderSoftBreak?: LGLuteRenderCallback;
+    renderInlineHTML?: LGLuteRenderCallback;
+    renderLink?: LGLuteRenderCallback;
+    renderOpenBracket?: LGLuteRenderCallback;
+    renderCloseBracket?: LGLuteRenderCallback;
+    renderOpenParen?: LGLuteRenderCallback;
+    renderCloseParen?: LGLuteRenderCallback;
+    renderLinkText?: LGLuteRenderCallback;
+    renderLinkSpace?: LGLuteRenderCallback;
+    renderLinkDest?: LGLuteRenderCallback;
+    renderLinkTitle?: LGLuteRenderCallback;
+    renderImage?: LGLuteRenderCallback;
+    renderBang?: LGLuteRenderCallback;
+    renderEmoji?: LGLuteRenderCallback;
+    renderEmojiUnicode?: LGLuteRenderCallback;
+    renderEmojiImg?: LGLuteRenderCallback;
+    renderEmojiAlias?: LGLuteRenderCallback;
+    renderToC?: LGLuteRenderCallback;
+    renderFootnotesRef?: LGLuteRenderCallback;
+    renderBackslash?: LGLuteRenderCallback;
+    renderBackslashContent?: LGLuteRenderCallback;
 }
 
-interface ILuteOptions extends IMarkdownConfig {
-    emojis: IObject;
+interface LGLuteOptions extends LGMarkdownConfig {
+    emojis: LGObject;
     emojiSite: string;
     headingAnchor: boolean;
     inlineMathDigit: boolean;
@@ -114,7 +114,7 @@ declare class Lute {
 
     public static New(): Lute;
 
-    public static GetHeadingID(node: ILuteNode): string;
+    public static GetHeadingID(node: LGLuteNode): string;
 
     public static NewNodeID(): string;
 
@@ -124,13 +124,13 @@ declare class Lute {
 
     public SetJSRenderers(options?: {
         renderers: {
-            HTML2VditorDOM?: ILuteRender,
-            HTML2VditorIRDOM?: ILuteRender,
-            HTML2Md?: ILuteRender,
-            Md2HTML?: ILuteRender,
-            Md2VditorDOM?: ILuteRender,
-            Md2VditorIRDOM?: ILuteRender,
-            Md2VditorSVDOM?: ILuteRender,
+            HTML2VditorDOM?: LGLuteRender,
+            HTML2VditorIRDOM?: LGLuteRender,
+            HTML2Md?: LGLuteRender,
+            Md2HTML?: LGLuteRender,
+            Md2VditorDOM?: LGLuteRender,
+            Md2VditorIRDOM?: LGLuteRender,
+            Md2VditorSVDOM?: LGLuteRender,
         },
     }): void;
 
@@ -174,9 +174,9 @@ declare class Lute {
 
     public SetVditorMathBlockPreview(enable: boolean): void;
 
-    public PutEmojis(emojis: IObject): void;
+    public PutEmojis(emojis: LGObject): void;
 
-    public GetEmojis(): IObject;
+    public GetEmojis(): LGObject;
 
     // debugger md
     public RenderEChartsJSON(text: string): string;
@@ -232,7 +232,7 @@ declare const webkitAudioContext: {
     new(contextOptions?: AudioContextOptions): AudioContext,
 };
 
-interface ITips {
+interface LGTips {
     [index: string]: string;
 
     alignCenter: string;
@@ -314,27 +314,27 @@ interface ITips {
     wysiwyg: string;
 }
 
-interface II18n {
-    en_US: ITips;
-    ja_JP: ITips;
-    ko_KR: ITips;
-    ru_RU: ITips;
-    zh_CN: ITips;
-    zh_TW: ITips;
+interface LGI18n {
+    en_US: LGTips;
+    ja_JP: LGTips;
+    ko_KR: LGTips;
+    ru_RU: LGTips;
+    zh_CN: LGTips;
+    zh_TW: LGTips;
 }
 
-interface IClasses {
+interface LGClasses {
     preview?: string;
 }
 
-interface IPreviewTheme {
+interface LGPreviewTheme {
     current: string;
-    list?: IObject;
+    list?: LGObject;
     path?: string;
 }
 
 /** @link https://ld246.com/article/1549638745630#options-upload */
-interface IUpload {
+interface LGUpload {
     /** 上传 url */
     url?: string;
     /** 上传文件最大 Byte */
@@ -348,7 +348,7 @@ interface IUpload {
     /** 跨站点访问控制。默认值: false */
     withCredentials?: boolean;
     /** 请求头设置 */
-    headers?: IObject;
+    headers?: LGObject;
     /** 额外请求参数 */
     extraData?: { [key: string]: string | Blob };
     /** 是否允许多文件上传。默认值：true */
@@ -357,7 +357,7 @@ interface IUpload {
     fieldName?: string;
 
     /** 每次上传前都会重新设置请求头 */
-    setHeaders?(): IObject;
+    setHeaders?(): LGObject;
 
     /** 上传成功回调 */
     success?(editor: HTMLPreElement, msg: string): void;
@@ -388,7 +388,7 @@ interface IUpload {
 }
 
 /** @link https://ld246.com/article/1549638745630#options-toolbar */
-interface IMenuItem {
+interface LGMenuItem {
     /** 唯一标示 */
     name: string;
     /** svg 图标 HTML */
@@ -406,16 +406,16 @@ interface IMenuItem {
     /** 提示位置：ne, nw */
     tipPosition?: string;
     /** 子菜单 */
-    toolbar?: Array<string | IMenuItem>;
+    toolbar?: Array<string | LGMenuItem>;
     /** 菜单层级，最大为 3，内部使用 */
     level?: number;
 
     /** 自定义按钮点击时触发的事件 */
-    click?(event: Event, vditor: IVditor): void;
+    click?(event: Event, vditor: LGEditor): void;
 }
 
 /** @link https://ld246.com/article/1549638745630#options-preview-hljs */
-interface IHljs {
+interface LGHljs {
     /** 是否启用行号。默认值: false */
     lineNumber?: boolean;
     /** 代码风格，可选值参见 [Chroma](https://xyproto.github.io/splash/docs/longer/all.html)。 默认值: 'github' */
@@ -425,7 +425,7 @@ interface IHljs {
 }
 
 /** @link https://ld246.com/article/1549638745630#options-preview-math */
-interface IMath {
+interface LGMath {
     /** 内联数学公式起始 $ 后是否允许数字。默认值: false */
     inlineDigit?: boolean;
     /** 使用 MathJax 渲染时传入的宏定义。默认值: {} */
@@ -435,7 +435,7 @@ interface IMath {
 }
 
 /** @link https://ld246.com/article/1549638745630#options-preview-markdown */
-interface IMarkdownConfig {
+interface LGMarkdownConfig {
     /** 自动空格。默认值: false */
     autoSpace?: boolean;
     /** 段落开头是否空两格。默认值: false */
@@ -463,7 +463,7 @@ interface IMarkdownConfig {
 }
 
 /** @link https://ld246.com/article/1549638745630#options-preview */
-interface IPreview {
+interface LGPreview {
     /** 预览 debounce 毫秒间隔。默认值: 1000 */
     delay?: number;
     /** 预览区域最大宽度。默认值: 768 */
@@ -473,15 +473,15 @@ interface IPreview {
     /** md 解析请求 */
     url?: string;
     /** @link https://ld246.com/article/1549638745630#options-preview-hljs */
-    hljs?: IHljs;
+    hljs?: LGHljs;
     /** @link https://ld246.com/article/1549638745630#options-preview-math */
-    math?: IMath;
+    math?: LGMath;
     /** @link https://ld246.com/article/1549638745630#options-preview-markdown */
-    markdown?: IMarkdownConfig;
+    markdown?: LGMarkdownConfig;
     /** @link https://ld246.com/article/1549638745630#options-preview-theme */
-    theme?: IPreviewTheme;
+    theme?: LGPreviewTheme;
     /** @link https://ld246.com/article/1549638745630#options-preview-actions  */
-    actions?: Array<IPreviewAction | IPreviewActionCustom>;
+    actions?: Array<LGPreviewAction | LGPreviewActionCustom>;
 
     /** 预览回调 */
     parse?(element: HTMLElement): void;
@@ -490,9 +490,9 @@ interface IPreview {
     transform?(html: string): string;
 }
 
-type IPreviewAction = "desktop" | "tablet" | "mobile" | "mp-wechat" | "zhihu";
+type LGPreviewAction = "desktop" | "tablet" | "mobile" | "mp-wechat" | "zhihu";
 
-interface IPreviewActionCustom {
+interface LGPreviewActionCustom {
     /** 键名 */
     key: string;
     /** 按钮文本 */
@@ -505,23 +505,23 @@ interface IPreviewActionCustom {
     click: (key: string) => void;
 }
 
-interface IPreviewOptions {
+interface LGPreviewOptions {
     mode: "dark" | "light";
-    customEmoji?: IObject;
-    lang?: (keyof II18n);
-    i18n?: ITips;
+    customEmoji?: LGObject;
+    lang?: (keyof LGI18n);
+    i18n?: LGTips;
     lazyLoadImage?: string;
     emojiPath?: string;
-    hljs?: IHljs;
+    hljs?: LGHljs;
     speech?: {
         enable?: boolean,
     };
     anchor?: number; // 0: no render, 1: render left, 2: render right
-    math?: IMath;
+    math?: LGMath;
     cdn?: string;
-    markdown?: IMarkdownConfig;
-    renderers?: ILuteRender;
-    theme?: IPreviewTheme;
+    markdown?: LGMarkdownConfig;
+    renderers?: LGLuteRender;
+    theme?: LGPreviewTheme;
     icon?: "ant" | "material" | undefined;
 
     transform?(html: string): string;
@@ -529,15 +529,15 @@ interface IPreviewOptions {
     after?(): void;
 }
 
-interface IHintData {
+interface LGHintData {
     html: string;
     value: string;
 }
 
-interface IHintExtend {
+interface LGHintExtend {
     key: string;
 
-    hint?(value: string): IHintData[] | Promise<IHintData[]>;
+    hint?(value: string): LGHintData[] | Promise<LGHintData[]>;
 }
 
 /** @link https://ld246.com/article/1549638745630#options-hint */
@@ -549,13 +549,13 @@ interface IHint {
     /** 提示 debounce 毫秒间隔。默认值: 200 */
     delay?: number;
     /** 默认表情，可从 [lute/emoji_map](https://github.com/88250/lute/blob/master/parse/emoji_map.go#L32) 中选取，也可自定义 */
-    emoji?: IObject;
+    emoji?: LGObject;
     /** 表情图片地址。默认值: 'https://cdn.jsdelivr.net/npm/vditor@${VDITOR_VERSION}/dist/images/emoji' */
     emojiPath?: string;
-    extend?: IHintExtend[];
+    extend?: LGHintExtend[];
 }
 
-interface IResize {
+interface LGResize {
     position?: string;
     enable?: boolean;
 
@@ -563,7 +563,7 @@ interface IResize {
 }
 
 /** @link https://ld246.com/article/1549638745630#options */
-interface IOptions {
+interface LGOptions {
     /** RTL */
     rtl?: boolean;
     /** 历史记录间隔 */
@@ -585,17 +585,17 @@ interface IOptions {
     /** 输入区域为空时的提示。默认值: '' */
     placeholder?: string;
     /** 多语言。默认值: 'zh_CN' */
-    lang?: (keyof II18n);
+    lang?: (keyof LGI18n);
     /** 国际化, 自定义语言。优先级低于lang */
-    i18n?: ITips;
+    i18n?: LGTips;
     /** @link https://ld246.com/article/1549638745630#options-fullscreen */
     fullscreen?: {
         index: number;
     };
     /** @link https://ld246.com/article/1549638745630#options-toolbar */
-    toolbar?: Array<string | IMenuItem>;
+    toolbar?: Array<string | LGMenuItem>;
     /** @link https://ld246.com/article/1549638745630#options-resize */
-    resize?: IResize;
+    resize?: LGResize;
     /** @link https://ld246.com/article/1549638745630#options-counter */
     counter?: {
         enable: boolean;
@@ -616,7 +616,7 @@ interface IOptions {
     /** 编辑模式。默认值: 'wysiwyg' */
     mode?: "wysiwyg" | "sv";
     /** @link https://ld246.com/article/1549638745630#options-preview */
-    preview?: IPreview;
+    preview?: LGPreview;
     /** @link https://ld246.com/article/1549638745630#options-hint */
     hint?: IHint;
     /** @link https://ld246.com/article/1549638745630#options-toolbarConfig */
@@ -629,9 +629,9 @@ interface IOptions {
     /** 图标。默认值: 'ant' */
     icon?: "ant" | "material";
     /** @link https://ld246.com/article/1549638745630#options-upload */
-    upload?: IUpload;
+    upload?: LGUpload;
     /** @link https://ld246.com/article/1549638745630#options-classes */
-    classes?: IClasses;
+    classes?: LGClasses;
     /** 配置自建 CDN 地址。默认值: 'https://cdn.jsdelivr.net/npm/vditor@${VDITOR_VERSION}' */
     cdn?: string;
     /** tab 键操作字符串，支持 \t 及任意字符串 */
@@ -664,26 +664,26 @@ interface IOptions {
     select?(value: string): void;
 }
 
-interface IEChart {
+interface LGEChart {
     setOption(option: any): void;
 
     resize(): void;
 }
 
-interface IVditor {
+interface LGEditor {
     element: HTMLElement;
-    options: IOptions;
+    options: LGOptions;
     originalInnerHTML: string;
     lute: Lute;
     currentMode: "sv" | "wysiwyg";
     devtools?: {
         element: HTMLDivElement,
-        renderEchart(vditor: IVditor): void,
+        renderEchart(vditor: LGEditor): void,
     };
     outline: {
         element: HTMLElement,
-        render(vditor: IVditor): string,
-        toggle(vditor: IVditor, show?: boolean): void,
+        render(vditor: LGEditor): string,
+        toggle(vditor: LGEditor, show?: boolean): void,
     };
     toolbar?: {
         elements?: { [key: string]: HTMLElement },
@@ -691,11 +691,11 @@ interface IVditor {
     };
     preview?: {
         element: HTMLElement
-        render(vditor: IVditor, value?: string): void,
+        render(vditor: LGEditor, value?: string): void,
     };
     counter?: {
         element: HTMLElement
-        render(vditor: IVditor, mdText?: string): void,
+        render(vditor: LGEditor, mdText?: string): void,
     };
     resize?: {
         element: HTMLElement,
@@ -704,10 +704,10 @@ interface IVditor {
         timeId: number
         element: HTMLDivElement
         recentLanguage: string
-        fillEmoji(element: HTMLElement, vditor: IVditor): void
-        render(vditor: IVditor): void,
-        genHTML(data: IHintData[], key: string, vditor: IVditor): void
-        select(event: KeyboardEvent, vditor: IVditor): boolean,
+        fillEmoji(element: HTMLElement, vditor: LGEditor): void
+        render(vditor: LGEditor): void,
+        genHTML(data: LGHintData[], key: string, vditor: LGEditor): void
+        select(event: KeyboardEvent, vditor: LGEditor): boolean,
     };
     tip: {
         element: HTMLElement
@@ -720,12 +720,12 @@ interface IVditor {
         range: Range,
     };
     undo?: {
-        clearStack(vditor: IVditor): void,
-        redo(vditor: IVditor): void
-        undo(vditor: IVditor): void
-        addToUndoStack(vditor: IVditor): void
-        recordFirstPosition(vditor: IVditor, event: KeyboardEvent): void,
-        resetIcon(vditor: IVditor): void,
+        clearStack(vditor: LGEditor): void,
+        redo(vditor: LGEditor): void
+        undo(vditor: LGEditor): void
+        addToUndoStack(vditor: LGEditor): void
+        recordFirstPosition(vditor: LGEditor, event: KeyboardEvent): void,
+        resetIcon(vditor: LGEditor): void,
     };
     wysiwyg?: {
         range: Range,
@@ -746,9 +746,4 @@ interface IVditor {
         composingLock: boolean,
         preventInput: boolean,
     };
-}
-
-interface ICommentsData {
-    id: string;
-    top: number;
 }

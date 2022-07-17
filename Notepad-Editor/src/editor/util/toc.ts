@@ -3,7 +3,7 @@ import {execAfterRender, insertAfterBlock, insertBeforeBlock} from "./fixBrowser
 import {hasClosestByClassName, hasClosestByMatchTag} from "./hasClosest";
 import {getSelectPosition} from "./selection";
 
-export const renderToc = (vditor: IVditor) => {
+export const renderToc = (vditor: LGEditor) => {
     if (vditor.currentMode === "sv") {
         return;
     }
@@ -21,7 +21,7 @@ export const renderToc = (vditor: IVditor) => {
     });
 };
 
-export const clickToc = (event: MouseEvent & { target: HTMLElement }, vditor: IVditor) => {
+export const clickToc = (event: MouseEvent & { target: HTMLElement }, vditor: LGEditor) => {
     const spanElement = hasClosestByMatchTag(event.target, "SPAN");
     if (spanElement && hasClosestByClassName(spanElement, "vditor-toc")) {
         const headingElement = vditor[vditor.currentMode].element.querySelector("#" + spanElement.getAttribute("data-target-id")) as HTMLElement;
@@ -43,7 +43,7 @@ export const clickToc = (event: MouseEvent & { target: HTMLElement }, vditor: IV
     }
 };
 
-export const keydownToc = (blockElement: HTMLElement, vditor: IVditor, event: KeyboardEvent, range: Range) => {
+export const keydownToc = (blockElement: HTMLElement, vditor: LGEditor, event: KeyboardEvent, range: Range) => {
     // toc 前无元素，插入空块
     if (blockElement.previousElementSibling &&
         blockElement.previousElementSibling.classList.contains("vditor-toc")) {

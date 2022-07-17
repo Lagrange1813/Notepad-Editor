@@ -14,13 +14,13 @@ class Upload {
     }
 }
 
-const validateFile = (vditor: IVditor, files: File[]) => {
+const validateFile = (vditor: LGEditor, files: File[]) => {
     vditor.tip.hide();
     const uploadFileList = [];
     let errorTip = "";
     let uploadingStr = "";
-    const lang: keyof II18n | "" = vditor.options.lang;
-    const options: IOptions = vditor.options;
+    const lang: keyof LGI18n | "" = vditor.options.lang;
+    const options: LGOptions = vditor.options;
 
     for (let iMax = files.length, i = 0; i < iMax; i++) {
         const file = files[i];
@@ -72,7 +72,7 @@ const validateFile = (vditor: IVditor, files: File[]) => {
     return uploadFileList;
 };
 
-const genUploadedLabel = (responseText: string, vditor: IVditor) => {
+const genUploadedLabel = (responseText: string, vditor: LGEditor) => {
     const editorElement = getElement(vditor);
     editorElement.focus();
     const response = JSON.parse(responseText);
@@ -139,7 +139,7 @@ const genUploadedLabel = (responseText: string, vditor: IVditor) => {
 };
 
 const uploadFiles =
-    async (vditor: IVditor, files: FileList | DataTransferItemList | File[], element?: HTMLInputElement) => {
+    async (vditor: LGEditor, files: FileList | DataTransferItemList | File[], element?: HTMLInputElement) => {
         // FileList | DataTransferItemList | File[] => File[]
         let fileList = [];
         const filesMax = vditor.options.upload.multiple === true ? files.length : 1;

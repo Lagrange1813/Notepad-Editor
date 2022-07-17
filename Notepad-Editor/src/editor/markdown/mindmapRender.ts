@@ -3,7 +3,7 @@ import {addScript} from "../util/addScript";
 import {mindmapRenderAdapter} from "./adapterRender";
 
 declare const echarts: {
-    init(element: HTMLElement, theme?: string): IEChart;
+    init(element: HTMLElement, theme?: string): LGEChart;
 };
 
 export const mindmapRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN, theme: string) => {

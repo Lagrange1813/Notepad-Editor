@@ -6,7 +6,7 @@ import {getEditorRange, getSelectPosition} from "../util/selection";
 import {inputEvent} from "./inputEvent";
 import {processAfterRender, processPreviousMarkers} from "./process";
 
-export const processKeydown = (vditor: IVditor, event: KeyboardEvent) => {
+export const processKeydown = (vditor: LGEditor, event: KeyboardEvent) => {
     vditor.sv.composingLock = event.isComposing;
     if (event.isComposing) {
         return false;

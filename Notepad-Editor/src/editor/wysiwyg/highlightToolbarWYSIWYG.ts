@@ -33,7 +33,7 @@ import {afterRenderEvent} from "./afterRenderEvent";
 import {removeBlockElement} from "./processKeydown";
 import {renderToc} from "../util/toc";
 
-export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
+export const highlightToolbarWYSIWYG = (vditor: LGEditor) => {
     clearTimeout(vditor.wysiwyg.hlToolbarTimeoutId);
     vditor.wysiwyg.hlToolbarTimeoutId = window.setTimeout(() => {
         if (
@@ -221,8 +221,8 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
 
         // table popover
         if (tableElement) {
-            const lang: keyof II18n | "" = vditor.options.lang;
-            const options: IOptions = vditor.options;
+            const lang: keyof LGI18n | "" = vditor.options.lang;
+            const options: LGOptions = vditor.options;
             vditor.wysiwyg.popover.innerHTML = "";
             const updateTable = () => {
                 const oldRow = tableElement.rows.length;
@@ -547,8 +547,8 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
         // footnote popover
         const footnotesRefElement = hasClosestByAttribute(typeElement, "data-type", "footnotes-ref");
         if (footnotesRefElement) {
-            const lang: keyof II18n | "" = vditor.options.lang;
-            const options: IOptions = vditor.options;
+            const lang: keyof LGI18n | "" = vditor.options.lang;
+            const options: LGOptions = vditor.options;
             vditor.wysiwyg.popover.innerHTML = "";
 
             const inputWrap = document.createElement("span");
@@ -682,7 +682,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
                     ) {
                         return;
                     }
-                    const matchLangData: IHintData[] = [];
+                    const matchLangData: LGHintData[] = [];
                     const key = language.value.substring(0, language.selectionStart);
                     Constants.CODE_LANGUAGES.forEach((keyName) => {
                         if (keyName.indexOf(key.toLowerCase()) > -1) {
@@ -787,7 +787,7 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
     }, 200);
 };
 
-const setPopoverPosition = (vditor: IVditor, element: HTMLElement) => {
+const setPopoverPosition = (vditor: LGEditor, element: HTMLElement) => {
     let targetElement = element;
     const tableElement = hasClosestByMatchTag(element, "TABLE");
     if (tableElement) {
@@ -802,7 +802,7 @@ const setPopoverPosition = (vditor: IVditor, element: HTMLElement) => {
     vditor.wysiwyg.popover.setAttribute("data-top", (targetElement.offsetTop - 21).toString());
 };
 
-export const genLinkRefPopover = (vditor: IVditor, linkRefElement: HTMLElement) => {
+export const genLinkRefPopover = (vditor: LGEditor, linkRefElement: HTMLElement) => {
     vditor.wysiwyg.popover.innerHTML = "";
 
     const updateLinkRef = () => {
@@ -863,7 +863,7 @@ export const genLinkRefPopover = (vditor: IVditor, linkRefElement: HTMLElement) 
     setPopoverPosition(vditor, linkRefElement);
 };
 
-const genUp = (range: Range, element: HTMLElement, vditor: IVditor) => {
+const genUp = (range: Range, element: HTMLElement, vditor: LGEditor) => {
     const previousElement = element.previousElementSibling;
     if (
         !previousElement ||
@@ -889,7 +889,7 @@ const genUp = (range: Range, element: HTMLElement, vditor: IVditor) => {
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", upElement);
 };
 
-const genDown = (range: Range, element: HTMLElement, vditor: IVditor) => {
+const genDown = (range: Range, element: HTMLElement, vditor: LGEditor) => {
     const nextElement = element.nextElementSibling;
     if (
         !nextElement ||
@@ -917,7 +917,7 @@ const genDown = (range: Range, element: HTMLElement, vditor: IVditor) => {
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", downElement);
 };
 
-const genClose = (element: HTMLElement, vditor: IVditor) => {
+const genClose = (element: HTMLElement, vditor: LGEditor) => {
     const close = document.createElement("button");
     close.setAttribute("type", "button");
     close.setAttribute("data-type", "remove");
@@ -940,7 +940,7 @@ const genClose = (element: HTMLElement, vditor: IVditor) => {
 };
 
 const linkHotkey = (
-    vditor: IVditor,
+    vditor: LGEditor,
     element: HTMLElement,
     event: KeyboardEvent,
     nextInputElement: HTMLInputElement,
@@ -970,7 +970,7 @@ const linkHotkey = (
     }
 };
 
-export const genAPopover = (vditor: IVditor, aElement: HTMLElement) => {
+export const genAPopover = (vditor: LGEditor, aElement: HTMLElement) => {
     vditor.wysiwyg.popover.innerHTML = "";
 
     const updateA = () => {
@@ -1048,7 +1048,7 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement) => {
     setPopoverPosition(vditor, aElement);
 };
 
-export const genImagePopover = (event: Event, vditor: IVditor) => {
+export const genImagePopover = (event: Event, vditor: LGEditor) => {
     const imgElement = event.target as HTMLImageElement;
     vditor.wysiwyg.popover.innerHTML = "";
     const updateImg = () => {

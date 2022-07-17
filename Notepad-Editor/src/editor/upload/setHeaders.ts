@@ -1,4 +1,4 @@
-export const setHeaders = (vditor: IVditor, xhr: XMLHttpRequest) => {
+export const setHeaders = (vditor: LGEditor, xhr: XMLHttpRequest) => {
     if (vditor.options.upload.setHeaders) {
         vditor.options.upload.headers =  vditor.options.upload.setHeaders();
     }

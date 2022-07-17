@@ -2,8 +2,8 @@ import { Constants } from "../constants";
 import { merge } from "./merge";
 
 export class Options {
-    public options: IOptions;
-    private defaultOptions: IOptions = {
+    public options: LGOptions;
+    private defaultOptions: LGOptions = {
         rtl: false,
         after: undefined,
         cache: {
@@ -126,11 +126,11 @@ export class Options {
         width: "auto",
     };
 
-    constructor(options: IOptions) {
+    constructor(options: LGOptions) {
         this.options = options;
     }
 
-    public merge(): IOptions {
+    public merge(): LGOptions {
         if (this.options) {
             if (this.options.toolbar) {
                 this.options.toolbar = this.mergeToolbar(this.options.toolbar);
@@ -156,7 +156,7 @@ export class Options {
         return mergedOptions;
     }
 
-    private mergeToolbar(toolbar: Array<string | IMenuItem>) {
+    private mergeToolbar(toolbar: Array<string | LGMenuItem>) {
         const toolbarItem = [
             {
                 icon: '<svg><use xlink:href="#vditor-icon-export"></use></svg>',
@@ -397,10 +397,10 @@ export class Options {
                 name: "br",
             },
         ];
-        const toolbarResult: IMenuItem[] = [];
-        toolbar.forEach((menuItem: IMenuItem) => {
+        const toolbarResult: LGMenuItem[] = [];
+        toolbar.forEach((menuItem: LGMenuItem) => {
             let currentMenuItem = menuItem;
-            toolbarItem.forEach((defaultMenuItem: IMenuItem) => {
+            toolbarItem.forEach((defaultMenuItem: LGMenuItem) => {
                 if (
                     typeof menuItem === "string" &&
                     defaultMenuItem.name === menuItem

@@ -3,7 +3,7 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Outline extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         if (vditor.options.outline) {
             this.element.firstElementChild.classList.add("vditor-menu--current");

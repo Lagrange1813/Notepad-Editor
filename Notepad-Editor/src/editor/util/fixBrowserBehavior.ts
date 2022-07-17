@@ -27,7 +27,7 @@ import {
 } from "./selection";
 
 // https://github.com/Vanessa219/vditor/issues/508 软键盘无法删除空块
-export const fixGSKeyBackspace = (event: KeyboardEvent, vditor: IVditor, startContainer: Node) => {
+export const fixGSKeyBackspace = (event: KeyboardEvent, vditor: LGEditor, startContainer: Node) => {
   if (event.keyCode === 229 && event.code === "" && event.key === "Unidentified" && vditor.currentMode !== "sv") {
     const blockElement = hasClosestBlock(startContainer);
     // 移动端的标点符号都显示为 299，因此需限定为空删除的条件
@@ -40,7 +40,7 @@ export const fixGSKeyBackspace = (event: KeyboardEvent, vditor: IVditor, startCo
 };
 
 // https://github.com/Vanessa219/vditor/issues/361 代码块后输入中文
-export const fixCJKPosition = (range: Range, vditor: IVditor, event: KeyboardEvent) => {
+export const fixCJKPosition = (range: Range, vditor: LGEditor, event: KeyboardEvent) => {
   if (event.key === "Enter" || event.key === "Tab" || event.key === "Backspace" || event.key.indexOf("Arrow") > -1
     || isCtrl(event) || event.key === "Escape" || event.shiftKey || event.altKey) {
     return;
@@ -71,7 +71,7 @@ export const fixCursorDownInlineMath = (range: Range, key: string) => {
   }
 };
 
-export const insertEmptyBlock = (vditor: IVditor, position: InsertPosition) => {
+export const insertEmptyBlock = (vditor: LGEditor, position: InsertPosition) => {
   const range = getEditorRange(vditor);
   const blockElement = hasClosestBlock(range.startContainer);
   if (blockElement) {
@@ -122,7 +122,7 @@ const goPreviousCell = (cellElement: HTMLElement, range: Range, isSelected = tru
   return previousElement;
 };
 
-export const insertAfterBlock = (vditor: IVditor, event: KeyboardEvent, range: Range, element: HTMLElement,
+export const insertAfterBlock = (vditor: LGEditor, event: KeyboardEvent, range: Range, element: HTMLElement,
                                  blockElement: HTMLElement) => {
   const position = getSelectPosition(element, vditor[vditor.currentMode].element, range);
   if ((event.key === "ArrowDown" && element.textContent.trimRight().substr(position.start).indexOf("\n") === -1) ||
@@ -144,7 +144,7 @@ export const insertAfterBlock = (vditor: IVditor, event: KeyboardEvent, range: R
   return false;
 };
 
-export const insertBeforeBlock = (vditor: IVditor, event: KeyboardEvent, range: Range, element: HTMLElement,
+export const insertBeforeBlock = (vditor: LGEditor, event: KeyboardEvent, range: Range, element: HTMLElement,
                                   blockElement: HTMLElement) => {
   const position = getSelectPosition(element, vditor[vditor.currentMode].element, range);
   if ((event.key === "ArrowUp" && element.textContent.substr(0, position.start).indexOf("\n") === -1) ||
@@ -168,7 +168,7 @@ export const insertBeforeBlock = (vditor: IVditor, event: KeyboardEvent, range: 
   return false;
 };
 
-export const listToggle = (vditor: IVditor, range: Range, type: string, cancel = true) => {
+export const listToggle = (vditor: LGEditor, range: Range, type: string, cancel = true) => {
   const itemElement = hasClosestByMatchTag(range.startContainer, "LI");
   vditor[vditor.currentMode].element.querySelectorAll("wbr").forEach((wbr) => {
     wbr.remove();
@@ -241,7 +241,7 @@ export const listToggle = (vditor: IVditor, range: Range, type: string, cancel =
   }
 };
 
-export const listIndent = (vditor: IVditor, liElement: HTMLElement, range: Range) => {
+export const listIndent = (vditor: LGEditor, liElement: HTMLElement, range: Range) => {
   const previousElement = liElement.previousElementSibling;
   if (liElement && previousElement) {
     const liElements: HTMLElement[] = [liElement];
@@ -297,7 +297,7 @@ export const listIndent = (vditor: IVditor, liElement: HTMLElement, range: Range
   }
 };
 
-export const listOutdent = (vditor: IVditor, liElement: HTMLElement, range: Range, topListElement: HTMLElement) => {
+export const listOutdent = (vditor: LGEditor, liElement: HTMLElement, range: Range, topListElement: HTMLElement) => {
   const liParentLiElement = hasClosestByMatchTag(liElement.parentElement, "LI");
   if (liParentLiElement) {
     vditor[vditor.currentMode].element.querySelectorAll("wbr").forEach((wbr) => {
@@ -432,7 +432,7 @@ export const isHeadingMD = (text: string) => {
   return false;
 };
 
-export const execAfterRender = (vditor: IVditor, options = {
+export const execAfterRender = (vditor: LGEditor, options = {
   enableAddUndoStack: true,
   enableHint: false,
   enableInput: true,
@@ -444,7 +444,7 @@ export const execAfterRender = (vditor: IVditor, options = {
   }
 };
 
-export const fixList = (range: Range, vditor: IVditor, pElement: HTMLElement | false, event: KeyboardEvent) => {
+export const fixList = (range: Range, vditor: LGEditor, pElement: HTMLElement | false, event: KeyboardEvent) => {
   const startContainer = range.startContainer;
   const liElement = hasClosestByMatchTag(startContainer, "LI");
   if (liElement) {
@@ -523,7 +523,7 @@ export const fixList = (range: Range, vditor: IVditor, pElement: HTMLElement | f
 };
 
 // tab 处理: block code render, table, 列表第一个字符中的 tab 处理单独写在上面
-export const fixTab = (vditor: IVditor, range: Range, event: KeyboardEvent) => {
+export const fixTab = (vditor: LGEditor, range: Range, event: KeyboardEvent) => {
   if (vditor.options.tab && event.key === "Tab") {
     if (event.shiftKey) {
       // TODO shift+tab
@@ -544,7 +544,7 @@ export const fixTab = (vditor: IVditor, range: Range, event: KeyboardEvent) => {
   }
 };
 
-export const fixMarkdown = (event: KeyboardEvent, vditor: IVditor, pElement: HTMLElement | false, range: Range) => {
+export const fixMarkdown = (event: KeyboardEvent, vditor: LGEditor, pElement: HTMLElement | false, range: Range) => {
   if (!pElement) {
     return;
   }
@@ -616,7 +616,7 @@ export const fixMarkdown = (event: KeyboardEvent, vditor: IVditor, pElement: HTM
   return false;
 };
 
-export const insertRow = (vditor: IVditor, range: Range, cellElement: HTMLElement) => {
+export const insertRow = (vditor: LGEditor, range: Range, cellElement: HTMLElement) => {
   let rowHTML = "";
   for (let m = 0; m < cellElement.parentElement.childElementCount; m++) {
     rowHTML += `<td align="${cellElement.parentElement.children[m].getAttribute("align")}"> </td>`;
@@ -630,7 +630,7 @@ export const insertRow = (vditor: IVditor, range: Range, cellElement: HTMLElemen
   execAfterRender(vditor);
 };
 
-export const insertRowAbove = (vditor: IVditor, range: Range, cellElement: HTMLElement) => {
+export const insertRowAbove = (vditor: LGEditor, range: Range, cellElement: HTMLElement) => {
   let rowHTML = "";
   for (let m = 0; m < cellElement.parentElement.childElementCount; m++) {
     if (cellElement.tagName === "TH") {
@@ -654,7 +654,7 @@ export const insertRowAbove = (vditor: IVditor, range: Range, cellElement: HTMLE
 };
 
 export const insertColumn =
-  (vditor: IVditor, tableElement: HTMLTableElement, cellElement: HTMLElement, type: InsertPosition = "afterend") => {
+  (vditor: LGEditor, tableElement: HTMLTableElement, cellElement: HTMLElement, type: InsertPosition = "afterend") => {
     let index = 0;
     let previousElement = cellElement.previousElementSibling;
     while (previousElement) {
@@ -670,7 +670,7 @@ export const insertColumn =
     }
     execAfterRender(vditor);
   };
-export const deleteRow = (vditor: IVditor, range: Range, cellElement: HTMLElement) => {
+export const deleteRow = (vditor: LGEditor, range: Range, cellElement: HTMLElement) => {
   if (cellElement.tagName === "TD") {
     const tbodyElement = cellElement.parentElement.parentElement;
     if (cellElement.parentElement.previousElementSibling) {
@@ -692,7 +692,7 @@ export const deleteRow = (vditor: IVditor, range: Range, cellElement: HTMLElemen
 };
 
 export const deleteColumn =
-  (vditor: IVditor, range: Range, tableElement: HTMLTableElement, cellElement: HTMLElement) => {
+  (vditor: LGEditor, range: Range, tableElement: HTMLTableElement, cellElement: HTMLElement) => {
     let index = 0;
     let previousElement = cellElement.previousElementSibling;
     while (previousElement) {
@@ -716,7 +716,7 @@ export const deleteColumn =
     execAfterRender(vditor);
   };
 
-export const fixTable = (vditor: IVditor, event: KeyboardEvent, range: Range) => {
+export const fixTable = (vditor: LGEditor, event: KeyboardEvent, range: Range) => {
   const startContainer = range.startContainer;
   const cellElement = hasClosestByMatchTag(startContainer, "TD") ||
     hasClosestByMatchTag(startContainer, "TH");
@@ -930,7 +930,7 @@ export const fixTable = (vditor: IVditor, event: KeyboardEvent, range: Range) =>
   return false;
 };
 
-export const fixCodeBlock = (vditor: IVditor, event: KeyboardEvent, codeRenderElement: HTMLElement, range: Range) => {
+export const fixCodeBlock = (vditor: LGEditor, event: KeyboardEvent, codeRenderElement: HTMLElement, range: Range) => {
   // 行级代码块中 command + a，近对当前代码块进行全选
   if (codeRenderElement.tagName === "PRE" && matchHotKey("⌘A", event)) {
     range.selectNodeContents(codeRenderElement.firstElementChild);
@@ -984,7 +984,7 @@ export const fixCodeBlock = (vditor: IVditor, event: KeyboardEvent, codeRenderEl
   return false;
 };
 
-export const fixBlockquote = (vditor: IVditor, range: Range, event: KeyboardEvent, pElement: HTMLElement | false) => {
+export const fixBlockquote = (vditor: LGEditor, range: Range, event: KeyboardEvent, pElement: HTMLElement | false) => {
   const startContainer = range.startContainer;
   const blockquoteElement = hasClosestByMatchTag(startContainer, "BLOCKQUOTE");
   if (blockquoteElement && range.toString() === "") {
@@ -1045,7 +1045,7 @@ export const fixBlockquote = (vditor: IVditor, range: Range, event: KeyboardEven
   return false;
 };
 
-export const fixTask = (vditor: IVditor, range: Range, event: KeyboardEvent) => {
+export const fixTask = (vditor: LGEditor, range: Range, event: KeyboardEvent) => {
   const startContainer = range.startContainer;
   const taskItemElement = hasClosestByClassName(startContainer, "vditor-task");
   if (taskItemElement) {
@@ -1159,7 +1159,7 @@ export const fixTask = (vditor: IVditor, range: Range, event: KeyboardEvent) => 
   return false;
 };
 
-export const fixDelete = (vditor: IVditor, range: Range, event: KeyboardEvent, pElement: HTMLElement | false) => {
+export const fixDelete = (vditor: LGEditor, range: Range, event: KeyboardEvent, pElement: HTMLElement | false) => {
   if (range.startContainer.nodeType !== 3) {
     // 光标位于 hr 前，hr 前有内容
     const rangeElement = (range.startContainer as HTMLElement).children[range.startOffset];
@@ -1222,7 +1222,7 @@ export const fixFirefoxArrowUpTable = (event: KeyboardEvent, blockElement: false
   return false;
 };
 
-export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent) & { target: HTMLElement }, callback: {
+export const paste = async (vditor: LGEditor, event: (ClipboardEvent | DragEvent) & { target: HTMLElement }, callback: {
   pasteCode(code: string): void,
 }) => {
   if (vditor[vditor.currentMode].element.getAttribute("contenteditable") !== "true") {
@@ -1246,13 +1246,13 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
     }
   }
   const renderers: {
-    HTML2VditorDOM?: ILuteRender,
-    HTML2VditorIRDOM?: ILuteRender,
-    Md2VditorDOM?: ILuteRender,
-    Md2VditorIRDOM?: ILuteRender,
-    Md2VditorSVDOM?: ILuteRender,
+    HTML2VditorDOM?: LGLuteRender,
+    HTML2VditorIRDOM?: LGLuteRender,
+    Md2VditorDOM?: LGLuteRender,
+    Md2VditorIRDOM?: LGLuteRender,
+    Md2VditorSVDOM?: LGLuteRender,
   } = {};
-  const renderLinkDest: ILuteRenderCallback = (node, entering) => {
+  const renderLinkDest: LGLuteRenderCallback = (node, entering) => {
     if (!entering) {
       return ["", Lute.WalkContinue];
     }

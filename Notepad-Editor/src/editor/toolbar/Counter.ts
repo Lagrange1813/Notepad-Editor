@@ -1,7 +1,7 @@
 export class Counter {
     public element: HTMLElement;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         this.element = document.createElement("span");
         this.element.className = "vditor-counter vditor-tooltipped vditor-tooltipped__nw";
 
@@ -9,7 +9,7 @@ export class Counter {
 
     }
 
-    public render(vditor: IVditor, mdText: string) {
+    public render(vditor: LGEditor, mdText: string) {
         let length = mdText.endsWith("\n") ? mdText.length - 1 : mdText.length;
         if (vditor.options.counter.type === "text" && vditor[vditor.currentMode]) {
             const tempElement = vditor[vditor.currentMode].element.cloneNode(true) as HTMLElement;

@@ -13,7 +13,7 @@ export class Outline {
 <div class="vditor-outline__content"></div>`;
     }
 
-    public render(vditor: IVditor) {
+    public render(vditor: LGEditor) {
         let html = "";
         if (vditor.preview.element.style.display === "block") {
             html = outlineRender(vditor.preview.element.lastElementChild as HTMLElement,
@@ -24,7 +24,7 @@ export class Outline {
         return html;
     }
 
-    public toggle(vditor: IVditor, show = true) {
+    public toggle(vditor: LGEditor, show = true) {
         const btnElement = vditor.toolbar.elements.outline?.firstElementChild;
         if (show && window.innerWidth >= Constants.MOBILE_WIDTH) {
             this.element.style.display = "block";

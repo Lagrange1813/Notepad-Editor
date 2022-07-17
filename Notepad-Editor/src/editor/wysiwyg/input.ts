@@ -10,7 +10,7 @@ import {renderToc} from "../util/toc";
 import {afterRenderEvent} from "./afterRenderEvent";
 import {previoueIsEmptyA} from "./inlineTag";
 
-export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
+export const input = (vditor: LGEditor, range: Range, event?: InputEvent) => {
     let blockElement = hasClosestBlock(range.startContainer);
 
     if (!blockElement) {

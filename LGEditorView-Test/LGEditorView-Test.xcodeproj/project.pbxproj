@@ -15,6 +15,7 @@
 		7A04AE6328819804007C799F /* LGEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A04AE6228819804007C799F /* LGEditorView.swift */; };
 		7AB495DC2883BCE00054718B /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495DB2883BCE00054718B /* dist */; };
 		7AB495DE2883BCE80054718B /* demo in Resources */ = {isa = PBXBuildFile; fileRef = 7AB495DD2883BCE80054718B /* demo */; };
+		7ABC26D72883C27500FB3D38 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7ABC26D62883C27500FB3D38 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ABC26D72883C27500FB3D38 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +92,7 @@
 			);
 			name = "LGEditorView-Test";
 			packageProductDependencies = (
+				7ABC26D62883C27500FB3D38 /* SnapKit */,
 			);
 			productName = "LGEditorView-Test";
 			productReference = 7A04AE4828819734007C799F /* LGEditorView-Test.app */;
@@ -120,6 +123,7 @@
 			);
 			mainGroup = 7A04AE3F28819734007C799F;
 			packageReferences = (
+				7ABC26D52883C27500FB3D38 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 7A04AE4928819734007C799F /* Products */;
 			projectDirPath = "";
@@ -362,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7ABC26D52883C27500FB3D38 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7ABC26D62883C27500FB3D38 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7ABC26D52883C27500FB3D38 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7A04AE4028819734007C799F /* Project object */;
 }

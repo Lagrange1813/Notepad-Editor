@@ -8,7 +8,7 @@ import {afterRenderEvent} from "./afterRenderEvent";
 import {genAPopover, highlightToolbarWYSIWYG} from "./highlightToolbarWYSIWYG";
 import {getNextHTML, getPreviousHTML, splitElement} from "./inlineTag";
 
-const cancelBES = (range: Range, vditor: IVditor, commandName: string) => {
+const cancelBES = (range: Range, vditor: LGEditor, commandName: string) => {
     let element = range.startContainer.parentElement;
     let jump = false;
     let lastTagName = "";
@@ -73,7 +73,7 @@ const cancelBES = (range: Range, vditor: IVditor, commandName: string) => {
     setRangeByWbr(vditor.wysiwyg.element, range);
 };
 
-export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) => {
+export const toolbarEvent = (vditor: LGEditor, actionBtn: Element, event: Event) => {
     if (vditor.wysiwyg.composingLock // Mac Chrome 中韩文结束会出发此事件，导致重复末尾字符 https://github.com/Vanessa219/vditor/issues/188
         && event instanceof CustomEvent // 点击按钮应忽略输入法 https://github.com/Vanessa219/vditor/issues/473
     ) {

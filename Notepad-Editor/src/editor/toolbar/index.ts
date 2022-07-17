@@ -31,14 +31,14 @@ export class Toolbar {
     public elements: { [key: string]: HTMLElement };
     public element: HTMLElement;
 
-    constructor(vditor: IVditor) {
+    constructor(vditor: LGEditor) {
         const options = vditor.options;
         this.elements = {};
 
         this.element = document.createElement("div");
         this.element.className = "vditor-toolbar";
 
-        options.toolbar.forEach((menuItem: IMenuItem, i: number) => {
+        options.toolbar.forEach((menuItem: LGMenuItem, i: number) => {
             const itemElement = this.genItem(vditor, menuItem, i);
             this.element.appendChild(itemElement);
             if (menuItem.toolbar) {
@@ -47,7 +47,7 @@ export class Toolbar {
                 panelElement.addEventListener(getEventName(), (event) => {
                     panelElement.style.display = "none";
                 });
-                menuItem.toolbar.forEach((subMenuItem: IMenuItem, subI: number) => {
+                menuItem.toolbar.forEach((subMenuItem: LGMenuItem, subI: number) => {
                     subMenuItem.level = 2;
                     panelElement.appendChild(this.genItem(vditor, subMenuItem, i + subI));
                 });
@@ -69,7 +69,7 @@ export class Toolbar {
         }
     }
 
-    private genItem(vditor: IVditor, menuItem: IMenuItem, index: number) {
+    private genItem(vditor: LGEditor, menuItem: LGMenuItem, index: number) {
         let menuItemObj;
         switch (menuItem.name) {
             case "bold":

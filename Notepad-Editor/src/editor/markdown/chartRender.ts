@@ -3,7 +3,7 @@ import {addScript} from "../util/addScript";
 import {chartRenderAdapter} from "./adapterRender";
 
 declare const echarts: {
-    init(element: HTMLElement, theme?: string): IEChart;
+    init(element: HTMLElement, theme?: string): LGEChart;
 };
 
 export const chartRender = (element: (HTMLElement | Document) = document, cdn = Constants.CDN, theme: string) => {

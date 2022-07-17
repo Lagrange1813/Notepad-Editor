@@ -88,7 +88,7 @@ export const splitElement = (range: Range) => {
     };
 };
 
-export const modifyPre = (vditor: IVditor, range: Range) => {
+export const modifyPre = (vditor: LGEditor, range: Range) => {
     // 没有被块元素包裹
     Array.from(vditor.wysiwyg.element.childNodes).find((node: HTMLElement) => {
         if (node.nodeType === 3) {

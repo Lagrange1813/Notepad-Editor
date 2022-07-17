@@ -49,7 +49,7 @@ export abstract class Constants {
     lineNumber: false,
     style: "github",
   };
-  public static readonly MATH_OPTIONS: IMath = {
+  public static readonly MATH_OPTIONS: LGMath = {
     engine: "KaTeX",
     inlineDigit: false,
     macros: {},

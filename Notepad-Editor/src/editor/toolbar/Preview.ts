@@ -5,12 +5,12 @@ import {MenuItem} from "./MenuItem";
 import {disableToolbar, enableToolbar, hidePanel} from "./setToolbar";
 
 export class Preview extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         this._bindEvent(vditor);
     }
 
-    public _bindEvent(vditor: IVditor) {
+    public _bindEvent(vditor: LGEditor) {
         this.element.children[0].addEventListener(getEventName(), (event) => {
             event.preventDefault();
             const btnElement = this.element.firstElementChild;

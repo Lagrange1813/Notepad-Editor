@@ -4,7 +4,7 @@ import {getEventName} from "../util/compatibility";
 import {MenuItem} from "./MenuItem";
 
 export class Both extends MenuItem {
-    constructor(vditor: IVditor, menuItem: IMenuItem) {
+    constructor(vditor: LGEditor, menuItem: LGMenuItem) {
         super(vditor, menuItem);
         if (vditor.options.preview.mode === "both") {
             this.element.children[0].classList.add("vditor-menu--current");

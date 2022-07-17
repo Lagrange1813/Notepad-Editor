@@ -2,7 +2,7 @@ import {Constants} from "../constants";
 import {isChrome} from "./compatibility";
 import {hasClosestBlock, hasClosestByClassName} from "./hasClosest";
 
-export const getEditorRange = (vditor: IVditor) => {
+export const getEditorRange = (vditor: LGEditor) => {
     let range: Range;
     const element = vditor[vditor.currentMode].element;
     if (getSelection().rangeCount > 0) {
@@ -235,7 +235,7 @@ export const setRangeByWbr = (element: HTMLElement, range: Range) => {
     setSelectionFocus(range);
 };
 
-export const insertHTML = (html: string, vditor: IVditor) => {
+export const insertHTML = (html: string, vditor: LGEditor) => {
     // 使用 lute 方法会添加 p 元素，只有一个 p 元素的时候进行删除
     const tempElement = document.createElement("div");
     tempElement.innerHTML = html;

@@ -1,7 +1,7 @@
 import {scrollCenter} from "../util/editorCommonEvent";
 import {setSelectionFocus} from "../util/selection";
 
-export const showCode = (previewElement: HTMLElement, vditor: IVditor, first = true) => {
+export const showCode = (previewElement: HTMLElement, vditor: LGEditor, first = true) => {
     const previousElement = previewElement.previousElementSibling as HTMLElement;
     const range = previousElement.ownerDocument.createRange();
     if (previousElement.tagName === "CODE") {
