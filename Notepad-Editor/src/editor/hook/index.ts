@@ -1,5 +1,6 @@
-import { setEditorMode } from "./setEditorMode";
-import { getMarkdown } from "../markdown/getMarkdown";
+import {setEditorMode} from "./setEditorMode";
+import {getMarkdown} from "../markdown/getMarkdown";
+import {insertTable} from "./insertTable";
 
 export class Hook {
   private neditor: LGEditor;
@@ -18,10 +19,28 @@ export class Hook {
   }
 
   public blur() {
-    if (this.neditor.currentMode === "sv") {
-      this.neditor.sv.element.blur();
-    } else if (this.neditor.currentMode === "wysiwyg") {
-      this.neditor.wysiwyg.element.blur();
+    this.neditor.toolbar.element.querySelectorAll(".vditor-hint").forEach((item: HTMLElement) => {
+      item.style.display = "none";
+    });
+
+    if (this.neditor.toolbar.elements.emoji) {
+      (this.neditor.toolbar.elements.emoji.lastElementChild as HTMLElement).style.display = "none";
     }
+
+    this.neditor.hint.element.style.display = "none";
+    this.neditor.wysiwyg.popover.style.display = "none";
+  }
+
+  public insertTable() {
+    insertTable(this.neditor);
+    (window as any).webkit.messageHandlers.disableButton.postMessage("table")
+  }
+
+  public setToolbarButton() {
+
+  }
+
+  public disableToolbarButton() {
+
   }
 }

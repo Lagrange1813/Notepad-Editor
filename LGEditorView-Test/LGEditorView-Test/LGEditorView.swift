@@ -5,16 +5,27 @@
 //  Created by 张维熙 on 2022/7/15.
 //
 
+import Combine
 import WebKit
 
+protocol LGEditorViewDelegate {
+	func enableButton(with name: String)
+	func disableButton(with name: String)
+}
+
 public class LGEditorView: WKWebView {
-//	let list: [String] = ["getText"]
-	
 	var text: String = "" {
 		didSet {
 			print(text)
 		}
 	}
+	
+	let monitorList: [String] = ["enableButton",
+	                             "disableButton"]
+	
+	var delegate: LGEditorViewDelegate?
+	
+	private var cancelBag = Set<AnyCancellable>()
 	
 	init() {
 		let contentController = WKUserContentController()
@@ -23,11 +34,14 @@ public class LGEditorView: WKWebView {
 		config.applicationNameForUserAgent = "Chrome"
 		
 		super.init(frame: .zero, configuration: config)
+		removeInputAccessory()
+		
 		navigationDelegate = self
 		uiDelegate = self
 		
 		loadResources()
-//		setMonitorList()
+		setMonitorList()
+		bindEvent()
 	}
 	
 	@available(*, unavailable)
@@ -35,7 +49,15 @@ public class LGEditorView: WKWebView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func setBarItem() {}
+	func bindEvent() {
+		let keyboardWillHide = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+		
+		keyboardWillHide
+			.sink { _ in
+				self.evaluateJavaScript("editor.hook.blur();")
+			}
+			.store(in: &cancelBag)
+	}
 	
 	func loadResources() {
 		if let path = Bundle.main.path(forResource: "demo/Editor", ofType: "html") {
@@ -48,11 +70,42 @@ public class LGEditorView: WKWebView {
 		}
 	}
 	
-//	func setMonitorList() {
-//		for name in list {
-//			configuration.userContentController.add(self, name: name)
-//		}
-//	}
+	func setMonitorList() {
+		for name in monitorList {
+			configuration.userContentController.add(self, name: name)
+		}
+	}
+}
+
+private final class InputAccessoryHideHelper: NSObject {
+	@objc var inputAccessoryView: AnyObject? { return nil }
+}
+
+extension WKWebView {
+	func removeInputAccessory() {
+		guard let target = scrollView.subviews.first(where: {
+			String(describing: type(of: $0)).hasPrefix("WKContent")
+		}), let superclass = target.superclass else {
+			return
+		}
+
+		let noInputAccessoryViewClassName = "\(superclass)_NoInputAccessoryView"
+		var newClass: AnyClass? = NSClassFromString(noInputAccessoryViewClassName)
+
+		if newClass == nil, let targetClass = object_getClass(target), let classNameCString = noInputAccessoryViewClassName.cString(using: .ascii) {
+			newClass = objc_allocateClassPair(targetClass, classNameCString, 0)
+
+			if let newClass = newClass {
+				objc_registerClassPair(newClass)
+			}
+		}
+
+		guard let noInputAccessoryClass = newClass, let originalMethod = class_getInstanceMethod(InputAccessoryHideHelper.self, #selector(getter: InputAccessoryHideHelper.inputAccessoryView)) else {
+			return
+		}
+		class_addMethod(noInputAccessoryClass.self, #selector(getter: InputAccessoryHideHelper.inputAccessoryView), method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+		object_setClass(target, noInputAccessoryClass)
+	}
 }
 
 extension LGEditorView: WKNavigationDelegate {
@@ -66,10 +119,16 @@ extension LGEditorView: WKUIDelegate {}
 
 extension LGEditorView: WKScriptMessageHandler {
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-//		if message.name == "getText" {
-//			let text = message.body as? String ?? ""
-//			self.text = text
-//		}
+		print("handleScript")
+		if message.name == "enableButton" {
+			guard let name = message.body as? String else { return }
+			delegate?.enableButton(with: name)
+		}
+		
+		if message.name == "disableButton" {
+			guard let name = message.body as? String else { return }
+			delegate?.disableButton(with: name)
+		}
 	}
 }
 
@@ -92,10 +151,10 @@ extension LGEditorView {
 			print(text)
 		})
 	}
-	
-	override public func resignFirstResponder() -> Bool {
-		evaluateJavaScript("editor.hook.blur();")
-		return super.resignFirstResponder()
+}
+
+extension LGEditorView {
+	func TestFunction() {
+		evaluateJavaScript("editor.hook.insertTable();")
 	}
-	
 }

@@ -45,9 +45,13 @@ class EditorViewController: UIViewController {
 		super.viewDidLoad()
 		view.backgroundColor = .white
 		layoutEditorView()
+		configureEditorView()
+		setBarItem()
 	}
 	
 	func layoutEditorView() {
+		
+		
 		view.addSubview(editor)
 		
 		editor.snp.makeConstraints { make in
@@ -55,6 +59,34 @@ class EditorViewController: UIViewController {
 			make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
 			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
 			make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+		}
+	}
+	
+	func configureEditorView() {
+		editor.delegate = self
+	}
+	
+	func setBarItem() {
+	
+		let button = UIBarButtonItem(title: "Test", style: .plain, target: self, action: #selector(bridge))
+		navigationItem.rightBarButtonItem = button
+	}
+	
+	@objc func bridge() {
+		editor.TestFunction()
+	}
+}
+
+extension EditorViewController: LGEditorViewDelegate {
+	func enableButton(with name: String) {
+		if name == "table" {
+			navigationItem.rightBarButtonItem?.isEnabled = true
+		}
+	}
+	
+	func disableButton(with name: String) {
+		if name == "table" {
+			navigationItem.rightBarButtonItem?.isEnabled = false
 		}
 	}
 }
