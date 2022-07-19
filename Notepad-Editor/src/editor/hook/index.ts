@@ -33,14 +33,6 @@ export class Hook {
 
   public insertTable() {
     insertTable(this.neditor);
-    (window as any).webkit.messageHandlers.disableButton.postMessage("table")
-  }
-
-  public setToolbarButton() {
-
-  }
-
-  public disableToolbarButton() {
-
+    (window as any).webkit.messageHandlers.disableBarButtons.postMessage(["table"])
   }
 }

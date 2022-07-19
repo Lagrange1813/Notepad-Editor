@@ -9,56 +9,56 @@ import Combine
 import WebKit
 
 protocol LGEditorViewDelegate {
-	func enableButton(with name: String)
-	func disableButton(with name: String)
+	func setCurrentButton(with names: [String])
+	func removeCurrentButton(with names: [String])
+	func enableBarButtons(with names: [String])
+	func disableBarButtons(with names: [String])
 }
 
 public class LGEditorView: WKWebView {
-	var text: String = "" {
-		didSet {
-			print(text)
-		}
-	}
-	
-	let monitorList: [String] = ["enableButton",
-	                             "disableButton"]
-	
+	var text: String = ""
+
+	let monitorList: [String] = ["setCurrentButton",
+	                             "removeCurrentButton",
+	                             "enableBarButtons",
+	                             "disableBarButtons"]
+
 	var delegate: LGEditorViewDelegate?
-	
+
 	private var cancelBag = Set<AnyCancellable>()
-	
+
 	init() {
 		let contentController = WKUserContentController()
 		let config = WKWebViewConfiguration()
 		config.userContentController = contentController
 		config.applicationNameForUserAgent = "Chrome"
-		
+
 		super.init(frame: .zero, configuration: config)
-		removeInputAccessory()
-		
+//		removeInputAccessory()
+
 		navigationDelegate = self
 		uiDelegate = self
-		
+
 		loadResources()
 		setMonitorList()
 		bindEvent()
 	}
-	
+
 	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	func bindEvent() {
 		let keyboardWillHide = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
-		
+
 		keyboardWillHide
 			.sink { _ in
 				self.evaluateJavaScript("editor.hook.blur();")
 			}
 			.store(in: &cancelBag)
 	}
-	
+
 	func loadResources() {
 		if let path = Bundle.main.path(forResource: "demo/Editor", ofType: "html") {
 			print(path)
@@ -69,7 +69,7 @@ public class LGEditorView: WKWebView {
 			fatalError("Fail to load resources")
 		}
 	}
-	
+
 	func setMonitorList() {
 		for name in monitorList {
 			configuration.userContentController.add(self, name: name)
@@ -119,15 +119,25 @@ extension LGEditorView: WKUIDelegate {}
 
 extension LGEditorView: WKScriptMessageHandler {
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-		print("handleScript")
-		if message.name == "enableButton" {
-			guard let name = message.body as? String else { return }
-			delegate?.enableButton(with: name)
+		
+		if message.name == "setCurrentButton" {
+			guard let names = message.body as? Array<String> else { return }
+			delegate?.setCurrentButton(with: names)
 		}
 		
-		if message.name == "disableButton" {
-			guard let name = message.body as? String else { return }
-			delegate?.disableButton(with: name)
+		if message.name == "removeCurrentButton" {
+			guard let names = message.body as? Array<String> else { return }
+			delegate?.removeCurrentButton(with: names)
+		}
+		
+		if message.name == "enableBarButtons" {
+			guard let names = message.body as? Array<String> else { return }
+			delegate?.enableBarButtons(with: names)
+		}
+
+		if message.name == "disableBarButtons" {
+			guard let names = message.body as? Array<String> else { return }
+			delegate?.disableBarButtons(with: names)
 		}
 	}
 }
@@ -139,11 +149,11 @@ extension LGEditorView {
 		case ir
 		case sv
 	}
-	
+
 	func setLGEditorMode(_ mode: LGEditorMode) {
 		evaluateJavaScript("editor.hook.setEditorMode('\(mode)');")
 	}
-	
+
 	func getText() {
 		evaluateJavaScript("editor.hook.getText();", completionHandler: {
 			text, _ in

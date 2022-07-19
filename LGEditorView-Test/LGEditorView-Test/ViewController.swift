@@ -50,8 +50,6 @@ class EditorViewController: UIViewController {
 	}
 	
 	func layoutEditorView() {
-		
-		
 		view.addSubview(editor)
 		
 		editor.snp.makeConstraints { make in
@@ -67,7 +65,6 @@ class EditorViewController: UIViewController {
 	}
 	
 	func setBarItem() {
-	
 		let button = UIBarButtonItem(title: "Test", style: .plain, target: self, action: #selector(bridge))
 		navigationItem.rightBarButtonItem = button
 	}
@@ -78,14 +75,18 @@ class EditorViewController: UIViewController {
 }
 
 extension EditorViewController: LGEditorViewDelegate {
-	func enableButton(with name: String) {
-		if name == "table" {
+	func setCurrentButton(with names: [String]) {}
+	
+	func removeCurrentButton(with names: [String]) {}
+
+	func enableBarButtons(with names: [String]) {
+		if names.contains("table") {
 			navigationItem.rightBarButtonItem?.isEnabled = true
 		}
 	}
 	
-	func disableButton(with name: String) {
-		if name == "table" {
+	func disableBarButtons(with names: [String]) {
+		if names.contains("table") {
 			navigationItem.rightBarButtonItem?.isEnabled = false
 		}
 	}
