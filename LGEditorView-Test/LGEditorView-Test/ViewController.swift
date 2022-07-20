@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 class ViewController: UIViewController {
-	let editorView = EditorViewController()
+	let textVC = TextViewController()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,30 +29,38 @@ class ViewController: UIViewController {
 			make.width.equalTo(70)
 			make.height.equalTo(70)
 		}
-		
-		editorView.view.setNeedsLayout()
 	}
 	
 	@objc func showView() {
-		navigationController?.pushViewController(editorView, animated: true)
+		navigationController?.pushViewController(textVC, animated: true)
 	}
 }
 
-class EditorViewController: UIViewController {
-	let editor = LGEditorView()
+class TextViewController: UIViewController {
+	let textView = MDTextView()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .white
-		layoutEditorView()
-		configureEditorView()
+		layoutTextView()
+		configureTextView()
 		setBarItem()
 	}
 	
-	func layoutEditorView() {
-		view.addSubview(editor)
+//	override func viewWillAppear(_ animated: Bool) {
+//		super.viewWillAppear(animated)
+//		textView.updateHeight()
+//	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		textView.updateHeight()
+	}
+	
+	func layoutTextView() {
+		view.addSubview(textView)
 		
-		editor.snp.makeConstraints { make in
+		textView.snp.makeConstraints { make in
 			make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
 			make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
 			make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -60,8 +68,8 @@ class EditorViewController: UIViewController {
 		}
 	}
 	
-	func configureEditorView() {
-		editor.delegate = self
+	func configureTextView() {
+		textView.bodyView.delegate = self
 	}
 	
 	func setBarItem() {
@@ -70,11 +78,11 @@ class EditorViewController: UIViewController {
 	}
 	
 	@objc func bridge() {
-		editor.TestFunction()
+		textView.bodyView.TestFunction()
 	}
 }
 
-extension EditorViewController: LGEditorViewDelegate {
+extension TextViewController: LGEditorViewDelegate {
 	func setCurrentButton(with names: [String]) {}
 	
 	func removeCurrentButton(with names: [String]) {}
@@ -89,5 +97,77 @@ extension EditorViewController: LGEditorViewDelegate {
 		if names.contains("table") {
 			navigationItem.rightBarButtonItem?.isEnabled = false
 		}
+	}
+}
+
+class MDTextView: UIScrollView {
+	let titleView = UITextView()
+	let bodyView = LGEditorView()
+	
+	init() {
+		super.init(frame: .zero)
+		customize()
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
+	
+	func customize() {
+		layoutTextView()
+		configureTextView()
+	}
+	
+	func layoutTextView() {
+		titleView.isScrollEnabled = false
+		titleView.backgroundColor = .clear
+		titleView.sizeToFit()
+		addSubview(titleView)
+		
+		titleView.snp.makeConstraints { make in
+			make.top.equalToSuperview().offset(12)
+			make.centerX.equalToSuperview()
+			make.width.equalTo(300)
+			make.height.equalTo(50)
+		}
+		
+		bodyView.scrollView.bounces = false
+		bodyView.scrollView.isScrollEnabled = false
+		bodyView.backgroundColor = .clear
+		addSubview(bodyView)
+		
+		bodyView.snp.makeConstraints { make in
+			make.top.equalTo(titleView.snp.bottom)
+			make.centerX.equalToSuperview()
+			make.width.equalTo(350)
+			make.height.equalTo(0)
+		}
+	}
+	
+	func configureTextView() {
+		titleView.selectedRange = NSRange(location: 0, length: 0)
+		titleView.autocorrectionType = .no
+		titleView.text = "Test"
+		
+		bodyView.getViewHeight = { [unowned self] in
+			bodyView.frame.height
+		}
+
+		bodyView.updateHeight = { [unowned self] height in
+			bodyView.snp.updateConstraints { make in
+				make.height.equalTo(height)
+			}
+			layoutIfNeeded()
+			updateContentSize(with: height)
+		}
+	}
+	
+	func updateContentSize(with height: CGFloat) {
+		contentSize = CGSize(width: frame.width,
+												 height: height + titleView.frame.height)
+	}
+	
+	func updateHeight() {
+		bodyView.evaluateJavaScript("editor.hook.syncHeight();")
 	}
 }

@@ -18,12 +18,17 @@ protocol LGEditorViewDelegate {
 public class LGEditorView: WKWebView {
 	var text: String = ""
 
-	let monitorList: [String] = ["setCurrentButton",
+	let monitorList: [String] = ["sizeNotification",
+	                             "setCurrentButton",
 	                             "removeCurrentButton",
 	                             "enableBarButtons",
 	                             "disableBarButtons"]
 
 	var delegate: LGEditorViewDelegate?
+
+	var shouldListenToResizeNotification = false
+	var getViewHeight: (() -> CGFloat)?
+	var updateHeight: ((CGFloat) -> Void)?
 
 	private var cancelBag = Set<AnyCancellable>()
 
@@ -60,7 +65,7 @@ public class LGEditorView: WKWebView {
 	}
 
 	func loadResources() {
-		if let path = Bundle.main.path(forResource: "demo/Editor", ofType: "html") {
+		if let path = Bundle.main.path(forResource: "carrier/Editor", ofType: "html") {
 			print(path)
 //			let request = URLRequest(url: URL(fileURLWithPath: path))
 //			load(request)
@@ -110,8 +115,8 @@ extension WKWebView {
 
 extension LGEditorView: WKNavigationDelegate {
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//		setLGEditorMode(.sv)
-//		getText()
+//		evaluateJavaScript("document.readyState", completionHandler: { complete, _ in
+//		})
 	}
 }
 
@@ -119,24 +124,28 @@ extension LGEditorView: WKUIDelegate {}
 
 extension LGEditorView: WKScriptMessageHandler {
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+		if message.name == "sizeNotification" {
+			print("message\(message.body)")
+			updateHeight?(message.body as? CGFloat ?? 0)
+		}
 		
 		if message.name == "setCurrentButton" {
-			guard let names = message.body as? Array<String> else { return }
+			guard let names = message.body as? [String] else { return }
 			delegate?.setCurrentButton(with: names)
 		}
-		
+
 		if message.name == "removeCurrentButton" {
-			guard let names = message.body as? Array<String> else { return }
+			guard let names = message.body as? [String] else { return }
 			delegate?.removeCurrentButton(with: names)
 		}
-		
+
 		if message.name == "enableBarButtons" {
-			guard let names = message.body as? Array<String> else { return }
+			guard let names = message.body as? [String] else { return }
 			delegate?.enableBarButtons(with: names)
 		}
 
 		if message.name == "disableBarButtons" {
-			guard let names = message.body as? Array<String> else { return }
+			guard let names = message.body as? [String] else { return }
 			delegate?.disableBarButtons(with: names)
 		}
 	}
@@ -154,13 +163,17 @@ extension LGEditorView {
 		evaluateJavaScript("editor.hook.setEditorMode('\(mode)');")
 	}
 
-	func getText() {
+	func getText() -> String {
+		var result: String?
 		evaluateJavaScript("editor.hook.getText();", completionHandler: {
 			text, _ in
 			guard let text = text else { return }
-			print(text)
+			result = text as? String ?? ""
 		})
+		return result ?? ""
 	}
+	
+	
 }
 
 extension LGEditorView {

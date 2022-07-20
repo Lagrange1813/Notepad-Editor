@@ -35,4 +35,8 @@ export class Hook {
     insertTable(this.neditor);
     (window as any).webkit.messageHandlers.disableBarButtons.postMessage(["table"])
   }
+
+  public syncHeight() {
+    (window as any).webkit.messageHandlers.sizeNotification.postMessage(document.body.scrollHeight);
+  }
 }
