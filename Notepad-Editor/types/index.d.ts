@@ -142,8 +142,6 @@ declare class Lute {
 
     public SetLinkBase(url: string): void;
 
-    public SetVditorIR(enable: boolean): void;
-
     public SetVditorSV(enable: boolean): void;
 
     public SetVditorWYSIWYG(enable: boolean): void;

@@ -31,10 +31,10 @@
 <script>
   let editor = new Neditor("neditor", {
     height: "auto",
+    theme: "classic",
     cache: {
       enable: false
     },
-    value: "# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n# Test\n### Test\n$\\#(2^A)=2^{\\#A}$\n```swift\nfunc test() {\n  print(\"Yes\")\n}\n```\n",
   });
 
   let oldHeight = 0;
@@ -46,8 +46,16 @@
       window.webkit.messageHandlers.sizeNotification.postMessage(newHeight);
     }
   }
-  
+
   window.onscroll = observeHeight;
+  window.onresize = observeHeight;
+  window.onclick = observeHeight;
   window.onkeyup = observeHeight;
+
+  // setTimeout(()=> {
+  //   editor.hook.setTheme('dark');
+    // editor.setTheme("dark", "dark");
+  // }, 500);
+
 </script>
 </html>

@@ -1,6 +1,9 @@
 import {setEditorMode} from "./setEditorMode";
 import {getMarkdown} from "../markdown/getMarkdown";
 import {insertTable} from "./insertTable";
+import {setTheme} from "../ui/setTheme";
+import {setContentTheme} from "../ui/setContentTheme";
+import {setCodeTheme} from "../ui/setCodeTheme";
 
 export class Hook {
   private neditor: LGEditor;
@@ -38,5 +41,17 @@ export class Hook {
 
   public syncHeight() {
     (window as any).webkit.messageHandlers.sizeNotification.postMessage(document.body.scrollHeight);
+  }
+
+  public setTheme(mode: string) {
+    if (mode == 'dark') {
+      this.neditor.options.theme = "dark";
+      setTheme(this.neditor);
+      this.neditor.options.preview.theme.current = "dark";
+      setContentTheme("dark", this.neditor.options.preview.theme.path);
+      this.neditor.options.preview.hljs.style = "solarized-dark256";
+      setCodeTheme("solarized-dark256");
+
+    }
   }
 }

@@ -15,14 +15,22 @@ protocol LGEditorViewDelegate {
 	func disableBarButtons(with names: [String])
 }
 
+fileprivate let SIZE_NOTIFICATION: String = "sizeNotification"
+fileprivate let SET_CURRENT_BUTTON: String = "setCurrentButton"
+fileprivate let REMOVE_CURRENT_BUTTON: String = "removeCurrentButton"
+fileprivate let ENABLE_BAR_BUTTONS: String = "enableBarButtons"
+fileprivate let DISABLE_BAR_BUTTONS: String = "disableBarButtons"
+
 public class LGEditorView: WKWebView {
 	var text: String = ""
 
-	let monitorList: [String] = ["sizeNotification",
-	                             "setCurrentButton",
-	                             "removeCurrentButton",
-	                             "enableBarButtons",
-	                             "disableBarButtons"]
+	let monitorList: [String] = [
+		SIZE_NOTIFICATION,
+		SET_CURRENT_BUTTON,
+		REMOVE_CURRENT_BUTTON,
+		ENABLE_BAR_BUTTONS,
+		DISABLE_BAR_BUTTONS,
+	]
 
 	var delegate: LGEditorViewDelegate?
 
@@ -62,6 +70,8 @@ public class LGEditorView: WKWebView {
 				self.evaluateJavaScript("editor.hook.blur();")
 			}
 			.store(in: &cancelBag)
+		
+		
 	}
 
 	func loadResources() {
@@ -117,6 +127,7 @@ extension LGEditorView: WKNavigationDelegate {
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 //		evaluateJavaScript("document.readyState", completionHandler: { complete, _ in
 //		})
+		print(bounds.width)
 	}
 }
 
@@ -124,27 +135,27 @@ extension LGEditorView: WKUIDelegate {}
 
 extension LGEditorView: WKScriptMessageHandler {
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-		if message.name == "sizeNotification" {
+		if message.name == SIZE_NOTIFICATION {
 			print("message\(message.body)")
 			updateHeight?(message.body as? CGFloat ?? 0)
 		}
-		
-		if message.name == "setCurrentButton" {
+
+		if message.name == SET_CURRENT_BUTTON {
 			guard let names = message.body as? [String] else { return }
 			delegate?.setCurrentButton(with: names)
 		}
 
-		if message.name == "removeCurrentButton" {
+		if message.name == REMOVE_CURRENT_BUTTON {
 			guard let names = message.body as? [String] else { return }
 			delegate?.removeCurrentButton(with: names)
 		}
 
-		if message.name == "enableBarButtons" {
+		if message.name == ENABLE_BAR_BUTTONS {
 			guard let names = message.body as? [String] else { return }
 			delegate?.enableBarButtons(with: names)
 		}
 
-		if message.name == "disableBarButtons" {
+		if message.name == DISABLE_BAR_BUTTONS {
 			guard let names = message.body as? [String] else { return }
 			delegate?.disableBarButtons(with: names)
 		}

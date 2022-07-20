@@ -148,10 +148,6 @@ class MDTextView: UIScrollView {
 		titleView.selectedRange = NSRange(location: 0, length: 0)
 		titleView.autocorrectionType = .no
 		titleView.text = "Test"
-		
-		bodyView.getViewHeight = { [unowned self] in
-			bodyView.frame.height
-		}
 
 		bodyView.updateHeight = { [unowned self] height in
 			bodyView.snp.updateConstraints { make in

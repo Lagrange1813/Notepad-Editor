@@ -288,6 +288,8 @@ class Neditor extends NeditorMethod {
         if (clearStack) {
             this.clearStack();
         }
+
+        // this.hook.syncHeight();
     }
 
     /** 清空 undo & redo 栈 */
