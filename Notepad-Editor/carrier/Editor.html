@@ -43,19 +43,23 @@
     if (newHeight !== oldHeight) {
       oldHeight = newHeight;
       console.log(newHeight);
-      window.webkit.messageHandlers.sizeNotification.postMessage(newHeight);
+      window.webkit.messageHandlers.adjustHeight.postMessage(newHeight);
     }
   }
 
-  window.onscroll = observeHeight;
-  window.onresize = observeHeight;
-  window.onclick = observeHeight;
-  window.onkeyup = observeHeight;
+  addEventListener("scroll", observeHeight);
+  addEventListener("resize", observeHeight);
+  addEventListener("click", observeHeight);
+  addEventListener("keyup", observeHeight);
 
-  // setTimeout(()=> {
-  //   editor.hook.setTheme('dark');
-    // editor.setTheme("dark", "dark");
-  // }, 500);
+  let observeTextChange = function () {
+    window.webkit.messageHandlers.textChange.postMessage('L');
+  }
+
+  // addEventListener("scroll", observeTextChange);
+  // addEventListener("resize", observeTextChange);
+  // addEventListener("click", observeTextChange);
+  addEventListener("keyup", observeTextChange);
 
 </script>
 </html>

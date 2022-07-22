@@ -40,7 +40,7 @@ export class Hook {
   }
 
   public syncHeight() {
-    (window as any).webkit.messageHandlers.sizeNotification.postMessage(document.body.scrollHeight);
+    (window as any).webkit.messageHandlers.adjustHeight.postMessage(document.body.scrollHeight);
   }
 
   public setTheme(mode: string) {
@@ -51,7 +51,14 @@ export class Hook {
       setContentTheme("dark", this.neditor.options.preview.theme.path);
       this.neditor.options.preview.hljs.style = "solarized-dark256";
       setCodeTheme("solarized-dark256");
-
+    }
+    else if (mode == 'light') {
+      this.neditor.options.theme = "classic";
+      setTheme(this.neditor);
+      this.neditor.options.preview.theme.current = "light";
+      setContentTheme("light", this.neditor.options.preview.theme.path);
+      this.neditor.options.preview.hljs.style = "github";
+      setCodeTheme("github");
     }
   }
 }
