@@ -61,4 +61,8 @@ export class Hook {
       setCodeTheme("github");
     }
   }
+
+  public setBackground(color: string) {
+    document.body.style.backgroundColor = color;
+  }
 }

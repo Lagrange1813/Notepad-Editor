@@ -6,16 +6,19 @@
   <title>Notepad-Editor</title>
   <style>
     html {
+      overflow: hidden;
       margin: 0;
       padding: 0;
     }
 
     body {
+      overflow: hidden;
       margin: 0;
       padding: 0;
     }
 
     .wrapper {
+      overflow: hidden;
       margin: 0;
       padding: 0;
     }
@@ -55,10 +58,7 @@
   let observeTextChange = function () {
     window.webkit.messageHandlers.textChange.postMessage('L');
   }
-
-  // addEventListener("scroll", observeTextChange);
-  // addEventListener("resize", observeTextChange);
-  // addEventListener("click", observeTextChange);
+  
   addEventListener("keyup", observeTextChange);
 
 </script>
