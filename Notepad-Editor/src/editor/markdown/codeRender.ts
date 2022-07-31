@@ -2,8 +2,7 @@ import {code160to32} from "../util/code160to32";
 
 export const codeRender = (element: HTMLElement) => {
     element.querySelectorAll("pre > code").forEach((e: HTMLElement, index: number) => {
-        if (e.parentElement.classList.contains("vditor-wysiwyg__pre") ||
-            e.parentElement.classList.contains("vditor-ir__marker--pre")) {
+        if (e.parentElement.classList.contains("vditor-wysiwyg__pre")) {
             return;
         }
         if (e.classList.contains("language-mermaid") || e.classList.contains("language-flowchart") ||

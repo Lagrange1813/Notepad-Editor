@@ -5,6 +5,13 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
   <title>Notepad-Editor</title>
   <style>
+
+    /*@font-face*/
+    /*{*/
+    /*  font-family: 'LXGW WenKai Mono';*/
+    /*  src: local('LXGW WenKai Mono'),url('LXGWWenKaiMono-Regular.ttf') format('truetype');*/
+    /*}*/
+
     html {
       overflow: hidden;
       margin: 0;
@@ -42,8 +49,8 @@
 
   let oldHeight = 0;
   let observeHeight = function () {
-    let newHeight = document.body.scrollHeight;
-    if (newHeight !== oldHeight) {
+    let newHeight = document.body.offsetHeight;
+    if (newHeight != oldHeight) {
       oldHeight = newHeight;
       console.log(newHeight);
       window.webkit.messageHandlers.adjustHeight.postMessage(newHeight);
@@ -58,7 +65,7 @@
   let observeTextChange = function () {
     window.webkit.messageHandlers.textChange.postMessage('L');
   }
-  
+
   addEventListener("keyup", observeTextChange);
 
 </script>

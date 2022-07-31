@@ -32,6 +32,12 @@ export class Hook {
 
     this.neditor.hint.element.style.display = "none";
     this.neditor.wysiwyg.popover.style.display = "none";
+
+    if (this.neditor.currentMode === "sv") {
+      this.neditor.sv.element.blur();
+    } else if (this.neditor.currentMode === "wysiwyg") {
+      this.neditor.wysiwyg.element.blur();
+    }
   }
 
   public insertTable() {
