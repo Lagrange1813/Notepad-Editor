@@ -214,34 +214,34 @@ export const highlightToolbarWYSIWYG = (vditor: LGEditor) => {
     }
 
     // toc popover
-    const tocElement = hasClosestByClassName(typeElement, "vditor-toc") as HTMLElement;
-    if (tocElement) {
-      vditor.wysiwyg.popover.innerHTML = "";
-      genClose(tocElement, vditor);
-      setPopoverPosition(vditor, tocElement);
-      return;
-    }
+    // const tocElement = hasClosestByClassName(typeElement, "vditor-toc") as HTMLElement;
+    // if (tocElement) {
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //   genClose(tocElement, vditor);
+    //   setPopoverPosition(vditor, tocElement);
+    //   return;
+    // }
 
     // quote popover
-    const blockquoteElement = hasClosestByTag(typeElement, "BLOCKQUOTE") as HTMLTableElement;
-    if (blockquoteElement) {
-      vditor.wysiwyg.popover.innerHTML = "";
-      genUp(range, blockquoteElement, vditor);
-      genDown(range, blockquoteElement, vditor);
-      genClose(blockquoteElement, vditor);
-      setPopoverPosition(vditor, blockquoteElement);
-    }
+    // const blockquoteElement = hasClosestByTag(typeElement, "BLOCKQUOTE") as HTMLTableElement;
+    // if (blockquoteElement) {
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //   genUp(range, blockquoteElement, vditor);
+    //   genDown(range, blockquoteElement, vditor);
+    //   genClose(blockquoteElement, vditor);
+    //   setPopoverPosition(vditor, blockquoteElement);
+    // }
 
     // list item popover
-    if (liElement) {
-      vditor.wysiwyg.popover.innerHTML = "";
-
-      genUp(range, liElement, vditor);
-      genDown(range, liElement, vditor);
-      genClose(liElement, vditor);
-
-      setPopoverPosition(vditor, liElement);
-    }
+    // if (liElement) {
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //
+    //   genUp(range, liElement, vditor);
+    //   genDown(range, liElement, vditor);
+    //   genClose(liElement, vditor);
+    //
+    //   setPopoverPosition(vditor, liElement);
+    // }
 
     // table popover
     if (tableElement) {
@@ -563,240 +563,240 @@ export const highlightToolbarWYSIWYG = (vditor: LGEditor) => {
     }
 
     // link ref popover
-    const linkRefElement = hasClosestByAttribute(typeElement, "data-type", "link-ref");
-    if (linkRefElement) {
-      genLinkRefPopover(vditor, linkRefElement);
-    }
+    // const linkRefElement = hasClosestByAttribute(typeElement, "data-type", "link-ref");
+    // if (linkRefElement) {
+    //   genLinkRefPopover(vditor, linkRefElement);
+    // }
 
     // footnote popover
-    const footnotesRefElement = hasClosestByAttribute(typeElement, "data-type", "footnotes-ref");
-    if (footnotesRefElement) {
-      const lang: keyof LGI18n | "" = vditor.options.lang;
-      const options: LGOptions = vditor.options;
-      vditor.wysiwyg.popover.innerHTML = "";
-
-      const inputWrap = document.createElement("span");
-      inputWrap.setAttribute("aria-label", window.VditorI18n.footnoteRef + "<" + updateHotkeyTip("⌥Enter") + ">");
-      inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-      const input = document.createElement("input");
-      inputWrap.appendChild(input);
-      input.className = "vditor-input";
-      input.setAttribute("placeholder", window.VditorI18n.footnoteRef + "<" + updateHotkeyTip("⌥Enter") + ">");
-      input.style.width = "120px";
-      input.value = footnotesRefElement.getAttribute("data-footnotes-label");
-      input.oninput = () => {
-        if (input.value.trim() !== "") {
-          footnotesRefElement.setAttribute("data-footnotes-label", input.value);
-        }
-      };
-      input.onkeydown = (event) => {
-        if (event.isComposing) {
-          return;
-        }
-        if (
-          !isCtrl(event) &&
-          !event.shiftKey &&
-          event.altKey &&
-          event.key === "Enter"
-        ) {
-          range.selectNodeContents(footnotesRefElement);
-          range.collapse(false);
-          setSelectionFocus(range);
-          event.preventDefault();
-          return;
-        }
-        removeBlockElement(vditor, event);
-      };
-
-      genClose(footnotesRefElement, vditor);
-      vditor.wysiwyg.popover.insertAdjacentElement("beforeend", inputWrap);
-      setPopoverPosition(vditor, footnotesRefElement);
-    }
+    // const footnotesRefElement = hasClosestByAttribute(typeElement, "data-type", "footnotes-ref");
+    // if (footnotesRefElement) {
+    //   const lang: keyof LGI18n | "" = vditor.options.lang;
+    //   const options: LGOptions = vditor.options;
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //
+    //   const inputWrap = document.createElement("span");
+    //   inputWrap.setAttribute("aria-label", window.VditorI18n.footnoteRef + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //   inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
+    //   const input = document.createElement("input");
+    //   inputWrap.appendChild(input);
+    //   input.className = "vditor-input";
+    //   input.setAttribute("placeholder", window.VditorI18n.footnoteRef + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //   input.style.width = "120px";
+    //   input.value = footnotesRefElement.getAttribute("data-footnotes-label");
+    //   input.oninput = () => {
+    //     if (input.value.trim() !== "") {
+    //       footnotesRefElement.setAttribute("data-footnotes-label", input.value);
+    //     }
+    //   };
+    //   input.onkeydown = (event) => {
+    //     if (event.isComposing) {
+    //       return;
+    //     }
+    //     if (
+    //       !isCtrl(event) &&
+    //       !event.shiftKey &&
+    //       event.altKey &&
+    //       event.key === "Enter"
+    //     ) {
+    //       range.selectNodeContents(footnotesRefElement);
+    //       range.collapse(false);
+    //       setSelectionFocus(range);
+    //       event.preventDefault();
+    //       return;
+    //     }
+    //     removeBlockElement(vditor, event);
+    //   };
+    //
+    //   genClose(footnotesRefElement, vditor);
+    //   vditor.wysiwyg.popover.insertAdjacentElement("beforeend", inputWrap);
+    //   setPopoverPosition(vditor, footnotesRefElement);
+    // }
 
     // block popover: math-inline, math-block, html-block, html-inline, code-block, html-entity
-    let blockRenderElement = hasClosestByClassName(typeElement, "vditor-wysiwyg__block") as HTMLElement;
-    const isBlock = blockRenderElement ? blockRenderElement.getAttribute("data-type").indexOf("block") > -1 : false;
-    vditor.wysiwyg.element
-      .querySelectorAll(".vditor-wysiwyg__preview")
-      .forEach((itemElement) => {
-        if (!blockRenderElement || (blockRenderElement && isBlock && !blockRenderElement.contains(itemElement))) {
-          const previousElement = itemElement.previousElementSibling as HTMLElement;
-          previousElement.style.display = "none";
-        }
-      });
-    if (blockRenderElement && isBlock) {
-      vditor.wysiwyg.popover.innerHTML = "";
-      genUp(range, blockRenderElement, vditor);
-      genDown(range, blockRenderElement, vditor);
-      genClose(blockRenderElement, vditor);
-
-      if (blockRenderElement.getAttribute("data-type") === "code-block") {
-        const languageWrap = document.createElement("span");
-        languageWrap.setAttribute("aria-label", window.VditorI18n.language + "<" + updateHotkeyTip("⌥Enter") + ">");
-        languageWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-        const language = document.createElement("input");
-        languageWrap.appendChild(language);
-
-        const codeElement =
-          blockRenderElement.firstElementChild.firstElementChild;
-
-        language.className = "vditor-input";
-        language.setAttribute("placeholder",
-          window.VditorI18n.language + "<" + updateHotkeyTip("⌥Enter") + ">");
-        language.value =
-          codeElement.className.indexOf("language-") > -1
-            ? codeElement.className.split("-")[1].split(" ")[0]
-            : "";
-        language.oninput = (e: InputEvent) => {
-          if (language.value.trim() !== "") {
-            codeElement.className = `language-${language.value}`;
-          } else {
-            codeElement.className = "";
-            vditor.hint.recentLanguage = "";
-          }
-          if (blockRenderElement.lastElementChild.classList.contains("vditor-wysiwyg__preview")) {
-            blockRenderElement.lastElementChild.innerHTML =
-              blockRenderElement.firstElementChild.innerHTML;
-            processCodeRender(blockRenderElement.lastElementChild as HTMLElement, vditor);
-          }
-          afterRenderEvent(vditor);
-          // 当鼠标点选语言时，触发自定义input事件
-          if (e.detail === 1) {
-            // 选择语言后，输入焦点切换到代码输入框
-            range.setStart(codeElement.firstChild, 0);
-            range.collapse(true);
-            setSelectionFocus(range);
-          }
-        };
-        language.onkeydown = (event: KeyboardEvent) => {
-          if (event.isComposing) {
-            return;
-          }
-          if (removeBlockElement(vditor, event)) {
-            return;
-          }
-          if (
-            event.key === "Escape" &&
-            vditor.hint.element.style.display === "block"
-          ) {
-            vditor.hint.element.style.display = "none";
-            event.preventDefault();
-            return;
-          }
-          vditor.hint.select(event, vditor);
-          if (
-            !isCtrl(event) &&
-            !event.shiftKey &&
-            event.key === "Enter"
-          ) {
-            range.setStart(codeElement.firstChild, 0);
-            range.collapse(true);
-            setSelectionFocus(range);
-            event.preventDefault();
-            event.stopPropagation();
-          }
-        };
-        language.onkeyup = (event: KeyboardEvent) => {
-          if (
-            event.isComposing ||
-            event.key === "Enter" ||
-            event.key === "ArrowUp" ||
-            event.key === "Escape" ||
-            event.key === "ArrowDown"
-          ) {
-            return;
-          }
-          const matchLangData: LGHintData[] = [];
-          const key = language.value.substring(0, language.selectionStart);
-          Constants.CODE_LANGUAGES.forEach((keyName) => {
-            if (keyName.indexOf(key.toLowerCase()) > -1) {
-              matchLangData.push({
-                html: keyName,
-                value: keyName,
-              });
-            }
-          });
-          vditor.hint.genHTML(matchLangData, key, vditor);
-          event.preventDefault();
-        };
-        vditor.wysiwyg.popover.insertAdjacentElement("beforeend", languageWrap);
-      }
-      setPopoverPosition(vditor, blockRenderElement);
-    } else {
-      blockRenderElement = undefined;
-    }
-    if (headingElement) {
-      vditor.wysiwyg.popover.innerHTML = "";
-
-      const inputWrap = document.createElement("span");
-      inputWrap.setAttribute("aria-label", "ID" + "<" + updateHotkeyTip("⌥Enter") + ">");
-      inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-      const input = document.createElement("input");
-      inputWrap.appendChild(input);
-      input.className = "vditor-input";
-      input.setAttribute("placeholder", "ID" + "<" + updateHotkeyTip("⌥Enter") + ">");
-      input.style.width = "120px";
-      input.value = headingElement.getAttribute("data-id") || "";
-      input.oninput = () => {
-        headingElement.setAttribute("data-id", input.value);
-      };
-      input.onkeydown = (event) => {
-        if (event.isComposing) {
-          return;
-        }
-        if (
-          !isCtrl(event) &&
-          !event.shiftKey &&
-          event.altKey &&
-          event.key === "Enter"
-        ) {
-          range.selectNodeContents(headingElement);
-          range.collapse(false);
-          setSelectionFocus(range);
-          event.preventDefault();
-          return;
-        }
-        removeBlockElement(vditor, event);
-      };
-
-      genUp(range, headingElement, vditor);
-      genDown(range, headingElement, vditor);
-      genClose(headingElement, vditor);
-      vditor.wysiwyg.popover.insertAdjacentElement("beforeend", inputWrap);
-      setPopoverPosition(vditor, headingElement);
-    }
+    // let blockRenderElement = hasClosestByClassName(typeElement, "vditor-wysiwyg__block") as HTMLElement;
+    // const isBlock = blockRenderElement ? blockRenderElement.getAttribute("data-type").indexOf("block") > -1 : false;
+    // vditor.wysiwyg.element
+    //   .querySelectorAll(".vditor-wysiwyg__preview")
+    //   .forEach((itemElement) => {
+    //     if (!blockRenderElement || (blockRenderElement && isBlock && !blockRenderElement.contains(itemElement))) {
+    //       const previousElement = itemElement.previousElementSibling as HTMLElement;
+    //       previousElement.style.display = "none";
+    //     }
+    //   });
+    // if (blockRenderElement && isBlock) {
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //   genUp(range, blockRenderElement, vditor);
+    //   genDown(range, blockRenderElement, vditor);
+    //   genClose(blockRenderElement, vditor);
+    //
+    //   if (blockRenderElement.getAttribute("data-type") === "code-block") {
+    //     const languageWrap = document.createElement("span");
+    //     languageWrap.setAttribute("aria-label", window.VditorI18n.language + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //     languageWrap.className = "vditor-tooltipped vditor-tooltipped__n";
+    //     const language = document.createElement("input");
+    //     languageWrap.appendChild(language);
+    //
+    //     const codeElement =
+    //       blockRenderElement.firstElementChild.firstElementChild;
+    //
+    //     language.className = "vditor-input";
+    //     language.setAttribute("placeholder",
+    //       window.VditorI18n.language + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //     language.value =
+    //       codeElement.className.indexOf("language-") > -1
+    //         ? codeElement.className.split("-")[1].split(" ")[0]
+    //         : "";
+    //     language.oninput = (e: InputEvent) => {
+    //       if (language.value.trim() !== "") {
+    //         codeElement.className = `language-${language.value}`;
+    //       } else {
+    //         codeElement.className = "";
+    //         vditor.hint.recentLanguage = "";
+    //       }
+    //       if (blockRenderElement.lastElementChild.classList.contains("vditor-wysiwyg__preview")) {
+    //         blockRenderElement.lastElementChild.innerHTML =
+    //           blockRenderElement.firstElementChild.innerHTML;
+    //         processCodeRender(blockRenderElement.lastElementChild as HTMLElement, vditor);
+    //       }
+    //       afterRenderEvent(vditor);
+    //       // 当鼠标点选语言时，触发自定义input事件
+    //       if (e.detail === 1) {
+    //         // 选择语言后，输入焦点切换到代码输入框
+    //         range.setStart(codeElement.firstChild, 0);
+    //         range.collapse(true);
+    //         setSelectionFocus(range);
+    //       }
+    //     };
+    //     language.onkeydown = (event: KeyboardEvent) => {
+    //       if (event.isComposing) {
+    //         return;
+    //       }
+    //       if (removeBlockElement(vditor, event)) {
+    //         return;
+    //       }
+    //       if (
+    //         event.key === "Escape" &&
+    //         vditor.hint.element.style.display === "block"
+    //       ) {
+    //         vditor.hint.element.style.display = "none";
+    //         event.preventDefault();
+    //         return;
+    //       }
+    //       vditor.hint.select(event, vditor);
+    //       if (
+    //         !isCtrl(event) &&
+    //         !event.shiftKey &&
+    //         event.key === "Enter"
+    //       ) {
+    //         range.setStart(codeElement.firstChild, 0);
+    //         range.collapse(true);
+    //         setSelectionFocus(range);
+    //         event.preventDefault();
+    //         event.stopPropagation();
+    //       }
+    //     };
+    //     language.onkeyup = (event: KeyboardEvent) => {
+    //       if (
+    //         event.isComposing ||
+    //         event.key === "Enter" ||
+    //         event.key === "ArrowUp" ||
+    //         event.key === "Escape" ||
+    //         event.key === "ArrowDown"
+    //       ) {
+    //         return;
+    //       }
+    //       const matchLangData: LGHintData[] = [];
+    //       const key = language.value.substring(0, language.selectionStart);
+    //       Constants.CODE_LANGUAGES.forEach((keyName) => {
+    //         if (keyName.indexOf(key.toLowerCase()) > -1) {
+    //           matchLangData.push({
+    //             html: keyName,
+    //             value: keyName,
+    //           });
+    //         }
+    //       });
+    //       vditor.hint.genHTML(matchLangData, key, vditor);
+    //       event.preventDefault();
+    //     };
+    //     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", languageWrap);
+    //   }
+    //   setPopoverPosition(vditor, blockRenderElement);
+    // } else {
+    //   blockRenderElement = undefined;
+    // }
+    // if (headingElement) {
+    //   vditor.wysiwyg.popover.innerHTML = "";
+    //
+    //   const inputWrap = document.createElement("span");
+    //   inputWrap.setAttribute("aria-label", "ID" + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //   inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
+    //   const input = document.createElement("input");
+    //   inputWrap.appendChild(input);
+    //   input.className = "vditor-input";
+    //   input.setAttribute("placeholder", "ID" + "<" + updateHotkeyTip("⌥Enter") + ">");
+    //   input.style.width = "120px";
+    //   input.value = headingElement.getAttribute("data-id") || "";
+    //   input.oninput = () => {
+    //     headingElement.setAttribute("data-id", input.value);
+    //   };
+    //   input.onkeydown = (event) => {
+    //     if (event.isComposing) {
+    //       return;
+    //     }
+    //     if (
+    //       !isCtrl(event) &&
+    //       !event.shiftKey &&
+    //       event.altKey &&
+    //       event.key === "Enter"
+    //     ) {
+    //       range.selectNodeContents(headingElement);
+    //       range.collapse(false);
+    //       setSelectionFocus(range);
+    //       event.preventDefault();
+    //       return;
+    //     }
+    //     removeBlockElement(vditor, event);
+    //   };
+    //
+    //   genUp(range, headingElement, vditor);
+    //   genDown(range, headingElement, vditor);
+    //   genClose(headingElement, vditor);
+    //   vditor.wysiwyg.popover.insertAdjacentElement("beforeend", inputWrap);
+    //   setPopoverPosition(vditor, headingElement);
+    // }
 
     // a popover
-    if (aElement) {
-      genAPopover(vditor, aElement);
-    }
-
-    if (
-      !blockquoteElement &&
-      !liElement &&
-      !tableElement &&
-      !blockRenderElement &&
-      !aElement &&
-      !linkRefElement &&
-      !footnotesRefElement &&
-      !headingElement &&
-      !tocElement
-    ) {
-      const blockElement = hasClosestByAttribute(typeElement, "data-block", "0");
-      if (
-        blockElement &&
-        blockElement.parentElement.isEqualNode(vditor.wysiwyg.element)
-      ) {
-        vditor.wysiwyg.popover.innerHTML = "";
-        genUp(range, blockElement, vditor);
-        genDown(range, blockElement, vditor);
-        genClose(blockElement, vditor);
-
-        setPopoverPosition(vditor, blockElement);
-      } else {
-        vditor.wysiwyg.popover.style.display = "none";
-      }
-    }
+    // if (aElement) {
+    //   genAPopover(vditor, aElement);
+    // }
+    //
+    // if (
+    //   !blockquoteElement &&
+    //   !liElement &&
+    //   !tableElement &&
+    //   !blockRenderElement &&
+    //   !aElement &&
+    //   !linkRefElement &&
+    //   !footnotesRefElement &&
+    //   !headingElement &&
+    //   !tocElement
+    // ) {
+    //   const blockElement = hasClosestByAttribute(typeElement, "data-block", "0");
+    //   if (
+    //     blockElement &&
+    //     blockElement.parentElement.isEqualNode(vditor.wysiwyg.element)
+    //   ) {
+    //     vditor.wysiwyg.popover.innerHTML = "";
+    //     genUp(range, blockElement, vditor);
+    //     genDown(range, blockElement, vditor);
+    //     genClose(blockElement, vditor);
+    //
+    //     setPopoverPosition(vditor, blockElement);
+    //   } else {
+    //     vditor.wysiwyg.popover.style.display = "none";
+    //   }
+    // }
 
     // 反斜杠特殊处理
     vditor.wysiwyg.element
