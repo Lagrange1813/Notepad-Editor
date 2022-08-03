@@ -47,20 +47,21 @@
     },
   });
 
-  let oldHeight = 0;
-  let observeHeight = function () {
-    let newHeight = document.body.offsetHeight;
-    if (newHeight != oldHeight) {
-      oldHeight = newHeight;
-      console.log(newHeight);
-      window.webkit.messageHandlers.adjustHeight.postMessage(newHeight);
-    }
-  }
-
-  addEventListener("scroll", observeHeight);
-  addEventListener("resize", observeHeight);
-  addEventListener("click", observeHeight);
-  addEventListener("keyup", observeHeight);
+  // let oldHeight = 0;
+  // let observeHeight = function () {
+  //   let newHeight = document.body.offsetHeight;
+  //   if (newHeight != oldHeight) {
+  //     oldHeight = newHeight;
+  //     console.log(newHeight);
+  //     window.webkit.messageHandlers.adjustHeight.postMessage(newHeight);
+  //   }
+  // }
+  //
+  // addEventListener("scroll", observeHeight);
+  // addEventListener("resize", observeHeight);
+  // addEventListener("click", observeHeight);
+  // addEventListener("keyup", observeHeight);
+  // addEventListener("select", observeHeight);
 
   let observeTextChange = function () {
     window.webkit.messageHandlers.textChange.postMessage('L');
